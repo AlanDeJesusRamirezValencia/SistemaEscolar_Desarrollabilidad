@@ -7,6 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="JavaFX 15" level="project" />
+    <orderEntry type="library" exported="" name="javafx v1" level="project" />
+    <orderEntry type="library" exported="" name="mysql-connector-java-5.1.49-bin" level="project" />
   </component>
 </module>
