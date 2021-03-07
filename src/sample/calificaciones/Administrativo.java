@@ -1,4 +1,4 @@
-package sample;
+package sample.calificaciones;
 
 public class Administrativo {
 
