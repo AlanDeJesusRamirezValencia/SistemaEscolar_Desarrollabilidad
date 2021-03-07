@@ -1,5 +1,6 @@
 package sample.ui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.calificaciones.Administrativo;
 
 import java.io.IOException;
 
@@ -22,7 +24,7 @@ public class Login {
     private Label datosIncorrectos;
 
 
-    public void iniciarSesion(javafx.event.ActionEvent actionEvent) {
+    public void iniciarSesion(ActionEvent actionEvent) {
         if(validarCampos(usuario.getText(), contraseña.getText())){
             try { irACalificaciones(); }
             catch (IOException e) {
@@ -42,7 +44,6 @@ public class Login {
     }
 
     private boolean validarCampos(String usuario, String contraseña) {
-        //Validar el usuario y contraseña segun la base de datos
-        return true;
+        return (new Administrativo()).validarUsuarioContraseña(usuario,contraseña);
     }
 }

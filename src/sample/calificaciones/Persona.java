@@ -1,6 +1,6 @@
 package sample.calificaciones;
 
-public class Persona {
+public abstract class Persona {
     protected String nombre, apellidoPaterno, apellidoMaterno;
     protected Grupo grupo;
 

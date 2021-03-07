@@ -4,7 +4,20 @@ import com.mysql.jdbc.Connection;
 import java.util.ArrayList;
 import java.sql.*;
 
-public class Gestor {
+class Gestor {
+
+    public static Usuario obtenerUsuario(String nombre) throws SQLException {
+        Connection conexion = Conexion.getConexion();
+        Statement declaracion = conexion.createStatement();
+        String consulta = "SELECT * FROM administrativos WHERE usuario = '" + nombre + "';";
+        ResultSet resultados = declaracion.executeQuery(consulta);
+        while(resultados.next()){
+            String usuario = resultados.getString("usuario");
+            String contraseña = resultados.getString("contrasena");
+            return new Usuario(usuario, contraseña);
+        }
+        return new Usuario("", "");
+    }
 
     public ArrayList<Grupo> obtenerGrupos() throws SQLException {
         Connection conexion = Conexion.getConexion();
