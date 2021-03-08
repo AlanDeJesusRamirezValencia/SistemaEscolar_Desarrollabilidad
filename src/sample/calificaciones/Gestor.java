@@ -67,9 +67,29 @@ public class Gestor {
         return estudiantes;
     }
 
-    public ArrayList<Calificacion> obtenerCalificaciones(Materia materia){
+    public ArrayList<Calificacion> obtenerCalificaciones(Materia materia) throws SQLException {
+        Connection conexion = Conexion.getConexion();
+        Statement declaracion = conexion.createStatement();
+        String consulta = "SELECT * FROM calificaciones WHERE fk_materia = " + materia.getNrc() + ";";
+        ResultSet resultados = declaracion.executeQuery(consulta);
         ArrayList<Calificacion> calificaciones = new ArrayList<>();
+        ArrayList<Estudiante> estudiantes = obtenerEstudiantes(materia.getGrupo());
+        while(resultados.next()){
+            int nota = Integer.parseInt(resultados.getString("nota"));
+            String matricula = resultados.getString("fk_estudiante");
+            Estudiante estudiante = buscarEstudiante(estudiantes, matricula);
+            Calificacion calificacion = new Calificacion(nota, materia, estudiante);
+        }
         return calificaciones;
+    }
+
+    private Estudiante buscarEstudiante (ArrayList<Estudiante> estudiantes, String matricula){
+        for (Estudiante estudiante: estudiantes) {
+            if (estudiante.getMatricula().equals(matricula)){
+                return estudiante;
+            }
+        }
+        return null;
     }
 
     public ArrayList<Calificacion> obtenerCalificaciones(Estudiante estudiante){

@@ -16,9 +16,7 @@ class Conexion {
         Connection conexion = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-
             conexion = (Connection) DriverManager.getConnection(URL, USER, PASSWORD);
-
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex, "Error" + ex.getMessage(), JOptionPane.ERROR_MESSAGE);
         } finally {

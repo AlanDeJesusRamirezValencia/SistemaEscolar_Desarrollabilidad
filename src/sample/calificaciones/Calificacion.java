@@ -6,6 +6,12 @@ public class Calificacion {
     private Materia materia;
     private Estudiante estudiante;
 
+    public Calificacion(int nota, Materia materia, Estudiante estudiante) {
+        this.nota = nota;
+        this.materia = materia;
+        this.estudiante = estudiante;
+    }
+
     public int getNota() {
         return nota;
     }
