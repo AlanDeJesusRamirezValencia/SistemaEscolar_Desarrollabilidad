@@ -5,15 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.ui.Navegador;
 
-public class Main extends Application {
+public class Main extends Application implements Navegador {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("recursos/escenarios/Login.fxml"));
-        primaryStage.setTitle("Sistema Escolar");
-        primaryStage.setScene(new Scene(root, 800, 600));
-        primaryStage.show();
+        navegarMain(primaryStage, "Login.fxml");
     }
 
 
