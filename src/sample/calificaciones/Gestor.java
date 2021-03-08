@@ -4,7 +4,7 @@ import com.mysql.jdbc.Connection;
 import java.util.ArrayList;
 import java.sql.*;
 
-class Gestor {
+public class Gestor {
 
     public static Usuario obtenerUsuario(String nombre) throws SQLException {
         Connection conexion = Conexion.getConexion();
@@ -22,7 +22,7 @@ class Gestor {
     public ArrayList<Grupo> obtenerGrupos() throws SQLException {
         Connection conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = "SELECT * FROM grupos";
+        String consulta = "SELECT * FROM grupos;";
         ResultSet resultados = declaracion.executeQuery(consulta);
         ArrayList<Grupo> grupos = new ArrayList<>();
         while(resultados.next()){
@@ -38,7 +38,7 @@ class Gestor {
     public ArrayList<Materia> obtenerMaterias(Grupo grupo) throws SQLException {
         Connection conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = "SELECT * FROM materias WHERE fk_grupo = " + grupo.getId();
+        String consulta = "SELECT * FROM materias WHERE fk_grupo = " + grupo.getId() + ";";
         ResultSet resultados = declaracion.executeQuery(consulta);
         ArrayList<Materia> materias = new ArrayList<>();
         while(resultados.next()){
@@ -53,7 +53,7 @@ class Gestor {
     public ArrayList<Estudiante> obtenerEstudiantes(Grupo grupo) throws SQLException {
         Connection conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = "SELECT * FROM estudiantes WHERE fk_grupo = " + grupo.getId();
+        String consulta = "SELECT * FROM estudiantes WHERE fk_grupo = " + grupo.getId() + ";";
         ResultSet resultados = declaracion.executeQuery(consulta);
         ArrayList<Estudiante> estudiantes = new ArrayList<>();
         while(resultados.next()){
