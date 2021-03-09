@@ -79,6 +79,7 @@ public class Gestor {
             String matricula = resultados.getString("fk_estudiante");
             Estudiante estudiante = buscarEstudiante(estudiantes, matricula);
             Calificacion calificacion = new Calificacion(nota, materia, estudiante);
+            calificaciones.add(calificacion);
         }
         return calificaciones;
     }
@@ -92,9 +93,30 @@ public class Gestor {
         return null;
     }
 
-    public ArrayList<Calificacion> obtenerCalificaciones(Estudiante estudiante){
+    public ArrayList<Calificacion> obtenerCalificaciones(Estudiante estudiante) throws SQLException {
+        Connection conexion = Conexion.getConexion();
+        Statement declaracion = conexion.createStatement();
+        String consulta = "SELECT * FROM estudiantes WHERE fk_estudiante = " + estudiante.getMatricula() + ";";
+        ResultSet resultados = declaracion.executeQuery(consulta);
         ArrayList<Calificacion> calificaciones = new ArrayList<>();
+        ArrayList<Materia> materias = obtenerMaterias(estudiante.getGrupo());
+        while(resultados.next()){
+            int nota = Integer.parseInt(resultados.getString("nota"));
+            int nrc = Integer.parseInt(resultados.getString("fk_materia"));
+            Materia materia = buscarMateria(materias, nrc);
+            Calificacion calificacion = new Calificacion(nota, materia, estudiante);
+            calificaciones.add(calificacion);
+        }
         return calificaciones;
+    }
+
+    private Materia buscarMateria(ArrayList<Materia> materias, int nrc){
+        for (Materia materia: materias){
+            if (materia.getNrc() == nrc){
+                return materia;
+            }
+        }
+        return null;
     }
 
     public void mostrarGrupos(ArrayList<Grupo> grupos){
