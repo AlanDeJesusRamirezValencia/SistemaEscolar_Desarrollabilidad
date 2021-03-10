@@ -4,12 +4,16 @@ import com.mysql.jdbc.Connection;
 import java.util.ArrayList;
 import java.sql.*;
 
+/**
+ * @author Angel Daniel
+ * @version 1.0
+ */
 public class Gestor {
+    private static Connection conexion = Conexion.getConexion();
 
     public static Usuario obtenerUsuario(String nombre) throws SQLException {
-        Connection conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = "SELECT * FROM administrativos WHERE usuario = '" + nombre + "';";
+        String consulta = String.format("SELECT * FROM administrativos WHERE usuario = '%s';", nombre);
         ResultSet resultados = declaracion.executeQuery(consulta);
         while(resultados.next()){
             String usuario = resultados.getString("usuario");
@@ -19,8 +23,7 @@ public class Gestor {
         return new Usuario("", "");
     }
 
-    public ArrayList<Grupo> obtenerGrupos() throws SQLException {
-        Connection conexion = Conexion.getConexion();
+    public static ArrayList<Grupo> obtenerGrupos() throws SQLException {
         Statement declaracion = conexion.createStatement();
         String consulta = "SELECT * FROM grupos;";
         ResultSet resultados = declaracion.executeQuery(consulta);
@@ -35,10 +38,9 @@ public class Gestor {
         return grupos;
     }
 
-    public ArrayList<Materia> obtenerMaterias(Grupo grupo) throws SQLException {
-        Connection conexion = Conexion.getConexion();
+    public static ArrayList<Materia> obtenerMaterias(Grupo grupo) throws SQLException {
         Statement declaracion = conexion.createStatement();
-        String consulta = "SELECT * FROM materias WHERE fk_grupo = " + grupo.getId() + ";";
+        String consulta = String.format("SELECT * FROM materias WHERE fk_grupo = '%d';", grupo.getId());
         ResultSet resultados = declaracion.executeQuery(consulta);
         ArrayList<Materia> materias = new ArrayList<>();
         while(resultados.next()){
@@ -50,10 +52,10 @@ public class Gestor {
         return materias;
     }
 
-    public ArrayList<Estudiante> obtenerEstudiantes(Grupo grupo) throws SQLException {
-        Connection conexion = Conexion.getConexion();
+    public static ArrayList<Estudiante> obtenerEstudiantes(Grupo grupo) throws SQLException {
         Statement declaracion = conexion.createStatement();
-        String consulta = "SELECT * FROM estudiantes WHERE fk_grupo = " + grupo.getId() + ";";
+        String consulta = String.format("SELECT * FROM estudiantes WHERE fk_grupo = %d " +
+                "ORDER BY apellido_paterno, apellido_materno, nombre;", grupo.getId());
         ResultSet resultados = declaracion.executeQuery(consulta);
         ArrayList<Estudiante> estudiantes = new ArrayList<>();
         while(resultados.next()){
@@ -67,10 +69,12 @@ public class Gestor {
         return estudiantes;
     }
 
-    public ArrayList<Calificacion> obtenerCalificaciones(Materia materia) throws SQLException {
-        Connection conexion = Conexion.getConexion();
+    public static ArrayList<Calificacion> obtenerCalificaciones(Materia materia) throws SQLException {
         Statement declaracion = conexion.createStatement();
-        String consulta = "SELECT * FROM calificaciones WHERE fk_materia = " + materia.getNrc() + ";";
+        String consulta = String.format("SELECT c.id_calificacion, c.nota, c.fk_estudiante " +
+                "FROM calificacion c, estudiante e, materia m " +
+                "WHERE c.fk_estudiante = e.matricula AND m.nrc = %d " +
+                "ORDER BY e.apellido_paterno, e.apellido_materno, e.nombre;;", materia.getNrc());
         ResultSet resultados = declaracion.executeQuery(consulta);
         ArrayList<Calificacion> calificaciones = new ArrayList<>();
         ArrayList<Estudiante> estudiantes = obtenerEstudiantes(materia.getGrupo());
@@ -84,7 +88,7 @@ public class Gestor {
         return calificaciones;
     }
 
-    private Estudiante buscarEstudiante (ArrayList<Estudiante> estudiantes, String matricula){
+    private static Estudiante buscarEstudiante (ArrayList<Estudiante> estudiantes, String matricula){
         for (Estudiante estudiante: estudiantes) {
             if (estudiante.getMatricula().equals(matricula)){
                 return estudiante;
@@ -93,10 +97,9 @@ public class Gestor {
         return null;
     }
 
-    public ArrayList<Calificacion> obtenerCalificaciones(Estudiante estudiante) throws SQLException {
-        Connection conexion = Conexion.getConexion();
+    public static ArrayList<Calificacion> obtenerCalificaciones(Estudiante estudiante) throws SQLException {
         Statement declaracion = conexion.createStatement();
-        String consulta = "SELECT * FROM estudiantes WHERE fk_estudiante = " + estudiante.getMatricula() + ";";
+        String consulta = String.format("SELECT * FROM calificaciones WHERE fk_materia = '%s';", estudiante.getMatricula());
         ResultSet resultados = declaracion.executeQuery(consulta);
         ArrayList<Calificacion> calificaciones = new ArrayList<>();
         ArrayList<Materia> materias = obtenerMaterias(estudiante.getGrupo());
@@ -110,7 +113,7 @@ public class Gestor {
         return calificaciones;
     }
 
-    private Materia buscarMateria(ArrayList<Materia> materias, int nrc){
+    private static Materia buscarMateria(ArrayList<Materia> materias, int nrc){
         for (Materia materia: materias){
             if (materia.getNrc() == nrc){
                 return materia;
@@ -119,32 +122,11 @@ public class Gestor {
         return null;
     }
 
-    public void mostrarGrupos(ArrayList<Grupo> grupos){
-
-    }
-
-    public  void mostrarGrupo(Grupo grupo){
-
-    }
-
-    public void mostarMaterias(ArrayList<Materia> materias){
-
-    }
-
-    public void mostrarMateria(Materia materia){
-
-    }
-
-    public void mostrarEstudiantes(ArrayList<Estudiante> estudiantes){
-
-    }
-
-    public void  mostrarEstudiante(Estudiante estudiante){
-
-    }
-
-    public void asignarCalificaciones(Materia materia){
-
+    public static void asignarCalificaciones(ArrayList<Estudiante> estudiantes, Materia materia, int nota) throws SQLException {
+        for (Estudiante estudiante: estudiantes) {
+            Statement declaracion = conexion.createStatement();
+            String consulta = String.format("INSERT INTO calificaciones VALUES()");
+        }
     }
 
 }
