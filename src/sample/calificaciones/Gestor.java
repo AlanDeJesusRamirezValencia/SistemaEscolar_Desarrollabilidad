@@ -3,6 +3,7 @@ package sample.calificaciones;
 import com.mysql.jdbc.Connection;
 import java.util.ArrayList;
 import java.sql.*;
+import java.util.HashMap;
 
 /**
  * @author Angel Daniel
@@ -122,9 +123,13 @@ public class Gestor {
         return null;
     }
 
-    public static void asignarCalificacion(Estudiante estudiante, Materia materia, int nota) throws SQLException {
+    public static void subirCalificaciones(HashMap<Estudiante,Integer> estudiante, Materia materia) throws SQLException {
         Statement declaracion = conexion.createStatement();
         String consulta = String.format("INSERT INTO calificaciones VALUES()");
+    }
+
+    public static void actualizarCalificacion(Estudiante estudiante, int nota, Materia materia){
+
     }
 
 }
