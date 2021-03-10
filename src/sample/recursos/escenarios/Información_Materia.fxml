@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ui.InformaciónMateria">
+    <center>
+        <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="24.0" layoutY="24.0" text="Información de la Materia">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="24.0" />
+                    </font>
+                </Label>
+                <Button layoutX="65.0" layoutY="22.0" mnemonicParsing="false" onAction="#editar" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../iconos/editar.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Label layoutX="24.0" layoutY="58.0" text="Nombre">
+                    <font>
+                        <Font name="Segoe UI" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="nombreMateria" layoutX="24.0" layoutY="92.0">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="18.0" />
+                    </font>
+                </Label>
+
+                <Label layoutX="24.0" layoutY="126.0" text="NRC">
+                    <font>
+                        <Font name="Segoe UI" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="nrc" layoutX="24.0" layoutY="160.0">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="18.0" />
+                    </font>
+                </Label>
+
+                <Label layoutX="24.0" layoutY="194.0" text="Grupo">
+                    <font>
+                        <Font name="Segoe UI" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="nombreGrupo" layoutX="24.0" layoutY="228.0">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="18.0" />
+                    </font>
+                </Label>
+
+                <Label layoutX="24.0" layoutY="262.0" text="Profesor">
+                    <font>
+                        <Font name="Segoe UI" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="nombreProfesor" layoutX="24.0" layoutY="296.0">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="18.0" />
+                    </font>
+                </Label>
+
+                <Button fx:id="usuario" layoutX="640.0" layoutY="17.0" mnemonicParsing="false" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Usuario">
+                    <font>
+                        <Font name="Segoe UI" size="18.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../iconos/usuario.png"/>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button layoutX="14.0" layoutY="502.0" mnemonicParsing="false" text="Asignar Calificaciones" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="18.0" />
+                    </font>
+                </Button>
+                <Button layoutX="14.0" layoutY="544.0" mnemonicParsing="false" text="Exportar Calificaciones" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="18.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>

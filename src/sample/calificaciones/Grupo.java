@@ -1,5 +1,7 @@
 package sample.calificaciones;
 
+import java.util.HashMap;
+
 public class Grupo {
     private int id;
     private int grado;
@@ -9,11 +11,6 @@ public class Grupo {
         this.id = id;
         this.grado = grado;
         this.letra = letra;
-    }
-
-    @Override
-    public String toString() {
-        return grado + " " + letra;
     }
 
     public int getId() {
@@ -38,5 +35,37 @@ public class Grupo {
 
     public void setLetra(char letra) {
         this.letra = letra;
+    }
+
+    /** Obtiene los atribudos de un objeto {@link Grupo} para transformarlos en un objeto de tipo {@link HashMap} */
+    public HashMap<String,String> toHashMap(){
+        HashMap<String,String> hashMap = new HashMap<String, String>();
+        //Componentes de la clase Grupo
+        hashMap.put("id", id + "");
+        hashMap.put("grado", grado + "");
+        hashMap.put("letra", letra + "");
+        return hashMap;
+    }
+
+    /** Permite añadir los atributos de un {@link Grupo} a un HashMap */
+    public static HashMap<String,String> añadirGrupo(HashMap<String,String> mensaje, Grupo grupo){
+        mensaje.put("id", grupo.getId() + "");
+        mensaje.put("grado", grupo.getGrado() + "");
+        mensaje.put("letra", grupo.getLetra() + "");
+        return mensaje;
+    }
+
+    /** A partir de un objeto {@link HashMap} crea un objeto de tipo {@link Grupo}*/
+    public static Grupo obtenerGrupo(HashMap<String, String> hashMap){
+        return new Grupo(
+            Integer.parseInt(hashMap.get("id")),
+            Integer.parseInt(hashMap.get("grado")),
+            hashMap.get("letra").charAt(0)
+        );
+    }
+
+    @Override
+    public String toString() {
+        return grado + letra + "";
     }
 }
