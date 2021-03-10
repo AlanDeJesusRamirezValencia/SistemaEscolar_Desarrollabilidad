@@ -122,11 +122,9 @@ public class Gestor {
         return null;
     }
 
-    public static void asignarCalificaciones(ArrayList<Estudiante> estudiantes, Materia materia, int nota) throws SQLException {
-        for (Estudiante estudiante: estudiantes) {
-            Statement declaracion = conexion.createStatement();
-            String consulta = String.format("INSERT INTO calificaciones VALUES()");
-        }
+    public static void asignarCalificacion(Estudiante estudiante, Materia materia, int nota) throws SQLException {
+        Statement declaracion = conexion.createStatement();
+        String consulta = String.format("INSERT INTO calificaciones VALUES()");
     }
 
 }
