@@ -8,7 +8,7 @@ import sample.calificaciones.Usuario;
 import sample.ui.arquitectura.Comunicador;
 
 
-public class InformaciónGrupos extends Comunicador {
+public class InformaciónGrupo extends Comunicador {
 
     private Grupo grupo;
 
