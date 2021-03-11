@@ -14,6 +14,13 @@ public class Grupo {
         this.letra = letra;
     }
 
+    public Grupo(int id, int grado, char letra, Profesor profesor) {
+        this.id = id;
+        this.grado = grado;
+        this.letra = letra;
+        this.profesor = profesor;
+    }
+
     public int getId() {
         return id;
     }
@@ -53,6 +60,10 @@ public class Grupo {
         hashMap.put("id", id + "");
         hashMap.put("grado", grado + "");
         hashMap.put("letra", letra + "");
+        hashMap.put("nPersonalProfesor", profesor.getnPersonal() + "");
+        hashMap.put("nombreProfesor", profesor.getNombre());
+        hashMap.put("apellidoPaternoProfesor", profesor.getApellidoPaterno());
+        hashMap.put("apellidoMaternoProfesor", profesor.getApellidoMaterno());
         return hashMap;
     }
 
@@ -61,6 +72,10 @@ public class Grupo {
         mensaje.put("id", grupo.getId() + "");
         mensaje.put("grado", grupo.getGrado() + "");
         mensaje.put("letra", grupo.getLetra() + "");
+        mensaje.put("nPersonalProfesor", grupo.getProfesor().getnPersonal() + "");
+        mensaje.put("nombreProfesor", grupo.getProfesor().getNombre());
+        mensaje.put("apellidoPaternoProfesor", grupo.getProfesor().getApellidoPaterno());
+        mensaje.put("apellidoMaternoProfesor", grupo.getProfesor().getApellidoMaterno());
         return mensaje;
     }
 
@@ -68,9 +83,15 @@ public class Grupo {
     /** A partir de un objeto {@link HashMap} crea un objeto de tipo {@link Grupo}*/
     public static Grupo obtenerGrupo(HashMap<String, String> hashMap){
         return new Grupo(
-            Integer.parseInt(hashMap.get("id")),
-            Integer.parseInt(hashMap.get("grado")),
-            hashMap.get("letra").charAt(0)
+                Integer.parseInt(hashMap.get("id")),
+                Integer.parseInt(hashMap.get("grado")),
+                hashMap.get("letra").charAt(0),
+                new Profesor(
+                        Integer.parseInt(hashMap.get("nPersonalProfesor")),
+                        hashMap.get("nombreProfesor"),
+                        hashMap.get("apellidoPaternoProfesor"),
+                        hashMap.get("apellidoMaternoProfesor")
+                )
         );
     }
 

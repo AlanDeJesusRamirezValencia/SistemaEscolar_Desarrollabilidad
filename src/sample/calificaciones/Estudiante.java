@@ -40,9 +40,15 @@ public class Estudiante extends Persona {
         hashMap.put("apellidoMaterno", this.apellidoMaterno);
 
         //Componentes de la clase Grupo
-        //hashMap.put("id", grupo.getId() + "");
-        //hashMap.put("grado", grupo.getGrado() + "");
-        //hashMap.put("letra", grupo.getLetra() + "");
+        hashMap.put("id", grupo.getId() + "");
+        hashMap.put("grado", grupo.getGrado() + "");
+        hashMap.put("letra", grupo.getLetra() + "");
+
+        //Componentes del profesor del Grupo
+        hashMap.put("nPersonalProfesor", grupo.getProfesor().getnPersonal() + "");
+        hashMap.put("nombreProfesor", grupo.getProfesor().getNombre());
+        hashMap.put("apellidoPaternoProfesor", grupo.getProfesor().getApellidoPaterno());
+        hashMap.put("apellidoMaternoProfesor", grupo.getProfesor().getApellidoMaterno());
         return hashMap;
     }
 
@@ -53,11 +59,17 @@ public class Estudiante extends Persona {
                 hashMap.get("nombre"),
                 hashMap.get("apellidoPaterno"),
                 hashMap.get("apellidoMaterno"),
-                //new Grupo(
-                        //Integer.parseInt(hashMap.get("id")),
-                        //Integer.parseInt(hashMap.get("grado")),
-                        //hashMap.get("letra").charAt(0)
-                //)
+                new Grupo(
+                        Integer.parseInt(hashMap.get("id")),
+                        Integer.parseInt(hashMap.get("grado")),
+                        hashMap.get("letra").charAt(0),
+                        new Profesor(
+                                Integer.parseInt(hashMap.get("nPersonalProfesor")),
+                                hashMap.get("nombreProfesor"),
+                                hashMap.get("apellidoPaternoProfesor"),
+                                hashMap.get("apellidoMaternoProfesor")
+                        )
+                )
         );
     }
 }

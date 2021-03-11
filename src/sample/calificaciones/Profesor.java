@@ -24,30 +24,20 @@ public class Profesor extends Persona {
         HashMap<String,String> hashMap = new HashMap<String, String>();
 
         //Componentes de la clase alumno
-        hashMap.put("nPersonal", this.nPersonal + "");
-        hashMap.put("nombre", this.nombre);
-        hashMap.put("apellidoPaterno", this.apellidoPaterno);
-        hashMap.put("apellidoMaterno", this.apellidoMaterno);
-
-        //Componentes de la clase Grupo
-        //hashMap.put("id", grupo.getId() + "");
-        //hashMap.put("grado", grupo.getGrado() + "");
-        //hashMap.put("letra", grupo.getLetra() + "");
+        hashMap.put("nPersonalProfesor", this.nPersonal + "");
+        hashMap.put("nombreProfesor", this.nombre);
+        hashMap.put("apellidoPaternoProfesor", this.apellidoPaterno);
+        hashMap.put("apellidoMaternoProfesor", this.apellidoMaterno);
         return hashMap;
     }
 
     /** A partir de un objeto {@link HashMap} crea un objeto de tipo {@link Profesor}*/
     public static Profesor obtenerProfesor(HashMap<String, String> hashMap){
         return new Profesor(
-                Integer.parseInt(hashMap.get("nPersonal")),
-                hashMap.get("nombre"),
-                hashMap.get("apellidoPaterno"),
-                hashMap.get("apellidoMaterno"),
-                //new Grupo(
-                        //Integer.parseInt(hashMap.get("id")),
-                        //Integer.parseInt(hashMap.get("grado")),
-                        //hashMap.get("letra").charAt(0)
-                //)
+                Integer.parseInt(hashMap.get("nPersonalProfesor")),
+                hashMap.get("nombreProfesor"),
+                hashMap.get("apellidoPaternoProfesor"),
+                hashMap.get("apellidoMaternoProfesor")
         );
     }
 }
