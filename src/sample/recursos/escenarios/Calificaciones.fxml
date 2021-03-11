@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.VBox?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ui.Calificaciones">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
@@ -29,8 +30,11 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ScrollPane layoutX="24.0" layoutY="64.0" prefHeight="512.0" prefWidth="752.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" />
-
+            <ScrollPane layoutX="24.0" layoutY="64.0" prefHeight="512.0" prefWidth="752.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
+               <content>
+                  <VBox fx:id="vGrupos" prefHeight="460.0" prefWidth="750.0" />
+               </content>
+            </ScrollPane>
             <Button layoutX="722.0" layoutY="527.0" mnemonicParsing="false" onAction="#nuevo" prefHeight="48.0" prefWidth="48.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
                <graphic>
                   <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">

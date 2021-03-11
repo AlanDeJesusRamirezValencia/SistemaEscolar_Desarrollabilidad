@@ -26,8 +26,7 @@ public class Login extends Comunicador {
 
     public void iniciarSesion() {
         if (validarContraseña(usuario.getText(),contraseña.getText())) {
-            Grupo grupo = new Grupo(1, 1, 'A');
-            navegar(usuario, "Información_Grupos.fxml", grupo.toHashMap());
+            navegar(usuario, "Calificaciones.fxml");
         }
         else
             datosIncorrectos.setText("*Usuario y/o Contraseña incorrectos");

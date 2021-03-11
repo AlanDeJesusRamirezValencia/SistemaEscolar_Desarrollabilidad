@@ -22,7 +22,8 @@ public class InformaciónProfesor extends Comunicador {
     public void inicializarComponentes() {
         Profesor profesor = Profesor.obtenerProfesor(getMensaje());
         nombreProfesor.setText(profesor.getNombre() + profesor.getApellidoPaterno() + profesor.getApellidoMaterno());
-        grupo.setText(profesor.getGrupo().toString());
+        //TODO Resolver conflicto
+        //grupo.setText(profesor.getGrupo().toString());
         usuario.setText(Usuario.obtenerUsuario(getMensaje()));
     }
 

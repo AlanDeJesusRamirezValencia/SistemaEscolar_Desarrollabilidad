@@ -2,7 +2,7 @@ package sample.calificaciones;
 
 import java.util.HashMap;
 
-public class Grupo {
+public class Grupo implements Comparable<Grupo>{
     private int id;
     private int grado;
     private char letra;
@@ -98,5 +98,42 @@ public class Grupo {
     @Override
     public String toString() {
         return grado + letra + "";
+    }
+
+
+    @Override
+    public int compareTo(Grupo o) {
+
+        HashMap<Character, Integer> alfabeto= new HashMap<Character, Integer>();
+        alfabeto.put('A',  100);
+        alfabeto.put('B',   99);
+        alfabeto.put('C',   98);
+        alfabeto.put('D',   97);
+        alfabeto.put('E',   96);
+        alfabeto.put('F',   95);
+        alfabeto.put('G',   94);
+        alfabeto.put('H',   93);
+        alfabeto.put('I',   92);
+        alfabeto.put('J',   91);
+        alfabeto.put('K',   90);
+        alfabeto.put('L',   89);
+        alfabeto.put('M',   88);
+        alfabeto.put('O',   87);
+        alfabeto.put('P',   86);
+        alfabeto.put('Q',   85);
+        alfabeto.put('R',   84);
+        alfabeto.put('S',   83);
+        alfabeto.put('T',   82);
+        alfabeto.put('U',   81);
+        alfabeto.put('V',   80);
+        alfabeto.put('X',   79);
+        alfabeto.put('Y',   78);
+        alfabeto.put('Z',   77);
+
+        if (this.getGrado() != o.getGrado())
+            return this.getGrado() > o.getGrado()? 1 : -1;
+        else if (!(alfabeto.get(this.letra).equals(alfabeto.get(o.letra))))
+            return alfabeto.get(this.letra) > alfabeto.get(o.letra)? -1 : 1;
+        return 0;
     }
 }
