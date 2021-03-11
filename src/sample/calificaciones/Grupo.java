@@ -6,6 +6,7 @@ public class Grupo {
     private int id;
     private int grado;
     private char letra;
+    private Profesor profesor;
 
     public Grupo(int id, int grado, char letra) {
         this.id = id;
@@ -37,6 +38,14 @@ public class Grupo {
         this.letra = letra;
     }
 
+    public Profesor getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }
+
     /** Obtiene los atribudos de un objeto {@link Grupo} para transformarlos en un objeto de tipo {@link HashMap} */
     public HashMap<String,String> toHashMap(){
         HashMap<String,String> hashMap = new HashMap<String, String>();
@@ -55,6 +64,7 @@ public class Grupo {
         return mensaje;
     }
 
+    // TODO ocrregir porque tiene un atributo profesor ahora
     /** A partir de un objeto {@link HashMap} crea un objeto de tipo {@link Grupo}*/
     public static Grupo obtenerGrupo(HashMap<String, String> hashMap){
         return new Grupo(

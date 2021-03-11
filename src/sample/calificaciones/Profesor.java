@@ -5,8 +5,8 @@ import java.util.HashMap;
 public class Profesor extends Persona {
     private int nPersonal;
 
-    public Profesor(int nPersonal, String nombre, String apellidoPaterno, String apellidoMaterno, Grupo grupo) {
-        super(nombre, apellidoPaterno, apellidoMaterno, grupo);
+    public Profesor(int nPersonal, String nombre, String apellidoPaterno, String apellidoMaterno) {
+        super(nombre, apellidoPaterno, apellidoMaterno);
         this.nPersonal = nPersonal;
     }
 
@@ -18,6 +18,7 @@ public class Profesor extends Persona {
         this.nPersonal = nPersonal;
     }
 
+    // TODO corregir porque se cambio y ahora profesor no tiene atributo grupo
     /** Obtiene los atribudos de un objeto {@link Profesor} para transformarlos en un objeto de tipo {@link HashMap} */
     public HashMap<String,String> toHashMap(){
         HashMap<String,String> hashMap = new HashMap<String, String>();
@@ -29,9 +30,9 @@ public class Profesor extends Persona {
         hashMap.put("apellidoMaterno", this.apellidoMaterno);
 
         //Componentes de la clase Grupo
-        hashMap.put("id", grupo.getId() + "");
-        hashMap.put("grado", grupo.getGrado() + "");
-        hashMap.put("letra", grupo.getLetra() + "");
+        //hashMap.put("id", grupo.getId() + "");
+        //hashMap.put("grado", grupo.getGrado() + "");
+        //hashMap.put("letra", grupo.getLetra() + "");
         return hashMap;
     }
 
@@ -42,11 +43,11 @@ public class Profesor extends Persona {
                 hashMap.get("nombre"),
                 hashMap.get("apellidoPaterno"),
                 hashMap.get("apellidoMaterno"),
-                new Grupo(
-                        Integer.parseInt(hashMap.get("id")),
-                        Integer.parseInt(hashMap.get("grado")),
-                        hashMap.get("letra").charAt(0)
-                )
+                //new Grupo(
+                        //Integer.parseInt(hashMap.get("id")),
+                        //Integer.parseInt(hashMap.get("grado")),
+                        //hashMap.get("letra").charAt(0)
+                //)
         );
     }
 }

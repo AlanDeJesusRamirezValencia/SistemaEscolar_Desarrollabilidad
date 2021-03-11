@@ -2,13 +2,16 @@ package sample.calificaciones;
 
 public abstract class Persona {
     protected String nombre, apellidoPaterno, apellidoMaterno;
-    protected Grupo grupo;
 
-    public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, Grupo grupo) {
+    public Persona(String nombre, String apellidoPaterno, String apellidoMaterno) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
-        this.grupo = grupo;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s %s", apellidoPaterno, apellidoMaterno, nombre);
     }
 
     public String getNombre() {
@@ -35,11 +38,4 @@ public abstract class Persona {
         this.apellidoMaterno = apellidoMaterno;
     }
 
-    public Grupo getGrupo() {
-        return grupo;
-    }
-
-    public void setGrupo(Grupo grupo) {
-        this.grupo = grupo;
-    }
 }

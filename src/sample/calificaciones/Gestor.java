@@ -34,9 +34,27 @@ public class Gestor {
             int grado = Integer.parseInt(resultados.getString("grado"));
             char letra = resultados.getString("letra").charAt(0);
             Grupo grupo = new Grupo(id,grado,letra);
+            Profesor profesor = obtenerProfesor(grupo);
+            grupo.setProfesor(profesor);
             grupos.add(grupo);
         }
         return grupos;
+    }
+
+    public static Profesor obtenerProfesor(Grupo grupo) throws SQLException {
+        Statement declaracion = conexion.createStatement();
+        String consulta = String.format("SELECT * FROM profesores p, grupos g " +
+                "WHERE p.numero_personal = g.fk_profesor AND g.id_grupo = %d;", grupo.getId());
+        ResultSet resultados = declaracion.executeQuery(consulta);
+        Profesor profesor = null;
+        while(resultados.next()){
+            int nPersonal = Integer.parseInt(resultados.getString("numero_personal"));
+            String nombre = resultados.getString("nombre");
+            String apellidoPaterno = resultados.getString("apellido_paterno");
+            String apellidoMaterno = resultados.getString("apellido_materno");
+            profesor = new Profesor(nPersonal, nombre, apellidoPaterno, apellidoMaterno);
+        }
+        return profesor;
     }
 
     public static ArrayList<Materia> obtenerMaterias(Grupo grupo) throws SQLException {

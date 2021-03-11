@@ -4,10 +4,12 @@ import java.util.HashMap;
 
 public class Estudiante extends Persona {
     private String matricula;
+    private Grupo grupo;
 
     public Estudiante(String matricula, String nombre, String apellidoPaterno, String apellidoMaterno, Grupo grupo) {
-        super(nombre, apellidoPaterno, apellidoMaterno, grupo);
+        super(nombre, apellidoPaterno, apellidoMaterno);
         this.matricula = matricula;
+        this.grupo = grupo;
     }
 
     public String getMatricula() {
@@ -18,6 +20,15 @@ public class Estudiante extends Persona {
         this.matricula = matricula;
     }
 
+    public Grupo getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
+    }
+
+    // TODO corregir tambien porque estudiante tampoco tiene un atributo grupo ahora
     /** Obtiene los atribudos de un objeto {@link Estudiante} para transformarlos en un objeto de tipo {@link HashMap} */
     public HashMap<String,String> toHashMap(){
         HashMap<String,String> hashMap = new HashMap<String, String>();
@@ -29,9 +40,9 @@ public class Estudiante extends Persona {
         hashMap.put("apellidoMaterno", this.apellidoMaterno);
 
         //Componentes de la clase Grupo
-        hashMap.put("id", grupo.getId() + "");
-        hashMap.put("grado", grupo.getGrado() + "");
-        hashMap.put("letra", grupo.getLetra() + "");
+        //hashMap.put("id", grupo.getId() + "");
+        //hashMap.put("grado", grupo.getGrado() + "");
+        //hashMap.put("letra", grupo.getLetra() + "");
         return hashMap;
     }
 
@@ -42,11 +53,11 @@ public class Estudiante extends Persona {
                 hashMap.get("nombre"),
                 hashMap.get("apellidoPaterno"),
                 hashMap.get("apellidoMaterno"),
-                new Grupo(
-                        Integer.parseInt(hashMap.get("id")),
-                        Integer.parseInt(hashMap.get("grado")),
-                        hashMap.get("letra").charAt(0)
-                )
+                //new Grupo(
+                        //Integer.parseInt(hashMap.get("id")),
+                        //Integer.parseInt(hashMap.get("grado")),
+                        //hashMap.get("letra").charAt(0)
+                //)
         );
     }
 }
