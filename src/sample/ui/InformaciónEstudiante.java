@@ -37,4 +37,8 @@ public class InformaciónEstudiante extends Comunicador {
     public void editar(){
         navegar(matricula,"Editar_Estudiante.fxml", getMensaje());
     }
+
+    public void exportarCalificaciones(){
+
+    }
 }
