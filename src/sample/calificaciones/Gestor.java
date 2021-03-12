@@ -4,14 +4,22 @@ import com.mysql.jdbc.Connection;
 import java.util.ArrayList;
 import java.sql.*;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Angel Daniel
- * @version 1.0
+ * @version 11/03/2021
  */
 public class Gestor {
+
     private static Connection conexion = Conexion.getConexion();
 
+    /**
+     * Este metodo realiza una consulta a la base de datos para obtener el usuario que se busca
+     * @param nombre es el nombre del usuario a buscar
+     * @return un usuario encontrado
+     * @throws SQLException
+     */
     public static Usuario obtenerUsuario(String nombre) throws SQLException {
         Statement declaracion = conexion.createStatement();
         String consulta = String.format("SELECT * FROM administrativos WHERE usuario = '%s';", nombre);
@@ -24,6 +32,12 @@ public class Gestor {
         return new Usuario("", "");
     }
 
+    /**
+     * Este metodo realiza una consulta a la base de datos para obtener una lista de todos los grupos
+     * @see #obtenerProfesor(Grupo)
+     * @return una lista con todos los grupos
+     * @throws SQLException
+     */
     public static ArrayList<Grupo> obtenerGrupos() throws SQLException {
         Statement declaracion = conexion.createStatement();
         String consulta = "SELECT * FROM grupos;";
@@ -41,6 +55,12 @@ public class Gestor {
         return grupos;
     }
 
+    /**
+     * Este metodo realiza una consulta a la base de datos para obtener el profesor de un grupo
+     * @param grupo
+     * @return un profesor buscado
+     * @throws SQLException
+     */
     public static Profesor obtenerProfesor(Grupo grupo) throws SQLException {
         Statement declaracion = conexion.createStatement();
         String consulta = String.format("SELECT * FROM profesores p, grupos g " +
@@ -129,6 +149,7 @@ public class Gestor {
             Calificacion calificacion = new Calificacion(nota, materia, estudiante);
             calificaciones.add(calificacion);
         }
+        resultados.close();
         return calificaciones;
     }
 
@@ -141,13 +162,21 @@ public class Gestor {
         return null;
     }
 
-    public static void subirCalificaciones(HashMap<Estudiante,Integer> estudiante, Materia materia) throws SQLException {
+    public static void subirCalificaciones(HashMap<Estudiante,Integer> calificaciones, Materia materia) throws SQLException {
         Statement declaracion = conexion.createStatement();
-        String consulta = String.format("INSERT INTO calificaciones VALUES()");
+        for (Map.Entry<Estudiante,Integer> entry: calificaciones.entrySet()){
+            Estudiante estudiante = entry.getKey();
+            int nota = entry.getValue();
+            String consulta = String.format("INSERT INTO calificaciones (nota, fk_estudiante, fk_materia) " +
+                    "VALUES(%d, '%s', %d)", nota, estudiante.getMatricula(), materia.getNrc());
+            declaracion.executeUpdate(consulta);
+        }
     }
 
-    public static void actualizarCalificacion(Estudiante estudiante, int nota, Materia materia){
-
+    public static void actualizarCalificacion(Estudiante estudiante, int nota, Materia materia) throws SQLException {
+        Statement declaracion = conexion.createStatement();
+        String consulta = String.format("UPDATE calificaciones SET nota = %d " +
+                "WHERE fk_estudiante = '%s' AND fk_materia = %d", nota, estudiante.getMatricula(), materia.getNrc());
+        declaracion.executeUpdate(consulta);
     }
-
 }

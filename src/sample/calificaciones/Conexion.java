@@ -4,6 +4,10 @@ import com.mysql.jdbc.Connection;
 import javax.swing.*;
 import java.sql.*;
 
+/**
+ * @author Abinadad
+ * @version 11/03/2021
+ */
 class Conexion {
     
     private static final String DATA_BASE = "rhtyjofc_controlescolar";
@@ -17,8 +21,9 @@ class Conexion {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conexion = (Connection) DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex, "Error" + ex.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e, "Error" + e.getMessage(), JOptionPane.ERROR_MESSAGE);
         } finally {
             return conexion;
         }
