@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;"
+            xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sample.ui.ListaEstudiantes">
+   <Label layoutX="24.0" layoutY="70.0" text="Matricula         Nombre Completo">
+      <font>
+         <Font name="Segoe UI Semibold" size="18.0"/>
+      </font>
+   </Label>
+   <Label layoutX="24.0" layoutY="24.0" prefHeight="32.0" text="Lista Estudiantes">
+      <font>
+         <Font name="Segoe UI Semibold" size="24.0"/>
+      </font>
+   </Label>
+   <Button fx:id="usuario" layoutX="670.0" layoutY="24.0" mnemonicParsing="false" prefWidth="113.0"
+           style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Usuario">
+      <font>
+         <Font name="Segoe UI" size="18.0"/>
+      </font>
+      <graphic>
+         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../iconos/usuario.png"/>
+         </ImageView>
+      </graphic>
+   </Button>
+   <ScrollPane layoutX="12.0" layoutY="105.0" prefHeight="430.0" prefWidth="770.0"
+               style="-fx-background-color: #FFFFFF;">
+      <VBox fx:id="vEstudiantes" prefWidth="760.0" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;"/>
+   </ScrollPane>
+</AnchorPane>

@@ -57,6 +57,7 @@ public interface Navegador  {
             stageActual.setTitle( NOMBRE_SISTEMA + " - " + nombreVentana);
             //Cambio de escenario
             stageActual.setScene(new Scene(nuevaEscena, ANCHO_PREDEF, ALTO_PREDEF));
+            stageActual.setResizable(false);
             stageActual.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -74,6 +75,7 @@ public interface Navegador  {
             Parent nuevaEscena = FXMLLoader.load(getClass().getResource("recursos/escenarios/" + archivoFXML));
             stageActual.setTitle(NOMBRE_SISTEMA);
             stageActual.setScene(new Scene(nuevaEscena, ANCHO_PREDEF, ALTO_PREDEF));
+            stageActual.setResizable(false);
             stageActual.show();
         } catch (IOException e) {
             e.printStackTrace();
