@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import sample.calificaciones.Gestor;
-import sample.calificaciones.Grupo;
 import sample.calificaciones.Usuario;
 import sample.ui.arquitectura.Comunicador;
 import sample.ui.arquitectura.UsuarioSingleton;
@@ -33,13 +32,14 @@ public class Login extends Comunicador {
     }
 
     private boolean validarContraseña(String usuario, String contraseña){
-        Usuario usuarioObtenido = new Usuario("","");
+        if (usuario.trim().equals("")) return false;
         try {
-            usuarioObtenido = Gestor.obtenerUsuario(usuario);
+            Usuario usuarioObtenido = Gestor.obtenerUsuario(usuario);
             UsuarioSingleton.getInstance().setNombreUsuario(usuarioObtenido.getUsuario());
+            return usuario.equals(usuarioObtenido.getUsuario())&&contraseña.equals(usuarioObtenido.getContraseña());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return contraseña.equals(usuarioObtenido.getContraseña());
+        return false;
     }
 }

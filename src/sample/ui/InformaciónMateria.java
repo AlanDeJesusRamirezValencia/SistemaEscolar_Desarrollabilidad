@@ -10,6 +10,9 @@ import sample.ui.arquitectura.Comunicador;
 public class InformaciónMateria extends Comunicador {
 
     @FXML
+    public Button btnUsuario;
+
+    @FXML
     private Label nombreMateria;
 
     @FXML
@@ -22,8 +25,6 @@ public class InformaciónMateria extends Comunicador {
     private Label nombreProfesor;
     //TODO: cómo obtengo el nombre del profesor?
 
-    @FXML
-    private Button usuario;
 
     @Override
     public void inicializarComponentes() {
@@ -31,7 +32,7 @@ public class InformaciónMateria extends Comunicador {
         nombreMateria.setText(materia.getNombre());
         nrc.setText(materia.getNrc() + "");
         nombreGrupo.setText(materia.getGrupo().getGrado() + materia.getGrupo().getLetra() + "");
-        usuario.setText(Usuario.obtenerUsuario(getMensaje()));
+        btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
     }
 
     public void asignarCalificaciones(){
@@ -43,7 +44,7 @@ public class InformaciónMateria extends Comunicador {
     }
 
     public void editar(){
-        navegar(usuario,"Editar_Materia.xml", getMensaje());
+        navegar(btnUsuario,"Editar_Materia.xml", getMensaje());
     }
 
 }

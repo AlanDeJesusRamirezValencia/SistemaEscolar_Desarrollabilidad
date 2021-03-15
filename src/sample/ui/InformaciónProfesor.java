@@ -3,7 +3,7 @@ package sample.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import sample.calificaciones.Profesor;
+import sample.calificaciones.Grupo;
 import sample.calificaciones.Usuario;
 import sample.ui.arquitectura.Comunicador;
 
@@ -16,15 +16,14 @@ public class InformaciónProfesor extends Comunicador {
     private Label grupo;
 
     @FXML
-    private Button usuario;
+    private Button btnUsuario;
 
     @Override
     public void inicializarComponentes() {
-        Profesor profesor = Profesor.obtenerProfesor(getMensaje());
-        nombreProfesor.setText(profesor.getNombre() + profesor.getApellidoPaterno() + profesor.getApellidoMaterno());
-        //TODO Resolver conflicto
-        //grupo.setText(profesor.getGrupo().toString());
-        usuario.setText(Usuario.obtenerUsuario(getMensaje()));
+        Grupo grupoProfesor = Grupo.obtenerGrupo(getMensaje());
+        nombreProfesor.setText(grupoProfesor.getProfesor().getApellidoPaterno() + " " + grupoProfesor.getProfesor().getApellidoMaterno() + " " + grupoProfesor.getProfesor().getNombre());
+        grupo.setText(grupoProfesor.toString());
+        btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
     }
 
     public void editar(){

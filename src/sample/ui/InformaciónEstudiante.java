@@ -19,7 +19,7 @@ public class InformaciónEstudiante extends Comunicador {
     private Label nombreGrupo;
 
     @FXML
-    private Button usuario;
+    private Button btnUsuario;
 
     @Override
     public void inicializarComponentes() {
@@ -31,7 +31,7 @@ public class InformaciónEstudiante extends Comunicador {
         );
         matricula.setText(estudiante.getMatricula());
         nombreGrupo.setText(estudiante.getGrupo().toString());
-        usuario.setText(Usuario.obtenerUsuario(getMensaje()));
+        btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
     }
 
     public void editar(){

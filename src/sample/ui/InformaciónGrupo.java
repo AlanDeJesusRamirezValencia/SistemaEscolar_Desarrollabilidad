@@ -16,28 +16,28 @@ public class InformaciónGrupo extends Comunicador {
     private Label nombreGrupo;
 
     @FXML
-    private Button usuario;
+    private Button btnUsuario;
 
     @Override
     public void inicializarComponentes(){
         grupo = Grupo.obtenerGrupo(getMensaje());
         nombreGrupo.setText(grupo.getGrado() + "" + grupo.getLetra());
-        usuario.setText(Usuario.obtenerUsuario(getMensaje()));
+        btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
     }
 
     public void irAProfesor(){
-        navegar(usuario, "Información_Profesor.fxml", grupo.toHashMap());
+        navegar(btnUsuario, "Información_Profesor.fxml", grupo.toHashMap());
     }
 
     public void irAMaterias(){
-        navegar(usuario, "Lista_Materias.fxml",  grupo.toHashMap());
+        navegar(btnUsuario, "Lista_Materias.fxml",  grupo.toHashMap());
     }
 
     public void irAEstudiantes(){
-        navegar(usuario, "Lista_Estudiantes.fxml", grupo.toHashMap());
+        navegar(btnUsuario, "Lista_Estudiantes.fxml", grupo.toHashMap());
     }
 
     public void editar(){
-        navegar(usuario, "Editar_Grupo.fxml",  grupo.toHashMap());
+        navegar(btnUsuario, "Editar_Grupo.fxml",  grupo.toHashMap());
     }
 }
