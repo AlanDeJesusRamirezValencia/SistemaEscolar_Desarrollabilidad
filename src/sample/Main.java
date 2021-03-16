@@ -2,7 +2,7 @@ package sample;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import sample.ui.arquitectura.Navegador;
+import sample.controlador.arquitectura.Navegador;
 
 public class Main extends Application implements Navegador {
 

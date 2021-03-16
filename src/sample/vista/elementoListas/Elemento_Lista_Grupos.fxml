@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="contenedor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="84.0" prefWidth="750.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controlador.ElementoListaGrupos">
+    <children>
+        <Label fx:id="gradoGrupo" prefHeight="24.0" prefWidth="312.0" text="Grado">
+            <font>
+                <Font name="Segoe UI" size="18.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
