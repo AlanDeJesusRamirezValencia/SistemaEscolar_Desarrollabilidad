@@ -1,5 +1,6 @@
 package sample.controlador;
 
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -28,5 +29,9 @@ public class InformaciónProfesor extends Comunicador {
 
     public void editar(){
         navegar(grupo,"Editar_Profesor.fxml", getMensaje());
+    }
+
+    public void regresar() {
+        navegar(nombreProfesor, "Información_Grupos.fxml", getMensaje());
     }
 }

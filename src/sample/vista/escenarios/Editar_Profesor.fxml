@@ -15,7 +15,19 @@
     <center>
         <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="24.0" layoutY="24.0" text="Editar Profesor">
+                <Button layoutX="24.0" layoutY="17.0" mnemonicParsing="false" onAction="#regresar" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
+                    <font>
+                        <Font name="Segoe UI" size="18.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../iconos/flecha_atras.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Label layoutX="72.0" layoutY="17.0" prefHeight="32.0" text="Editar Profesor">
                     <font>
                         <Font name="Segoe UI Semibold" size="24.0" />
                     </font>

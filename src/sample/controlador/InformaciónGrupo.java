@@ -1,5 +1,6 @@
 package sample.controlador;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -39,5 +40,9 @@ public class InformaciónGrupo extends Comunicador {
 
     public void editar(){
         navegar(btnUsuario, "Editar_Grupo.fxml",  grupo.toHashMap());
+    }
+
+    public void regresar() {
+        navegar(nombreGrupo, "Lista_Grupos.fxml", getMensaje());
     }
 }

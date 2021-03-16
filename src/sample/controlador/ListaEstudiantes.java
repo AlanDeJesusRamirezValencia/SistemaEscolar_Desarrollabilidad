@@ -68,4 +68,8 @@ public class ListaEstudiantes extends Comunicador {
         }
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
     }
+
+    public void regresar() {
+        navegar(btnUsuario, "Información_Grupos.fxml", getMensaje());
+    }
 }

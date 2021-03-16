@@ -1,14 +1,18 @@
 package sample.controlador;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import sample.modelo.Estudiante;
+import sample.modelo.GestorDatos;
 import sample.modelo.Grupo;
 import sample.controlador.arquitectura.Comunicador;
 
 public class EditarEstudiante extends Comunicador {
-
+    @FXML
+    public Button btnUsuario;
 
     private Estudiante estudiante;
 
@@ -52,6 +56,10 @@ public class EditarEstudiante extends Comunicador {
         //TODO: Actualizar este fragmento de código cuando el metodo exista
         //GestorDatos.actualizarEstudiante(estudiante);
 
+        navegar(nombre, "Lista_Estudiantes.fxml", getMensaje());
+    }
+
+    public void regresar() {
         navegar(nombre, "Lista_Estudiantes.fxml", getMensaje());
     }
 }

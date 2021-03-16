@@ -20,6 +20,10 @@ public class EditarProfesor extends Comunicador {
     @FXML
     public Button usuario;
 
-    public void actualizarDatos(ActionEvent event) {
+    public void actualizarDatos() {
+    }
+
+    public void regresar() {
+        navegar(nombre, "Información_Profesor.fxml", getMensaje());
     }
 }

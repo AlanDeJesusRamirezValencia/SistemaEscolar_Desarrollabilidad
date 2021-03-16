@@ -43,4 +43,8 @@ public class EditarGrupo extends Comunicador {
                 )
         );*/
     }
+
+    public void regresar() {
+        navegar(grupo, "Información_Grupos.fxml", getMensaje());
+    }
 }

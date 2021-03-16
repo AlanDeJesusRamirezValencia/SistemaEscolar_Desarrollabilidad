@@ -94,4 +94,7 @@ public class AsignarCalificaciones extends Comunicador {
         } while(true);
         return grupo;
     }
+
+    public void regresar() {
+    }
 }

@@ -8,16 +8,28 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controlador.InformaciónMateria" >
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controlador.InformaciónMateria">
     <center>
         <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="24.0" layoutY="24.0" text="Información de la Materia">
+                <Button layoutX="24.0" layoutY="17.0" mnemonicParsing="false" onAction="#regresar" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
+                    <font>
+                        <Font name="Segoe UI" size="18.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../iconos/flecha_atras.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Label layoutX="72.0" layoutY="17.0" prefHeight="32.0" text="Información de la Materia">
                     <font>
                         <Font name="Segoe UI Semibold" size="24.0" />
                     </font>
                 </Label>
-                <Button layoutX="65.0" layoutY="22.0" mnemonicParsing="false" onAction="#editar" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
+                <Button layoutX="364.0" layoutY="19.0" mnemonicParsing="false" onAction="#editar" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                             <Image url="@../iconos/editar.png" />
@@ -78,12 +90,12 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button layoutX="14.0" layoutY="502.0" mnemonicParsing="false" text="Asignar Calificaciones" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
+                <Button layoutX="14.0" layoutY="502.0" mnemonicParsing="false" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Asignar Calificaciones">
                     <font>
                         <Font name="Segoe UI Semibold" size="18.0" />
                     </font>
                 </Button>
-                <Button layoutX="14.0" layoutY="544.0" mnemonicParsing="false" text="Exportar Calificaciones" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
+                <Button layoutX="14.0" layoutY="544.0" mnemonicParsing="false" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Exportar Calificaciones">
                     <font>
                         <Font name="Segoe UI Semibold" size="18.0" />
                     </font>

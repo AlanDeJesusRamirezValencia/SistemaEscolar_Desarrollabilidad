@@ -47,4 +47,7 @@ public class InformaciónMateria extends Comunicador {
         navegar(btnUsuario,"Editar_Materia.xml", getMensaje());
     }
 
+    public void regresar() {
+        navegar(nombreGrupo, "Lista_Materias.fxml", getMensaje());
+    }
 }
