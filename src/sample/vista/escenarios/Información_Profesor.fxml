@@ -12,7 +12,7 @@
    <center>
         <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="24.0" layoutY="24.0" text="Información del Profesor">
+                <Label layoutX="24.0" layoutY="24.0" text="Información Docente">
                     <font>
                         <Font name="Segoe UI Semibold" size="24.0" />
                     </font>

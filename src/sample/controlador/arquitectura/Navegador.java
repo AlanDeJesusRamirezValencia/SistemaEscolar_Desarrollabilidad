@@ -22,10 +22,10 @@ import java.util.HashMap;
 public interface Navegador  {
 
     /** Es la dirección de los recursos .fxml */
-    String DIRECTORIO_DE_ESCENARIOS = "../recursos/escenarios/";
+    String DIRECTORIO_DE_ESCENARIOS = "../vista/escenarios/";
 
     /**Nombre del sistema*/
-    String NOMBRE_SISTEMA = "Systema Escolar";
+    String NOMBRE_SISTEMA = "Sistema Escolar";
 
     /** Ancho por defecto del {@link Stage}*/
     int ANCHO_PREDEF = 800;
@@ -72,7 +72,7 @@ public interface Navegador  {
     /** Navegación exclusiva para el método main() */
     default void navegarMain(Stage stageActual, String archivoFXML){
         try {
-            Parent nuevaEscena = FXMLLoader.load(getClass().getResource("recursos/escenarios/" + archivoFXML));
+            Parent nuevaEscena = FXMLLoader.load(getClass().getResource("vista/escenarios/" + archivoFXML));
             stageActual.setTitle(NOMBRE_SISTEMA);
             stageActual.setScene(new Scene(nuevaEscena, ANCHO_PREDEF, ALTO_PREDEF));
             stageActual.setResizable(false);

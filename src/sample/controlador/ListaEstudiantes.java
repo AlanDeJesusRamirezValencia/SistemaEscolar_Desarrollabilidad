@@ -11,6 +11,7 @@ import sample.modelo.Estudiante;
 import sample.modelo.GestorDatos;
 import sample.modelo.Grupo;
 import sample.controlador.arquitectura.Comunicador;
+import sample.modelo.Usuario;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,6 +20,9 @@ import java.util.ArrayList;
 public class ListaEstudiantes extends Comunicador {
     @FXML
     private VBox vEstudiantes;
+
+    @FXML
+    private Button btnUsuario;
 
     @Override
     public void inicializarComponentes() {
@@ -47,7 +51,7 @@ public class ListaEstudiantes extends Comunicador {
 
                 int finalNodo = nodo;
 
-                botonInfoEstudiante.setText(listaEstudiantes.get(nodo).getMatricula() + "\t" + listaEstudiantes.get(nodo).getApellidoPaterno() + " "
+                botonInfoEstudiante.setText(listaEstudiantes.get(nodo).getMatricula() + "\t\t" + listaEstudiantes.get(nodo).getApellidoPaterno() + " "
                         + listaEstudiantes.get(nodo).getApellidoMaterno() + " "
                         + listaEstudiantes.get(nodo).getNombre());
                 botonInfoEstudiante.setFont(new Font("Segoe UI", 18));
@@ -62,5 +66,6 @@ public class ListaEstudiantes extends Comunicador {
                 e.printStackTrace();
             }
         }
+        btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
     }
 }

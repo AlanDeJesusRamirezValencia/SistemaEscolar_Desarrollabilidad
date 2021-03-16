@@ -87,7 +87,7 @@ public class GestorDatos {
         ArrayList<Materia> materias = new ArrayList<>();
         while(resultados.next()){
             int nrc = Integer.parseInt(resultados.getString("nrc"));
-            String nombre = resultados.getString("grado");
+            String nombre = resultados.getString("nombre");
             Materia materia = new Materia(nrc, nombre, grupo);
             materias.add(materia);
         }

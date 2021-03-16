@@ -1,55 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controlador.InformaciónGrupo">
-   <center>
-      <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
-         <children>
-             <Label fx:id="nombreGrupo" layoutX="24.0" layoutY="24.0" text="3B">
-                 <font>
-                     <Font name="System Bold" size="24.0" />
-                 </font>
-             </Label>
-            <Button layoutX="65.0" layoutY="22.0" mnemonicParsing="false" onAction="#editar" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
-               <graphic>
-                   <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                       <Image url="@../iconos/editar.png" />
-                   </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="btnUsuario" layoutX="670.0" layoutY="17.0" mnemonicParsing="false" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Usuario">
-                <font>
-                    <Font name="Segoe UI" size="18.0" />
-                </font>
-                <graphic>
-                   <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                           <Image url="@../iconos/usuario.png" />
-                   </ImageView>
-                </graphic>
-            </Button>
-            <Button layoutX="14.0" layoutY="59.0" mnemonicParsing="false" onAction="#irAProfesor" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Profesor">
-                <font>
-                    <Font name="Segoe UI" size="18.0" />
-                </font>
-            </Button>
-            <Button layoutX="14.0" layoutY="92.0" mnemonicParsing="false" onAction="#irAMaterias" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Materias">
-                <font>
-                    <Font name="Segoe UI" size="18.0" />
-                </font>
-            </Button>
-            <Button layoutX="14.0" layoutY="125.0" mnemonicParsing="false" onAction="#irAEstudiantes" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Estudiantes" >
-                <font>
-                    <Font name="Segoe UI" size="18.0" />
-                </font>
-             </Button>
-         </children>
-      </AnchorPane>
-   </center>
-</BorderPane>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controlador.InformaciónGrupo">
+   <children>
+      <Label fx:id="nombreGrupo" layoutX="24.0" layoutY="24.0" text="3B">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="65.0" layoutY="22.0" mnemonicParsing="false" onAction="#editar" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../iconos/editar.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnUsuario" layoutX="670.0" layoutY="24.0" mnemonicParsing="false" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Usuario">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../iconos/usuario.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="14.0" layoutY="59.0" mnemonicParsing="false" onAction="#irAProfesor" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Profesor">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="14.0" layoutY="92.0" mnemonicParsing="false" onAction="#irAMaterias" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Materias">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="14.0" layoutY="125.0" mnemonicParsing="false" onAction="#irAEstudiantes" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Estudiantes">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

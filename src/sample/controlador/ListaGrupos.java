@@ -10,15 +10,19 @@ import javafx.scene.text.Font;
 import sample.modelo.GestorDatos;
 import sample.modelo.Grupo;
 import sample.controlador.arquitectura.Comunicador;
+import sample.modelo.Usuario;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class Calificaciones extends Comunicador {
+public class ListaGrupos extends Comunicador {
     @FXML
     private VBox vGrupos;
+
+    @FXML
+    private Button btnUsuario;
 
     public void nuevo(){
 
@@ -72,6 +76,7 @@ public class Calificaciones extends Comunicador {
                 e.printStackTrace();
             }
         }
+        btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
     }
 
     public int gradoMaximo(ArrayList<Grupo> grupos){

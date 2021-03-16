@@ -25,7 +25,7 @@ public class Login extends Comunicador {
 
     public void iniciarSesion() {
         if (validarContraseña(usuario.getText(),contraseña.getText())) {
-            navegar(usuario, "Calificaciones.fxml");
+            navegar(usuario, "Lista_Grupos.fxml");
         }
         else
             datosIncorrectos.setText("*Usuario y/o Contraseña incorrectos");
@@ -33,6 +33,7 @@ public class Login extends Comunicador {
 
     private boolean validarContraseña(String usuario, String contraseña){
         if (usuario.trim().equals("")) return false;
+        usuario = usuario.toLowerCase();
         try {
             Usuario usuarioObtenido = GestorDatos.obtenerUsuario(usuario);
             UsuarioSingleton.getInstance().setNombreUsuario(usuarioObtenido.getUsuario());
