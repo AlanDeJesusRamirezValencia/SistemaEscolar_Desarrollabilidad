@@ -5,10 +5,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import sample.modelo.Estudiante;
+import sample.modelo.Excel;
 import sample.modelo.Usuario;
 import sample.controlador.arquitectura.Comunicador;
 
 public class InformaciónEstudiante extends Comunicador {
+
+    private Estudiante estudiante;
 
     @FXML
     private Label nombreEstudiante;
@@ -24,7 +27,7 @@ public class InformaciónEstudiante extends Comunicador {
 
     @Override
     public void inicializarComponentes() {
-        Estudiante estudiante = Estudiante.obtenerEstudiante(getMensaje());
+        estudiante = Estudiante.obtenerEstudiante(getMensaje());
         nombreEstudiante.setText(
                 estudiante.getNombre() + " " +
                 estudiante.getApellidoPaterno() + " " +
@@ -40,6 +43,7 @@ public class InformaciónEstudiante extends Comunicador {
     }
 
     public void exportarCalificaciones(){
+        new Excel().crearExcel(estudiante);
 
     }
 

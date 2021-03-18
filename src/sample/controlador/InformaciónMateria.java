@@ -3,6 +3,7 @@ package sample.controlador;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import sample.modelo.Excel;
 import sample.modelo.Materia;
 import sample.modelo.Usuario;
 import sample.controlador.arquitectura.Comunicador;
@@ -40,7 +41,7 @@ public class InformaciónMateria extends Comunicador {
     }
 
     public void exportarCalificaciones(){
-        //TODO: cómo exporto calificaciones?
+        new Excel().crearExcel(Materia.obtenerMateria(getMensaje()));
     }
 
     public void editar(){
