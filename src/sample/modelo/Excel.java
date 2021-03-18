@@ -1,16 +1,17 @@
 package sample.modelo;
 
+import javafx.scene.control.Button;
+import javafx.stage.FileChooser;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Excel {
 
-    private JFileChooser jFileChooser;
+    private FileChooser fileChooser;
     private FileOutputStream fileOutputStream;
 
     public boolean crearExcel(Materia materia) {
@@ -66,27 +67,26 @@ public class Excel {
     }
 
     public boolean guardarArchivo(Workbook libro){
-        boolean bandera = false;
-        jFileChooser = new JFileChooser();
-        FileNameExtensionFilter fileNameExtensionFilter = new FileNameExtensionFilter("Excel", "xlsx");
-        jFileChooser.setFileFilter(fileNameExtensionFilter);
-        int opcion = jFileChooser.showSaveDialog(null);
-        if (opcion == JFileChooser.APPROVE_OPTION){
-            if (jFileChooser.getSelectedFile()!= null){
+        AtomicBoolean bandera = new AtomicBoolean(false);
+        Button boton = new Button("Guardar");
+        boton.setOnAction((event)->{
+            fileChooser = new FileChooser();
+            fileChooser.setTitle("Exportar Calificaciones");
+            fileChooser.setInitialFileName("Calificaciones.xlsx");
+            File archivo = fileChooser.showSaveDialog(null);
+            if (archivo != null){
                 try {
-                    fileOutputStream = new FileOutputStream( jFileChooser.getSelectedFile() + "Calificaciones.xlsx");
+                    fileOutputStream = new FileOutputStream(fileChooser.getInitialFileName());
                     libro.write(fileOutputStream);
                     fileOutputStream.close();
-                    JOptionPane.showMessageDialog(null,"El archivo se a guardado Exitosamente","Información",JOptionPane.INFORMATION_MESSAGE);
-                    bandera = true;
-                } catch (FileNotFoundException e){
+                } catch (IOException e){
                     e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    JOptionPane.showMessageDialog(null,"Su archivo no se ha guardado","Advertencia",JOptionPane.WARNING_MESSAGE);
+                }
+                finally {
+                    bandera.set(true);
                 }
             }
-        }
-        return bandera;
+        });
+        return bandera.get();
     }
 }
