@@ -1,6 +1,5 @@
 package sample.controlador;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -28,11 +27,7 @@ public class InformaciónEstudiante extends Comunicador {
     @Override
     public void inicializarComponentes() {
         estudiante = Estudiante.obtenerEstudiante(getMensaje());
-        nombreEstudiante.setText(
-                estudiante.getNombre() + " " +
-                estudiante.getApellidoPaterno() + " " +
-                estudiante.getApellidoMaterno()
-        );
+        nombreEstudiante.setText(estudiante.toString());
         matricula.setText(estudiante.getMatricula());
         nombreGrupo.setText(estudiante.getGrupo().toString());
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
@@ -44,10 +39,9 @@ public class InformaciónEstudiante extends Comunicador {
 
     public void exportarCalificaciones(){
         new Excel().crearExcel(estudiante);
-
     }
 
     public void regresar() {
-        navegar(nombreGrupo, "Lista_Estudiantes.fxml", getMensaje());
+        navegar(nombreEstudiante, "Lista_Estudiantes.fxml", getMensaje());
     }
 }

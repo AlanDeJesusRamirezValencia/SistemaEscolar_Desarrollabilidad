@@ -1,14 +1,16 @@
 package sample.controlador;
 
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import sample.modelo.Grupo;
+import sample.modelo.Profesor;
 import sample.modelo.Usuario;
 import sample.controlador.arquitectura.Comunicador;
 
 public class InformaciónProfesor extends Comunicador {
+
+    private Profesor profesor;
 
     @FXML
     private Label nombreProfesor;
@@ -22,7 +24,8 @@ public class InformaciónProfesor extends Comunicador {
     @Override
     public void inicializarComponentes() {
         Grupo grupoProfesor = Grupo.obtenerGrupo(getMensaje());
-        nombreProfesor.setText(grupoProfesor.getProfesor().getApellidoPaterno() + " " + grupoProfesor.getProfesor().getApellidoMaterno() + " " + grupoProfesor.getProfesor().getNombre());
+        profesor = grupoProfesor.getProfesor();
+        nombreProfesor.setText(profesor.toString());
         grupo.setText(grupoProfesor.toString());
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
     }
