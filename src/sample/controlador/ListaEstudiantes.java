@@ -31,8 +31,8 @@ public class ListaEstudiantes extends Comunicador {
         grupoEstudiantes = Grupo.obtenerGrupo(getMensaje());
         try {
             listaEstudiantes = GestorDatos.obtenerEstudiantes(grupoEstudiantes);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         int numeroEstudiantes = listaEstudiantes.size();
         //Determinar la lista de grupos a VBox

@@ -10,6 +10,8 @@ import sample.controlador.arquitectura.Comunicador;
 
 public class InformaciónMateria extends Comunicador {
 
+    private Materia materia;
+
     @FXML
     public Button btnUsuario;
 
@@ -25,11 +27,13 @@ public class InformaciónMateria extends Comunicador {
     @FXML
     private Label nombreProfesor;
     //TODO: cómo obtengo el nombre del profesor?
+    // el objeto materia tiene atributo un grupo y el objeto grupo tiene un objeto de tipo profesor
+    // materia.getGrupo().getProfesor();
 
 
     @Override
     public void inicializarComponentes() {
-        Materia materia = Materia.obtenerMateria(getMensaje());
+        materia = Materia.obtenerMateria(getMensaje());
         nombreMateria.setText(materia.getNombre());
         nrc.setText(materia.getNrc() + "");
         nombreGrupo.setText(materia.getGrupo().getGrado() + materia.getGrupo().getLetra() + "");
@@ -41,7 +45,7 @@ public class InformaciónMateria extends Comunicador {
     }
 
     public void exportarCalificaciones(){
-        new Excel().crearExcel(Materia.obtenerMateria(getMensaje()));
+        new Excel().crearExcel(materia);
     }
 
     public void editar(){

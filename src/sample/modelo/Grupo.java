@@ -53,6 +53,11 @@ public class Grupo implements Comparable<Grupo>{
         this.profesor = profesor;
     }
 
+    @Override
+    public String toString() {
+        return grado  + " " + letra;
+    }
+
     /** Obtiene los atribudos de un objeto {@link Grupo} para transformarlos en un objeto de tipo {@link HashMap} */
     public HashMap<String,String> toHashMap(){
         HashMap<String,String> hashMap = new HashMap<String, String>();
@@ -93,12 +98,6 @@ public class Grupo implements Comparable<Grupo>{
                 )
         );
     }
-
-    @Override
-    public String toString() {
-        return grado  + ""  + letra + "";
-    }
-
 
     @Override
     public int compareTo(Grupo o) {

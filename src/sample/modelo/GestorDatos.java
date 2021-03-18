@@ -1,7 +1,6 @@
 package sample.modelo;
 
 import com.mysql.jdbc.Connection;
-
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -114,9 +113,9 @@ public class GestorDatos {
     public static ArrayList<Calificacion> obtenerCalificaciones(Materia materia) throws SQLException {
         Statement declaracion = conexion.createStatement();
         String consulta = String.format("SELECT c.id_calificacion, c.nota, c.fk_estudiante " +
-                "FROM calificacion c, estudiante e, materia m " +
+                "FROM calificaciones c, estudiantes e, materias m " +
                 "WHERE c.fk_estudiante = e.matricula AND m.nrc = %d " +
-                "ORDER BY e.apellido_paterno, e.apellido_materno, e.nombre;;", materia.getNrc());
+                "ORDER BY e.apellido_paterno, e.apellido_materno, e.nombre;", materia.getNrc());
         ResultSet resultados = declaracion.executeQuery(consulta);
         ArrayList<Calificacion> calificaciones = new ArrayList<>();
         ArrayList<Estudiante> estudiantes = obtenerEstudiantes(materia.getGrupo());
@@ -141,7 +140,7 @@ public class GestorDatos {
 
     public static ArrayList<Calificacion> obtenerCalificaciones(Estudiante estudiante) throws SQLException {
         Statement declaracion = conexion.createStatement();
-        String consulta = String.format("SELECT * FROM calificaciones WHERE fk_materia = '%s';", estudiante.getMatricula());
+        String consulta = String.format("SELECT * FROM calificaciones WHERE fk_estudiante = '%s';", estudiante.getMatricula());
         ResultSet resultados = declaracion.executeQuery(consulta);
         ArrayList<Calificacion> calificaciones = new ArrayList<>();
         ArrayList<Materia> materias = obtenerMaterias(estudiante.getGrupo());
