@@ -80,40 +80,11 @@ public class ListaGrupos extends Comunicador {
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
     }
 
-    public int gradoMaximo(ArrayList<Grupo> grupos){
-        //Extraer el grado máximo
-        int contadorGrados, maximo;
-        contadorGrados = maximo = 0;
-        do{
-            if (contadorGrados < grupos.size()){
-                if(maximo < grupos.get(contadorGrados).getGrado())
-                {
-                    maximo = grupos.get(contadorGrados).getGrado();
-                }
-            } else {
-                break;
-            }
-            contadorGrados++;
-        } while(true);
-
-        return maximo;
+    private int gradoMaximo(ArrayList<Grupo> grupos){
+        return grupos.stream().mapToInt(grupo -> grupo.getGrado()).max().getAsInt();
     }
 
-    public ArrayList<Grupo> busquedaGrupos(ArrayList<Grupo> grupos,int buscador){
-        ArrayList<Grupo> grupo = new ArrayList<>();
-        int contadorGrados = 0, contadorGrupo = 0;
-        //Extraer grupos de un grado especifico
-        do{
-            if(contadorGrados < grupos.size()){
-                if(grupos.get(contadorGrados).getGrado() == buscador) {
-                    grupo.add(contadorGrupo, grupos.get(contadorGrados));
-                    contadorGrupo++;
-                }
-            } else {
-                break;
-            }
-            contadorGrados++;
-        } while(true);
-        return grupo;
+    private ArrayList<Grupo> busquedaGrupos(ArrayList<Grupo> grupos,int buscador){
+        return (ArrayList<Grupo>) grupos.stream().filter(grupo -> grupo.getGrado()== buscador);
     }
 }

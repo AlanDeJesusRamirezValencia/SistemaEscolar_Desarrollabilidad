@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -71,9 +72,9 @@ public class GestorDatos {
         Profesor profesor = null;
         while(resultados.next()){
             int nPersonal = Integer.parseInt(resultados.getString("numero_personal"));
-            String nombre = resultados.getString("nombre");
-            String apellidoPaterno = resultados.getString("apellido_paterno");
-            String apellidoMaterno = resultados.getString("apellido_materno");
+            String nombre = resultados.getString("nombre").toUpperCase();
+            String apellidoPaterno = resultados.getString("apellido_paterno").toUpperCase();
+            String apellidoMaterno = resultados.getString("apellido_materno").toUpperCase();
             profesor = new Profesor(nPersonal, nombre, apellidoPaterno, apellidoMaterno);
         }
         return profesor;
@@ -101,9 +102,9 @@ public class GestorDatos {
         ArrayList<Estudiante> estudiantes = new ArrayList<>();
         while(resultados.next()){
             String matricula = resultados.getString("matricula");
-            String nombre = resultados.getString("nombre");
-            String apellidoPaterno = resultados.getString("apellido_paterno");
-            String apellidoMaterno = resultados.getString("apellido_materno");
+            String nombre = resultados.getString("nombre").toUpperCase();
+            String apellidoPaterno = resultados.getString("apellido_paterno").toUpperCase();
+            String apellidoMaterno = resultados.getString("apellido_materno").toUpperCase();
             Estudiante estudiante = new Estudiante(matricula, nombre, apellidoPaterno, apellidoMaterno, grupo);
             estudiantes.add(estudiante);
         }
