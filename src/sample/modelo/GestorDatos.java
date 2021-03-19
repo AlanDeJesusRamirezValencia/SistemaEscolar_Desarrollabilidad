@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class GestorDatos {
 
-    private static Connection conexion = Conexion.getConexion();
+    private static Connection conexion;
 
     /**
      * Este metodo realiza una consulta a la base de datos para obtener el usuario que se busca
@@ -24,6 +24,7 @@ public class GestorDatos {
      * @throws SQLException
      */
     public static Usuario obtenerUsuario(String nombre) throws SQLException {
+        conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
         String consulta = String.format("SELECT * FROM administrativos WHERE usuario = '%s';", nombre);
         ResultSet resultados = declaracion.executeQuery(consulta);
@@ -32,6 +33,7 @@ public class GestorDatos {
             String contraseña = resultados.getString("contrasena");
             return new Usuario(usuario, contraseña);
         }
+        conexion.close();
         return new Usuario("", "");
     }
 
@@ -42,6 +44,7 @@ public class GestorDatos {
      * @throws SQLException
      */
     public static ArrayList<Grupo> obtenerGrupos() throws SQLException {
+        conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
         String consulta = "SELECT * FROM grupos;";
         ResultSet resultados = declaracion.executeQuery(consulta);
@@ -55,6 +58,7 @@ public class GestorDatos {
             grupo.setProfesor(profesor);
             grupos.add(grupo);
         }
+        conexion.close();
         return grupos;
     }
 
@@ -65,6 +69,7 @@ public class GestorDatos {
      * @throws SQLException
      */
     public static Profesor obtenerProfesor(Grupo grupo) throws SQLException {
+        conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
         String consulta = String.format("SELECT * FROM profesores p, grupos g " +
                 "WHERE p.numero_personal = g.fk_profesor AND g.id_grupo = %d;", grupo.getId());
@@ -77,10 +82,12 @@ public class GestorDatos {
             String apellidoMaterno = resultados.getString("apellido_materno").toUpperCase();
             profesor = new Profesor(nPersonal, nombre, apellidoPaterno, apellidoMaterno);
         }
+        conexion.close();
         return profesor;
     }
 
     public static ArrayList<Materia> obtenerMaterias(Grupo grupo) throws SQLException {
+        conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
         String consulta = String.format("SELECT * FROM materias WHERE fk_grupo = '%d';", grupo.getId());
         ResultSet resultados = declaracion.executeQuery(consulta);
@@ -91,10 +98,12 @@ public class GestorDatos {
             Materia materia = new Materia(nrc, nombre, grupo);
             materias.add(materia);
         }
+        conexion.close();
         return materias;
     }
 
     public static ArrayList<Estudiante> obtenerEstudiantes(Grupo grupo) throws SQLException {
+        conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
         String consulta = String.format("SELECT * FROM estudiantes WHERE fk_grupo = %d " +
                 "ORDER BY apellido_paterno, apellido_materno, nombre;", grupo.getId());
@@ -108,10 +117,12 @@ public class GestorDatos {
             Estudiante estudiante = new Estudiante(matricula, nombre, apellidoPaterno, apellidoMaterno, grupo);
             estudiantes.add(estudiante);
         }
+        conexion.close();
         return estudiantes;
     }
 
     public static ArrayList<Calificacion> obtenerCalificaciones(Materia materia) throws SQLException {
+        conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
         String consulta = String.format("SELECT c.id_calificacion, c.nota, c.fk_estudiante " +
                 "FROM calificaciones c, estudiantes e, materias m " +
@@ -127,6 +138,7 @@ public class GestorDatos {
             Calificacion calificacion = new Calificacion(nota, materia, estudiante);
             calificaciones.add(calificacion);
         }
+        conexion.close();
         return calificaciones;
     }
 
@@ -140,6 +152,7 @@ public class GestorDatos {
     }
 
     public static ArrayList<Calificacion> obtenerCalificaciones(Estudiante estudiante) throws SQLException {
+        conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
         String consulta = String.format("SELECT * FROM calificaciones WHERE fk_estudiante = '%s';", estudiante.getMatricula());
         ResultSet resultados = declaracion.executeQuery(consulta);
@@ -152,7 +165,7 @@ public class GestorDatos {
             Calificacion calificacion = new Calificacion(nota, materia, estudiante);
             calificaciones.add(calificacion);
         }
-        resultados.close();
+        conexion.close();
         return calificaciones;
     }
 
@@ -166,6 +179,7 @@ public class GestorDatos {
     }
 
     public static void subirCalificaciones(HashMap<Estudiante,Integer> calificaciones, Materia materia) throws SQLException {
+        conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
         for (Map.Entry<Estudiante,Integer> entry: calificaciones.entrySet()){
             Estudiante estudiante = entry.getKey();
@@ -174,12 +188,15 @@ public class GestorDatos {
                     "VALUES(%d, '%s', %d)", nota, estudiante.getMatricula(), materia.getNrc());
             declaracion.executeUpdate(consulta);
         }
+        conexion.close();
     }
 
     public static void actualizarCalificacion(Estudiante estudiante, int nota, Materia materia) throws SQLException {
+        conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
         String consulta = String.format("UPDATE calificaciones SET nota = %d " +
                 "WHERE fk_estudiante = '%s' AND fk_materia = %d", nota, estudiante.getMatricula(), materia.getNrc());
         declaracion.executeUpdate(consulta);
+        conexion.close();
     }
 }

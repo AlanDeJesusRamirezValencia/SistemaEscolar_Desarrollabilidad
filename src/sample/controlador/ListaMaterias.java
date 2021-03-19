@@ -13,7 +13,6 @@ import sample.modelo.Grupo;
 import sample.controlador.arquitectura.Comunicador;
 import sample.modelo.Materia;
 import sample.modelo.Usuario;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -32,8 +31,8 @@ public class ListaMaterias extends Comunicador {
         grupoEstudiantes = Grupo.obtenerGrupo(getMensaje());
         try {
             listaMaterias = GestorDatos.obtenerMaterias(grupoEstudiantes);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         int numeroMaterias = listaMaterias.size();
         //Determinar la lista de grupos a VBox

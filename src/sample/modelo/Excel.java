@@ -11,9 +11,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Excel {
 
-    private FileChooser fileChooser;
-    private FileOutputStream fileOutputStream;
-
     public boolean crearExcel(Materia materia) {
         ArrayList<Calificacion> calificaciones = null;
         try {
@@ -70,13 +67,13 @@ public class Excel {
         AtomicBoolean bandera = new AtomicBoolean(false);
         Button boton = new Button("Guardar");
         boton.setOnAction((event)->{
-            fileChooser = new FileChooser();
+            FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Exportar Calificaciones");
             fileChooser.setInitialFileName("Calificaciones.xlsx");
             File archivo = fileChooser.showSaveDialog(null);
             if (archivo != null){
                 try {
-                    fileOutputStream = new FileOutputStream(fileChooser.getInitialFileName());
+                    FileOutputStream fileOutputStream = new FileOutputStream(fileChooser.getInitialFileName());
                     libro.write(fileOutputStream);
                     fileOutputStream.close();
                 } catch (IOException e){

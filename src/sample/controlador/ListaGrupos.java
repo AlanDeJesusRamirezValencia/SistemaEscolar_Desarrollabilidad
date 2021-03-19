@@ -31,14 +31,14 @@ public class ListaGrupos extends Comunicador {
 
     @Override
     public void inicializarComponentes() {
-        ArrayList<Grupo> listaGrupos = new ArrayList<>();
+        ArrayList<Grupo> grupos = new ArrayList<>();
         try {
-            listaGrupos = GestorDatos.obtenerGrupos();
-            Collections.sort(listaGrupos);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            grupos = GestorDatos.obtenerGrupos();
+            Collections.sort(grupos);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        int numeroGrados = gradoMaximo(listaGrupos);
+        int numeroGrados = gradoMaximo(grupos);
 
         //Determinar la lista de grupos a VBox
         Node[] nodes = new Node[numeroGrados];
@@ -56,7 +56,7 @@ public class ListaGrupos extends Comunicador {
                 lista.gradoGrupo.setText( (nodo + 1) + "° Grado");
 
                 //Se crean los botones de manera automática
-                ArrayList<Grupo> listaDeGruposPorGrado = busquedaGrupos(listaGrupos, nodo+1);
+                ArrayList<Grupo> listaDeGruposPorGrado = busquedaGrupos(grupos, nodo+1);
                 for (int nodoBotones = 0; nodoBotones < listaDeGruposPorGrado.size() ; nodoBotones++) {
                     Button botonGrupo = new Button();
                     botonGrupo.setLayoutX((nodoBotones*40) + (10*nodoBotones));
