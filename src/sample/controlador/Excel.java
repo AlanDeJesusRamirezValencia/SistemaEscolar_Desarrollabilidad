@@ -1,15 +1,27 @@
-package sample.modelo;
+package sample.controlador;
 
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import sample.modelo.Calificacion;
+import sample.modelo.Estudiante;
+import sample.modelo.GestorDatos;
+import sample.modelo.Materia;
 import java.io.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Excel {
+
+    private Node componenteUI;
+
+    public Excel(Node componenteUI) {
+        this.componenteUI = componenteUI;
+    }
 
     public boolean crearExcel(Materia materia) {
         ArrayList<Calificacion> calificaciones = null;
@@ -70,7 +82,7 @@ public class Excel {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Exportar Calificaciones");
             fileChooser.setInitialFileName("Calificaciones.xlsx");
-            File archivo = fileChooser.showSaveDialog(null);
+            File archivo = fileChooser.showSaveDialog((Stage) componenteUI.getScene().getWindow());
             if (archivo != null){
                 try {
                     FileOutputStream fileOutputStream = new FileOutputStream(fileChooser.getInitialFileName());

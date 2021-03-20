@@ -12,13 +12,13 @@ import sample.modelo.GestorDatos;
 import sample.modelo.Grupo;
 import sample.controlador.arquitectura.Comunicador;
 import sample.modelo.Usuario;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
-
+import java.util.stream.Collectors;
 
 public class ListaGrupos extends Comunicador {
+
     @FXML
     private VBox vGrupos;
 
@@ -38,7 +38,7 @@ public class ListaGrupos extends Comunicador {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        int numeroGrados = gradoMaximo(grupos);
+        int numeroGrados = obtenerGradoMaximo(grupos);
 
         //Determinar la lista de grupos a VBox
         Node[] nodes = new Node[numeroGrados];
@@ -56,7 +56,7 @@ public class ListaGrupos extends Comunicador {
                 lista.gradoGrupo.setText( (nodo + 1) + "° Grado");
 
                 //Se crean los botones de manera automática
-                ArrayList<Grupo> listaDeGruposPorGrado = busquedaGrupos(grupos, nodo+1);
+                ArrayList<Grupo> listaDeGruposPorGrado = buscarGrupos(grupos, nodo+1);
                 for (int nodoBotones = 0; nodoBotones < listaDeGruposPorGrado.size() ; nodoBotones++) {
                     Button botonGrupo = new Button();
                     botonGrupo.setLayoutX((nodoBotones*40) + (10*nodoBotones));
@@ -80,11 +80,11 @@ public class ListaGrupos extends Comunicador {
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
     }
 
-    private int gradoMaximo(ArrayList<Grupo> grupos){
+    private int obtenerGradoMaximo(ArrayList<Grupo> grupos){
         return grupos.stream().mapToInt(grupo -> grupo.getGrado()).max().getAsInt();
     }
 
-    private ArrayList<Grupo> busquedaGrupos(ArrayList<Grupo> grupos,int buscador){
-        return (ArrayList<Grupo>) grupos.stream().filter(grupo -> grupo.getGrado()== buscador);
+    private ArrayList<Grupo> buscarGrupos(ArrayList<Grupo> grupos,int buscador){
+        return (ArrayList<Grupo>) grupos.stream().filter(grupo -> grupo.getGrado()== buscador).collect(Collectors.toList());
     }
 }

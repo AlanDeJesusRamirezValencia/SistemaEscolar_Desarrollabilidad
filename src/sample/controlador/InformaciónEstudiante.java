@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import sample.modelo.Estudiante;
-import sample.modelo.Excel;
 import sample.modelo.Usuario;
 import sample.controlador.arquitectura.Comunicador;
 
@@ -38,7 +37,7 @@ public class InformaciónEstudiante extends Comunicador {
     }
 
     public void exportarCalificaciones(){
-        new Excel().crearExcel(estudiante);
+        new Excel(btnUsuario).crearExcel(estudiante);
     }
 
     public void regresar() {
