@@ -38,7 +38,7 @@ public class ListaGrupos extends Comunicador {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        int numeroGrados = obtenerGradoMaximo(grupos);
+        int numeroGrados = grupos.stream().mapToInt(grupo -> grupo.getGrado()).max().getAsInt();
 
         //Determinar la lista de grupos a VBox
         Node[] nodes = new Node[numeroGrados];
@@ -56,7 +56,8 @@ public class ListaGrupos extends Comunicador {
                 lista.gradoGrupo.setText( (nodo + 1) + "° Grado");
 
                 //Se crean los botones de manera automática
-                ArrayList<Grupo> listaDeGruposPorGrado = buscarGrupos(grupos, nodo+1);
+                int finalNodo = nodo;
+                ArrayList<Grupo> listaDeGruposPorGrado = (ArrayList<Grupo>) grupos.stream().filter(grupo -> grupo.getGrado()== finalNodo+1).collect(Collectors.toList());
                 for (int nodoBotones = 0; nodoBotones < listaDeGruposPorGrado.size() ; nodoBotones++) {
                     Button botonGrupo = new Button();
                     botonGrupo.setLayoutX((nodoBotones*40) + (10*nodoBotones));
@@ -78,13 +79,5 @@ public class ListaGrupos extends Comunicador {
             }
         }
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
-    }
-
-    private int obtenerGradoMaximo(ArrayList<Grupo> grupos){
-        return grupos.stream().mapToInt(grupo -> grupo.getGrado()).max().getAsInt();
-    }
-
-    private ArrayList<Grupo> buscarGrupos(ArrayList<Grupo> grupos,int buscador){
-        return (ArrayList<Grupo>) grupos.stream().filter(grupo -> grupo.getGrado()== buscador).collect(Collectors.toList());
     }
 }

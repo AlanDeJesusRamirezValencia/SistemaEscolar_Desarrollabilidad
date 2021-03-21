@@ -76,26 +76,23 @@ public class Excel {
     }
 
     public boolean guardarArchivo(Workbook libro){
-        AtomicBoolean bandera = new AtomicBoolean(false);
-        Button boton = new Button("Guardar");
-        boton.setOnAction((event)->{
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Exportar Calificaciones");
-            fileChooser.setInitialFileName("Calificaciones.xlsx");
-            File archivo = fileChooser.showSaveDialog((Stage) componenteUI.getScene().getWindow());
-            if (archivo != null){
-                try {
-                    FileOutputStream fileOutputStream = new FileOutputStream(fileChooser.getInitialFileName());
-                    libro.write(fileOutputStream);
-                    fileOutputStream.close();
-                } catch (IOException e){
-                    e.printStackTrace();
-                }
-                finally {
-                    bandera.set(true);
-                }
-            }
-        });
-        return bandera.get();
+        boolean bandera = false;
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Exportar Calificaciones");
+        fileChooser.setInitialFileName("Calificaciones.xlsx");
+        File archivo = fileChooser.showSaveDialog((Stage) componenteUI.getScene().getWindow());
+        if (archivo != null) {
+            /*
+            try {
+                FileOutputStream fileOutputStream = new FileOutputStream("archivo.xlsl");
+                libro.write(fileOutputStream);
+                fileOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                bandera.set(true);
+            }*/
+        }
+        return bandera;
     }
 }
