@@ -1,19 +1,14 @@
 package sample.controlador;
 
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import sample.modelo.Calificacion;
-import sample.modelo.Estudiante;
-import sample.modelo.GestorDatos;
-import sample.modelo.Materia;
+import sample.modelo.*;
 import java.io.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Excel {
 
@@ -24,12 +19,6 @@ public class Excel {
     }
 
     public boolean crearExcel(Materia materia) {
-        ArrayList<Calificacion> calificaciones = null;
-        try {
-            calificaciones = GestorDatos.obtenerCalificaciones(materia);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         Workbook libro = new XSSFWorkbook();
         Sheet hoja = libro.createSheet(materia.getNombre() + " " +  materia.getNrc());
         Row filaCampo = hoja.createRow(0);
@@ -37,7 +26,14 @@ public class Excel {
         filaCampo.createCell(1).setCellValue("Estudiante");
         filaCampo.createCell(2).setCellValue("Calificacion");
 
-        for (int i=0; i<=calificaciones.size(); i++){
+        ArrayList<Calificacion> calificaciones = null;
+        try {
+            calificaciones = GestorDatos.obtenerCalificaciones(materia);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        for (int i=0; i<calificaciones.size(); i++){
             Row filaInformacion = hoja.createRow(i+1);
             Cell celdaMaticula = filaInformacion.createCell(0);
             celdaMaticula.setCellValue(calificaciones.get(i).getEstudiante().getMatricula());
@@ -63,7 +59,7 @@ public class Excel {
         filaCampo.createCell(1).setCellValue("Materia");
         filaCampo.createCell(2).setCellValue("Calificacion");
 
-        for (int i=0; i<=calificaciones.size(); i++){
+        for (int i=0; i<calificaciones.size(); i++){
             Row filaInformacion = hoja.createRow(i+1);
             Cell celdaNrc = filaInformacion.createCell(0);
             celdaNrc.setCellValue(calificaciones.get(i).getMateria().getNrc());
@@ -82,16 +78,15 @@ public class Excel {
         fileChooser.setInitialFileName("Calificaciones.xlsx");
         File archivo = fileChooser.showSaveDialog((Stage) componenteUI.getScene().getWindow());
         if (archivo != null) {
-            /*
             try {
-                FileOutputStream fileOutputStream = new FileOutputStream("archivo.xlsl");
+                FileOutputStream fileOutputStream = new FileOutputStream(archivo);
                 libro.write(fileOutputStream);
                 fileOutputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                bandera.set(true);
-            }*/
+                bandera = true;
+            }
         }
         return bandera;
     }
