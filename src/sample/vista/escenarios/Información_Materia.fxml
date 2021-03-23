@@ -90,7 +90,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button layoutX="14.0" layoutY="502.0" mnemonicParsing="false" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Asignar Calificaciones">
+                <Button onAction="#asignarCalificaciones" layoutX="14.0" layoutY="502.0" mnemonicParsing="false" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Asignar Calificaciones">
                     <font>
                         <Font name="Segoe UI Semibold" size="18.0" />
                     </font>

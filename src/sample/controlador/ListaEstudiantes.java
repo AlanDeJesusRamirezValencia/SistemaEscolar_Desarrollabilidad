@@ -42,7 +42,7 @@ public class ListaEstudiantes extends Comunicador {
             ArrayList<Estudiante> listaDeEstudiantes = listaEstudiantes;
             try{
                 //Obtenemos el .fxml de cada lista de estudiantes
-                FXMLLoader controladorSeccion = new FXMLLoader(getClass().getResource("../vista/elementoListas/Elementos_Lista_Estudiantes.fxml"));
+                FXMLLoader controladorSeccion = new FXMLLoader(getClass().getResource("../vista/elementoListas/Elemento_Lista_Estudiantes.fxml"));
                 //Mostramos el contenido
                 nodes[nodo] = controladorSeccion.load();
                 //Obtenemos el control de cada lista

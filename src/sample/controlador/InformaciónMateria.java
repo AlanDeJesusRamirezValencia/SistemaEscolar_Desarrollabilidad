@@ -39,9 +39,7 @@ public class InformaciónMateria extends Comunicador {
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
     }
 
-    public void asignarCalificaciones(){
-        //TODO: cómo asigno calificaciones?
-    }
+    public void asignarCalificaciones(){ navegar(nombreMateria, "Subir_Calificaciones.fxml", materia.toHashMap()); }
 
     public void exportarCalificaciones(){
         new Excel(btnUsuario).crearExcel(materia);

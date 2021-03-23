@@ -41,7 +41,7 @@ public class ListaMaterias extends Comunicador {
             ArrayList<Materia> listaDeMaterias = listaMaterias;
             try{
                 //Obtenemos el .fxml de cada lista de estudiantes
-                FXMLLoader controladorSeccion = new FXMLLoader(getClass().getResource("../vista/elementoListas/Elementos_Lista_Materias.fxml"));
+                FXMLLoader controladorSeccion = new FXMLLoader(getClass().getResource("../vista/elementoListas/Elemento_Lista_Materias.fxml"));
                 //Mostramos el contenido
                 nodes[nodo] = controladorSeccion.load();
                 //Obtenemos el control de cada lista
