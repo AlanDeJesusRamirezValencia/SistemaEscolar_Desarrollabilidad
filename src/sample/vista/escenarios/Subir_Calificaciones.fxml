@@ -47,7 +47,7 @@
    </ScrollPane>
 
 
-   <Button fx:id="btnGuardar" layoutX="670.0" layoutY="540.0" mnemonicParsing="false" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" text="Guardar">
+   <Button layoutX="670.0" layoutY="540.0" mnemonicParsing="false" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" text="Guardar" onAction="#guardarCalificaciones">
       <font>
          <Font name="Segoe UI" size="18.0" />
       </font>
