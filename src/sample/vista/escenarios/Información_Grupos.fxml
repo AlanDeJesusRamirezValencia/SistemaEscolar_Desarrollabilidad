@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controlador.InformaciónGrupo">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controlador.InformaciónGrupo" fx:id="contenedorPrincipal">
    <children>
       <Button layoutX="24.0" layoutY="17.0" mnemonicParsing="false" onAction="#regresar" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
          <font>
@@ -34,21 +34,7 @@
                   <Image url="@../iconos/editar.png" />
                </image>
             </ImageView>
-         </graphic></Button>
-      <Button fx:id="btnUsuario" layoutX="670.0" layoutY="24.0" mnemonicParsing="false" onAction="#editar" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Usuario">
-         <font>
-            <Font name="Segoe UI" size="18.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../iconos/usuario.png" />
-               </image>
-            </ImageView>
          </graphic>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
       </Button>
       <Button layoutX="14.0" layoutY="59.0" mnemonicParsing="false" onAction="#irAProfesor" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Profesor">
          <font>
@@ -69,6 +55,27 @@
       <Button layoutX="14.0" layoutY="125.0" mnemonicParsing="false" onAction="#irAEstudiantes" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Estudiantes">
          <font>
             <Font name="Segoe UI" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="btnUsuario" layoutX="670.0" layoutY="24.0" mnemonicParsing="false" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Usuario" onAction="#mostrarBtnCerrarSesion">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@../iconos/usuario.png" />
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="btnCerrarSesion" visible="false" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" layoutX="645.0" layoutY="53.0" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesión" >
+         <font>
+            <Font name="Segoe UI Semibold" size="18.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />

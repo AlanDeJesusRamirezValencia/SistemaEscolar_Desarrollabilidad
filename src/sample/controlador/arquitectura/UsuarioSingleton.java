@@ -19,8 +19,7 @@ public class UsuarioSingleton {
 
     /**Unica forma de instanciar un objeto de tipo UsuarioSingleton*/
     public static UsuarioSingleton getInstance(){
-        if (usuario == null)
-            usuario = new UsuarioSingleton();
+        if (usuario == null) usuario = new UsuarioSingleton();
         return usuario;
     }
 
@@ -32,5 +31,9 @@ public class UsuarioSingleton {
     /** Establece el nombre del usuario */
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
+    }
+
+    public void limpiar(){
+        usuario = null;
     }
 }

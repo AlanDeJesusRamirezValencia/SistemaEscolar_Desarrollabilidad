@@ -1,7 +1,6 @@
 package sample.controlador;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import sample.modelo.Grupo;
 import sample.modelo.Usuario;
@@ -15,11 +14,9 @@ public class InformaciónGrupo extends Comunicador {
     @FXML
     private Label nombreGrupo;
 
-    @FXML
-    private Button btnUsuario;
-
     @Override
     public void inicializarComponentes(){
+        super.inicializarComponentes();
         grupo = Grupo.obtenerGrupo(getMensaje());
         nombreGrupo.setText(grupo.getGrado() + "" + grupo.getLetra());
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
