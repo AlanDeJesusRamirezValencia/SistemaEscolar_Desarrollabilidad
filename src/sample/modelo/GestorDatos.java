@@ -191,6 +191,7 @@ public class GestorDatos {
         conexion.close();
     }
 
+    @Deprecated
     public static void actualizarCalificacion(Estudiante estudiante, int nota, Materia materia) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
