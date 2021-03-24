@@ -6,7 +6,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -50,8 +49,8 @@ public class GestorDatos {
         ResultSet resultados = declaracion.executeQuery(consulta);
         ArrayList<Grupo> grupos = new ArrayList<>();
         while(resultados.next()){
-            int id = Integer.parseInt(resultados.getString("id_grupo"));
-            int grado = Integer.parseInt(resultados.getString("grado"));
+            int id = resultados.getInt("id_grupo");
+            int grado = resultados.getInt("grado");
             char letra = resultados.getString("letra").charAt(0);
             Grupo grupo = new Grupo(id,grado,letra);
             Profesor profesor = obtenerProfesor(grupo);
@@ -76,7 +75,7 @@ public class GestorDatos {
         ResultSet resultados = declaracion.executeQuery(consulta);
         Profesor profesor = null;
         while(resultados.next()){
-            int nPersonal = Integer.parseInt(resultados.getString("numero_personal"));
+            int nPersonal = resultados.getInt("numero_personal");
             String nombre = resultados.getString("nombre").toUpperCase();
             String apellidoPaterno = resultados.getString("apellido_paterno").toUpperCase();
             String apellidoMaterno = resultados.getString("apellido_materno").toUpperCase();
@@ -93,7 +92,7 @@ public class GestorDatos {
         ResultSet resultados = declaracion.executeQuery(consulta);
         ArrayList<Materia> materias = new ArrayList<>();
         while(resultados.next()){
-            int nrc = Integer.parseInt(resultados.getString("nrc"));
+            int nrc = resultados.getInt("nrc");
             String nombre = resultados.getString("nombre");
             Materia materia = new Materia(nrc, nombre, grupo);
             materias.add(materia);
@@ -132,7 +131,7 @@ public class GestorDatos {
         ArrayList<Calificacion> calificaciones = new ArrayList<>();
         ArrayList<Estudiante> estudiantes = obtenerEstudiantes(materia.getGrupo());
         while(resultados.next()){
-            int nota = Integer.parseInt(resultados.getString("nota"));
+            int nota = resultados.getInt("nota");
             String matricula = resultados.getString("fk_estudiante");
             Estudiante estudiante = buscarEstudiante(estudiantes, matricula);
             Calificacion calificacion = new Calificacion(nota, materia, estudiante);
@@ -159,8 +158,8 @@ public class GestorDatos {
         ArrayList<Calificacion> calificaciones = new ArrayList<>();
         ArrayList<Materia> materias = obtenerMaterias(estudiante.getGrupo());
         while(resultados.next()){
-            int nota = Integer.parseInt(resultados.getString("nota"));
-            int nrc = Integer.parseInt(resultados.getString("fk_materia"));
+            int nota = resultados.getInt("nota");
+            int nrc = resultados.getInt("fk_materia");
             Materia materia = buscarMateria(materias, nrc);
             Calificacion calificacion = new Calificacion(nota, materia, estudiante);
             calificaciones.add(calificacion);
@@ -178,8 +177,13 @@ public class GestorDatos {
         return null;
     }
 
-    public void subirCalificaciones(HashMap<Estudiante,Integer> calificaciones, Materia materia, boolean subido){
-
+    public void subirCalificaciones(HashMap<Estudiante,Integer> calificaciones, Materia materia, boolean subidas){
+        try {
+            if (subidas) actualizarCalificaciones(calificaciones, materia);
+            else insertarCalificaciones(calificaciones, materia);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void insertarCalificaciones(HashMap<Estudiante,Integer> calificaciones, Materia materia) throws SQLException {
@@ -195,13 +199,16 @@ public class GestorDatos {
         conexion.close();
     }
 
-    @Deprecated
-    public static void actualizarCalificacion(Estudiante estudiante, int nota, Materia materia) throws SQLException {
+    public static void actualizarCalificaciones(HashMap<Estudiante,Integer> calificaciones, Materia materia) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = String.format("UPDATE calificaciones SET nota = %d " +
-                "WHERE fk_estudiante = '%s' AND fk_materia = %d", nota, estudiante.getMatricula(), materia.getNrc());
-        declaracion.executeUpdate(consulta);
+        for (Map.Entry<Estudiante,Integer> entry: calificaciones.entrySet()){
+            Estudiante estudiante = entry.getKey();
+            int nota = entry.getValue();
+            String consulta = String.format("UPDATE calificaciones SET nota = %d " +
+                    "WHERE fk_estudiante = '%s' AND fk_materia = %d", nota, estudiante.getMatricula(), materia.getNrc());
+            declaracion.executeUpdate(consulta);
+        }
         conexion.close();
     }
 }
