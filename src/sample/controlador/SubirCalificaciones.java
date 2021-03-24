@@ -43,6 +43,9 @@ public class SubirCalificaciones extends Comunicador {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        if (listaCalificaciones.isEmpty()){
+            listaCalificaciones = inicializarCalificaciones(listaEstudiantes,materia);
+        }
 
         int numeroEstudiantes = listaEstudiantes.size();
         //Determinar la lista de grupos a VBox
@@ -87,5 +90,13 @@ public class SubirCalificaciones extends Comunicador {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    private ArrayList<Calificacion> inicializarCalificaciones(ArrayList<Estudiante> estudiantes, Materia materia){
+        ArrayList<Calificacion> calificaciones = new ArrayList<>();
+        for (Estudiante estudiante: estudiantes){
+            calificaciones.add(new Calificacion(0, materia, estudiante));
+        }
+        return calificaciones;
     }
 }

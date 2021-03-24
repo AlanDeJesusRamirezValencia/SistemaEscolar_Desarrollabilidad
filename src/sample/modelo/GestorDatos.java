@@ -178,7 +178,11 @@ public class GestorDatos {
         return null;
     }
 
-    public static void subirCalificaciones(HashMap<Estudiante,Integer> calificaciones, Materia materia) throws SQLException {
+    public void subirCalificaciones(HashMap<Estudiante,Integer> calificaciones, Materia materia, boolean subido){
+
+    }
+
+    public static void insertarCalificaciones(HashMap<Estudiante,Integer> calificaciones, Materia materia) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
         for (Map.Entry<Estudiante,Integer> entry: calificaciones.entrySet()){
