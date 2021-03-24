@@ -5,5 +5,5 @@ import javafx.scene.layout.AnchorPane;
 
 public class ElementoListaCalificaciones {
     @FXML
-    public AnchorPane contenedor;
+    public AnchorPane contenedorCalificaciones;
 }
