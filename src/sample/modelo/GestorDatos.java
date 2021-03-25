@@ -125,7 +125,7 @@ public class GestorDatos {
         Statement declaracion = conexion.createStatement();
         String consulta = String.format("SELECT c.id_calificacion, c.nota, c.fk_estudiante " +
                 "FROM calificaciones c, estudiantes e, materias m " +
-                "WHERE c.fk_estudiante = e.matricula AND m.nrc = %d " +
+                "WHERE c.fk_estudiante = e.matricula AND c.fk_materia = m.nrc AND m.nrc = %d " +
                 "ORDER BY e.apellido_paterno, e.apellido_materno, e.nombre;", materia.getNrc());
         ResultSet resultados = declaracion.executeQuery(consulta);
         ArrayList<Calificacion> calificaciones = new ArrayList<>();
@@ -193,7 +193,7 @@ public class GestorDatos {
             Estudiante estudiante = entry.getKey();
             int nota = entry.getValue();
             String consulta = String.format("INSERT INTO calificaciones (nota, fk_estudiante, fk_materia) " +
-                    "VALUES(%d, '%s', %d)", nota, estudiante.getMatricula(), materia.getNrc());
+                    "VALUES(%d, '%s', %d);", nota, estudiante.getMatricula(), materia.getNrc());
             declaracion.executeUpdate(consulta);
         }
         conexion.close();
@@ -206,7 +206,7 @@ public class GestorDatos {
             Estudiante estudiante = entry.getKey();
             int nota = entry.getValue();
             String consulta = String.format("UPDATE calificaciones SET nota = %d " +
-                    "WHERE fk_estudiante = '%s' AND fk_materia = %d", nota, estudiante.getMatricula(), materia.getNrc());
+                    "WHERE fk_estudiante = '%s' AND fk_materia = %d;", nota, estudiante.getMatricula(), materia.getNrc());
             declaracion.executeUpdate(consulta);
         }
         conexion.close();
