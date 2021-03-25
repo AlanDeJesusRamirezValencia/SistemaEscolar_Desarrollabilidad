@@ -177,7 +177,7 @@ public class GestorDatos {
         return null;
     }
 
-    public void subirCalificaciones(HashMap<Estudiante,Integer> calificaciones, Materia materia, boolean subidas){
+    public static void subirCalificaciones(HashMap<Estudiante,Integer> calificaciones, Materia materia, boolean subidas){
         try {
             if (subidas) actualizarCalificaciones(calificaciones, materia);
             else insertarCalificaciones(calificaciones, materia);

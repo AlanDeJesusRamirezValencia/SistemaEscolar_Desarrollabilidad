@@ -1,5 +1,4 @@
 package sample.controlador;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -25,12 +24,15 @@ public class SubirCalificaciones extends Comunicador {
     private Materia materia;
     private ArrayList<Estudiante> listaEstudiantes;
     private ArrayList<ElementoListaCalificaciones> calificaciones;
+    private ArrayList<Calificacion> listaCalificaciones;
 
     @Override
     public void inicializarComponentes() {
-        ArrayList<Calificacion> listaCalificaciones   = new ArrayList<>();
+        listaCalificaciones = new ArrayList<>();
         calificaciones = new ArrayList<>();
         materia = Materia.obtenerMateria(getMensaje());
+
+        System.out.println("Name: " +materia.getNombre() + "/" + materia.getNrc() + "/" + materia.getGrupo());
 
         Grupo grupoEstudiantes;
 
@@ -43,11 +45,9 @@ public class SubirCalificaciones extends Comunicador {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        if (listaCalificaciones.isEmpty()){
-            listaCalificaciones = inicializarCalificaciones(listaEstudiantes,materia);
-        }
 
         int numeroEstudiantes = listaEstudiantes.size();
+
         //Determinar la lista de grupos a VBox
         nodes  = new Node[numeroEstudiantes];
 
@@ -55,27 +55,29 @@ public class SubirCalificaciones extends Comunicador {
             try{
                 FXMLLoader controladorSeccion = new FXMLLoader(getClass().getResource("../vista/elementoListas/Elemento_Lista_Estudiantes.fxml"));
                 nodes[nodo] = controladorSeccion.load();
+                ElementoListaEstudiantes elementoEstudiante = controladorSeccion.getController();
 
-                ElementoListaEstudiantes listaEstudiante = controladorSeccion.getController();
-
-                listaEstudiante.informacionEstudiante.setText(listaEstudiantes.get(nodo).getMatricula() + "\t\t" + listaEstudiantes.get(nodo).getApellidoPaterno() + " "
+                elementoEstudiante.informacionEstudiante.setText(listaEstudiantes.get(nodo).getMatricula() + "\t\t" + listaEstudiantes.get(nodo).getApellidoPaterno() + " "
                         + listaEstudiantes.get(nodo).getApellidoMaterno() + " "
                         + listaEstudiantes.get(nodo).getNombre());
                 vInformacionEstudiante.getChildren().add(nodes[nodo]);
 
+
                 FXMLLoader controladorSeccionCalificacion = new FXMLLoader(getClass().getResource("../vista/elementoListas/Elemento_Lista_Calificaciones.fxml"));
                 nodes[nodo] = controladorSeccionCalificacion.load();
                 ElementoListaCalificaciones calificacion = controladorSeccionCalificacion.getController();
-                int nota = listaCalificaciones.get(nodo).getNota();
-                String calificaciones = "" + nota;
-                calificacion.tFCalificacion.setText((calificaciones.isEmpty()? "N/A": calificaciones  ));
+
+                if(listaCalificaciones.isEmpty())
+                    calificacion.tFCalificacion.setPromptText("N/A");
+                else
+                    calificacion.tFCalificacion.setText(listaCalificaciones.get(nodo).getNota() + "");
+
                 this.calificaciones.add(calificacion);
                 vAsignarCalificaciones.getChildren().add(nodes[nodo]);
 
             } catch(Exception e){
                 e.printStackTrace();
             }
-
         }
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
     }
@@ -83,20 +85,16 @@ public class SubirCalificaciones extends Comunicador {
     public void guardarCalificaciones() {
         HashMap<Estudiante, Integer> califacionesObtenidas = new HashMap<>();
         for (int nodo = 0; nodo < nodes.length; nodo++) {
-            califacionesObtenidas.put(listaEstudiantes.get(nodo), Integer.parseInt(calificaciones.get(nodo).tFCalificacion.getText()));
+            califacionesObtenidas.put(listaEstudiantes.get(nodo), Integer.parseInt(calificaciones.get(nodo).tFCalificacion.getText().trim()));
         }
-        try {
-            GestorDatos.subirCalificaciones(califacionesObtenidas, materia);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+
+        GestorDatos.subirCalificaciones(califacionesObtenidas, materia, listaCalificaciones.isEmpty());
+
+        navegar(btnUsuario, "Información_Materia.fxml", getMensaje());
+
     }
 
-    private ArrayList<Calificacion> inicializarCalificaciones(ArrayList<Estudiante> estudiantes, Materia materia){
-        ArrayList<Calificacion> calificaciones = new ArrayList<>();
-        for (Estudiante estudiante: estudiantes){
-            calificaciones.add(new Calificacion(0, materia, estudiante));
-        }
-        return calificaciones;
+    public void regresar() {
+        navegar(btnUsuario, "Información_Materia.fxml", getMensaje());
     }
 }
