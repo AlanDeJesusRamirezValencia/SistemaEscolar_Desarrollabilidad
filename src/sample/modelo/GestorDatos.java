@@ -177,7 +177,7 @@ public class GestorDatos {
         return null;
     }
 
-    public static void subirCalificaciones(HashMap<Estudiante,Integer> calificaciones, Materia materia, boolean subidas){
+    public void subirCalificaciones(HashMap<Estudiante,Integer> calificaciones, Materia materia, boolean subidas){
         try {
             if (subidas) actualizarCalificaciones(calificaciones, materia);
             else insertarCalificaciones(calificaciones, materia);
@@ -209,6 +209,66 @@ public class GestorDatos {
                     "WHERE fk_estudiante = '%s' AND fk_materia = %d;", nota, estudiante.getMatricula(), materia.getNrc());
             declaracion.executeUpdate(consulta);
         }
+        conexion.close();
+    }
+
+    public void insertarEstudiante(Estudiante estudiante) throws SQLException {
+        conexion = Conexion.getConexion();
+        estudiante.setMatricula(generarMatricula());
+        Statement declaracion = conexion.createStatement();
+        String consulta = String.format("INSERT INTO estudiantes VALUES (%s, %s, %s, %s, %d);",
+                estudiante.getMatricula(),
+                estudiante.getNombre(),
+                estudiante.getApellidoPaterno(),
+                estudiante.getApellidoMaterno(),
+                estudiante.getGrupo().getId());
+        declaracion.executeUpdate(consulta);
+        conexion.close();
+    }
+
+    private String generarMatricula(){
+        conexion = Conexion.getConexion();
+        String matricula = "";
+        Statement declaracion = null;
+        try {
+            declaracion = conexion.createStatement();
+            String consulta = "SELECT COUNT(*) AS numero_estudiantes FROM estudiantes;";
+            ResultSet resultados = declaracion.executeQuery(consulta);
+            while (resultados.next()){
+                int numeroEstudiantes = resultados.getInt("numero_estudiantes");
+                matricula = "EP00" + (1001 + numeroEstudiantes);
+            }
+            conexion.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return matricula;
+    }
+
+    public void insertarProfesor(Profesor profesor) throws SQLException {
+        conexion = Conexion.getConexion();
+        Statement declaracion = conexion.createStatement();
+        String consulta = String.format("INSERT INTO profesores (nombre, apellido_paterno, apellido_materno) " +
+                "VALUES (%s, %s, %s);", profesor.getNombre(), profesor.getApellidoPaterno(), profesor.getApellidoMaterno());
+        declaracion.executeUpdate(consulta);
+        conexion.close();
+    }
+
+    public void insertarGrupo(Grupo grupo) throws SQLException {
+        conexion = Conexion.getConexion();
+        Statement declaracion = conexion.createStatement();
+        String consulta = String.format("INSERT INTO grupos (letra, grado)  VALUES (%c, %d);",
+                grupo.getLetra(), grupo.getGrado());
+        declaracion.executeUpdate(consulta);
+        conexion.close();
+    }
+
+    public void insertarMateria(Materia materia) throws SQLException {
+        conexion = Conexion.getConexion();
+        Statement declaracion = conexion.createStatement();
+        String consulta = String.format("INSERT INTO materias (nombre, grupo)  VALUES (%s, %d);",
+                materia.getNombre(), materia.getGrupo().getId());
+        declaracion.executeUpdate(consulta);
         conexion.close();
     }
 }
