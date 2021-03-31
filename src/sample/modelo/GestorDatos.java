@@ -45,7 +45,7 @@ public class GestorDatos {
     public static ArrayList<Grupo> obtenerGrupos() throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = "SELECT * FROM grupos;";
+        String consulta = "SELECT * FROM grupos ORDER BY grado, letra;";
         ResultSet resultados = declaracion.executeQuery(consulta);
         ArrayList<Grupo> grupos = new ArrayList<>();
         while(resultados.next()){
@@ -177,7 +177,7 @@ public class GestorDatos {
         return null;
     }
 
-    public void subirCalificaciones(HashMap<Estudiante,Integer> calificaciones, Materia materia, boolean subidas){
+    public static void subirCalificaciones(HashMap<Estudiante,Integer> calificaciones, Materia materia, boolean subidas){
         try {
             if (subidas) actualizarCalificaciones(calificaciones, materia);
             else insertarCalificaciones(calificaciones, materia);
@@ -245,6 +245,10 @@ public class GestorDatos {
         return matricula;
     }
 
+    public void actualizarEstudiante(Estudiante estudiante){
+
+    }
+
     public void insertarProfesor(Profesor profesor) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
@@ -268,6 +272,39 @@ public class GestorDatos {
         Statement declaracion = conexion.createStatement();
         String consulta = String.format("INSERT INTO materias (nombre, grupo)  VALUES (%s, %d);",
                 materia.getNombre(), materia.getGrupo().getId());
+        declaracion.executeUpdate(consulta);
+        conexion.close();
+    }
+
+    public void eliminarEstudiante(Estudiante estudiante) throws SQLException {
+        conexion = Conexion.getConexion();
+        Statement declaracion = conexion.createStatement();
+        String consulta = String.format("DELETE FROM estudiantes WHERE matricula = '%s';", estudiante.getMatricula());
+        declaracion.executeUpdate(consulta);
+        conexion.close();
+    }
+
+    public void eliminarProfesor(Profesor profesor) throws SQLException {
+        conexion = Conexion.getConexion();
+        Statement declaracion = conexion.createStatement();
+        String consulta = String.format("DELETE FROM profesor WHERE numero_personal = %d;", profesor.getnPersonal());
+        declaracion.executeUpdate(consulta);
+        conexion.close();
+    }
+
+    public void eliminarGrupo(Grupo grupo) throws SQLException {
+        conexion = Conexion.getConexion();
+        Statement declaracion = conexion.createStatement();
+        String consulta = String.format("DELETE FROM grupos WHERE id_grupo = %d;", grupo.getId());
+        declaracion.executeUpdate(consulta);
+        conexion.close();
+
+    }
+
+    public void eliminarMateria(Materia materia) throws SQLException {
+        conexion = Conexion.getConexion();
+        Statement declaracion = conexion.createStatement();
+        String consulta = String.format("DELETE FROM materias WHERE nrc = %d;", materia.getNrc());
         declaracion.executeUpdate(consulta);
         conexion.close();
     }

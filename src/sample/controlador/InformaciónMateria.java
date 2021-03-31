@@ -42,7 +42,7 @@ public class InformaciónMateria extends Comunicador {
     public void asignarCalificaciones(){ navegar(nombreMateria, "Subir_Calificaciones.fxml", materia.toHashMap()); }
 
     public void exportarCalificaciones(){
-        new Excel(btnUsuario).crearExcel(materia);
+        new GeneradorExcel(btnUsuario).crearExcel(materia);
     }
 
     public void editar(){

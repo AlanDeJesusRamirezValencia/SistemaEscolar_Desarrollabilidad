@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import sample.modelo.*;
 import sample.controlador.arquitectura.Comunicador;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;

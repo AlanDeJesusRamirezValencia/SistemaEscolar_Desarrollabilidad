@@ -1,6 +1,5 @@
 package sample.controlador;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -14,8 +13,6 @@ import sample.controlador.arquitectura.Comunicador;
 import sample.modelo.Usuario;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.stream.Collectors;
 
 public class ListaGrupos extends Comunicador {
 
@@ -34,14 +31,13 @@ public class ListaGrupos extends Comunicador {
         ArrayList<Grupo> grupos = new ArrayList<>();
         try {
             grupos = GestorDatos.obtenerGrupos();
-            Collections.sort(grupos);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        int numeroGrados = grupos.stream().mapToInt(grupo -> grupo.getGrado()).max().getAsInt();
+        int NUMERO_GRADOS = 6;
 
         //Determinar la lista de grupos a VBox
-        Node[] nodes = new Node[numeroGrados];
+        Node[] nodes = new Node[NUMERO_GRADOS];
 
         //Instancia los botones a crear
         for (int nodo = 0; nodo < nodes.length; nodo++) {
@@ -53,11 +49,16 @@ public class ListaGrupos extends Comunicador {
 
                 //Obtenemos el control de cada lista
                 ElementoListaGrupos lista = controladorSeccion.getController();
-                lista.gradoGrupo.setText( (nodo + 1) + "° Grado");
+                lista.gradoGrupo.setText( (nodo+1) + "° Grado");
 
                 //Se crean los botones de manera automática
                 int finalNodo = nodo;
-                ArrayList<Grupo> listaDeGruposPorGrado = (ArrayList<Grupo>) grupos.stream().filter(grupo -> grupo.getGrado()== finalNodo+1).collect(Collectors.toList());
+                ArrayList<Grupo> listaDeGruposPorGrado = new ArrayList<>();
+                for (Grupo g: grupos){
+                    if (g.getGrado() == nodo+1){
+                        listaDeGruposPorGrado.add(g);
+                    }
+                }
                 for (int nodoBotones = 0; nodoBotones < listaDeGruposPorGrado.size() ; nodoBotones++) {
                     Button botonGrupo = new Button();
                     botonGrupo.setLayoutX((nodoBotones*40) + (10*nodoBotones));

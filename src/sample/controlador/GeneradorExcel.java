@@ -10,11 +10,11 @@ import java.io.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Excel {
+public class GeneradorExcel {
 
     private Node componenteUI;
 
-    public Excel(Node componenteUI) {
+    public GeneradorExcel(Node componenteUI) {
         this.componenteUI = componenteUI;
     }
 

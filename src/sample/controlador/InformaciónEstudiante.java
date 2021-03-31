@@ -37,7 +37,7 @@ public class InformaciónEstudiante extends Comunicador {
     }
 
     public void exportarCalificaciones(){
-        new Excel(btnUsuario).crearExcel(estudiante);
+        new GeneradorExcel(btnUsuario).crearExcel(estudiante);
     }
 
     public void regresar() {
