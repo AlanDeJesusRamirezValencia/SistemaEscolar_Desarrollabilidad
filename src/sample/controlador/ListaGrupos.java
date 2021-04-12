@@ -52,7 +52,6 @@ public class ListaGrupos extends Comunicador {
                 lista.gradoGrupo.setText( (nodo+1) + "° Grado");
 
                 //Se crean los botones de manera automática
-                int finalNodo = nodo;
                 ArrayList<Grupo> listaDeGruposPorGrado = new ArrayList<>();
                 for (Grupo g: grupos){
                     if (g.getGrado() == nodo+1){
@@ -80,5 +79,9 @@ public class ListaGrupos extends Comunicador {
             }
         }
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
+    }
+
+    public void regresar() {
+        navegar(btnUsuario, "Información_Grupos.fxml", getMensaje());
     }
 }
