@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controlador.SubirCalificaciones">
-   <Label layoutX="24.0" layoutY="24.0" prefHeight="32.0" text="Subir Calificaciones">
+   <Label layoutX="74.0" layoutY="24.0" prefHeight="32.0" text="Subir Calificaciones">
       <font>
          <Font name="Segoe UI Semibold" size="24.0" />
       </font>
@@ -59,6 +59,9 @@
             </image>
          </ImageView>
       </graphic>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
    </Button>
 
    <Button fx:id="btnUsuario" layoutX="670.0" layoutY="24.0" mnemonicParsing="false" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Usuario" onAction="#mostrarBtnCerrarSesion">

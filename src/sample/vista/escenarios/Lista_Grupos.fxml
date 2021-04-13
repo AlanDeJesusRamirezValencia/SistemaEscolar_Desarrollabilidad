@@ -21,7 +21,7 @@
    </Label>
    <ScrollPane layoutX="34.0" layoutY="74.0" prefHeight="512.0" prefWidth="752.0"
                style="-fx-background-color: #FFFFFF;">
-      <VBox fx:id="vGrupos" prefHeight="510.0" prefWidth="750.0"
+      <VBox fx:id="vGrupos" prefHeight="510.0" prefWidth="730.0"
             style="-fx-background-color: #FFFFFF; -fx-border-width: 0;"/>
    </ScrollPane>
    <Button layoutX="732.0" layoutY="537.0" mnemonicParsing="false" onAction="#nuevo" prefHeight="48.0" prefWidth="48.0"
