@@ -27,8 +27,8 @@ public class SubirCalificaciones extends Comunicador {
     private ArrayList<ElementoListaCalificaciones> calificaciones;
     private ArrayList<Calificacion> listaCalificaciones;
     private ArrayList<String> errores;
-    private HashMap<Estudiante, Integer> califacionesObtenidas = new HashMap<>();
-    private Alert mensajeError;
+    private final HashMap<Estudiante, Integer> califacionesObtenidas = new HashMap<>();
+    private Boolean estadoCalificaciones;
 
     @Override
     public void inicializarComponentes() {
@@ -42,13 +42,14 @@ public class SubirCalificaciones extends Comunicador {
 
         listaEstudiantes = new ArrayList<>();
         Grupo grupoEstudiantes = Grupo.obtenerGrupo(getMensaje());
-
         try {
             listaEstudiantes = GestorDatos.obtenerEstudiantes(grupoEstudiantes);
             listaCalificaciones = GestorDatos.obtenerCalificaciones(materia);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+        estadoCalificaciones = !listaCalificaciones.isEmpty();
 
         int numeroEstudiantes = listaEstudiantes.size();
 
@@ -61,10 +62,11 @@ public class SubirCalificaciones extends Comunicador {
                 System.out.println("Estudiante No. " + nodo + "\t" + listaEstudiantes.get(nodo).getMatricula() + "\t\t" + listaEstudiantes.get(nodo).getApellidoPaterno() + " "
                         + listaEstudiantes.get(nodo).getApellidoMaterno() + " "
                         + listaEstudiantes.get(nodo).getNombre());
-                System.out.println("Calificacion Estudiante No. " + nodo + "\t" + listaCalificaciones.get(nodo).getEstudiante().getMatricula() + "\t\t" + listaCalificaciones.get(nodo).getEstudiante().getApellidoPaterno() + " "
-                        + listaCalificaciones.get(nodo).getEstudiante().getApellidoMaterno() + " "
-                        + listaCalificaciones.get(nodo).getEstudiante().getNombre()+"\n");
-
+                if(estadoCalificaciones == true) {
+                    System.out.println("Calificacion Estudiante No. " + nodo + "\t" + listaCalificaciones.get(nodo).getEstudiante().getMatricula() + "\t\t" + listaCalificaciones.get(nodo).getEstudiante().getApellidoPaterno() + " "
+                            + listaCalificaciones.get(nodo).getEstudiante().getApellidoMaterno() + " "
+                            + listaCalificaciones.get(nodo).getEstudiante().getNombre() + "\n");
+                }
 
 
                 FXMLLoader controladorSeccion = new FXMLLoader(getClass().getResource("../vista/elementoListas/Elemento_Lista_Estudiantes.fxml"));
@@ -114,7 +116,7 @@ public class SubirCalificaciones extends Comunicador {
 
 
     //Guardará los datos pero solo sí la validación de campos está correcta.
-    public void guardarCalificaciones() {
+    public void guardarCalificaciones() throws SQLException {
         System.out.println("Guardar Datos");
         validar();
         if (errores.size() > 0){
@@ -126,7 +128,14 @@ public class SubirCalificaciones extends Comunicador {
         for (int nodo = 0; nodo < nodes.length; nodo++) {
             califacionesObtenidas.put(listaEstudiantes.get(nodo), Integer.parseInt(calificaciones.get(nodo).tFCalificacion.getText().trim()));
         }
-        GestorDatos.subirCalificaciones(califacionesObtenidas, materia, listaCalificaciones.isEmpty());
+
+        if(estadoCalificaciones.equals(true)) {
+            GestorDatos.actualizarCalificaciones(califacionesObtenidas, materia);
+            System.out.println(estadoCalificaciones);
+        } else {
+            GestorDatos.subirCalificaciones(califacionesObtenidas, materia, listaCalificaciones.isEmpty());
+            System.out.println(estadoCalificaciones);
+        }
         navegar(btnUsuario, "Información_Materia.fxml", getMensaje());
     }
 
@@ -134,7 +143,7 @@ public class SubirCalificaciones extends Comunicador {
     public void mostrarVentanaError(){
         StringBuilder cadenaErrores = new StringBuilder();
         for (String errore : errores) cadenaErrores.append(errore).append("\n");
-        mensajeError = new Alert(Alert.AlertType.ERROR);
+        Alert mensajeError = new Alert(Alert.AlertType.ERROR);
         mensajeError.setTitle("Error");
         mensajeError.setHeaderText("Se encontraron los siguientes errores.");
         mensajeError.setContentText(cadenaErrores.toString());
