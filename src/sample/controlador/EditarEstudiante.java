@@ -35,6 +35,7 @@ public class EditarEstudiante extends Comunicador {
 
     @Override
     public void inicializarComponentes() {
+        super.inicializarComponentes();
         estudiante = Estudiante.obtenerEstudiante(getMensaje());
         nombre.setText(estudiante.getNombre());
         apellidoPaterno.setText(estudiante.getApellidoPaterno());

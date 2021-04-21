@@ -45,45 +45,45 @@
             </Button>
             <Label layoutX="24.0" layoutY="58.0" text="Nombre">
                 <font>
-                    <Font name="Segoe UI" size="18.0"/>
+                    <Font name="Segoe UI Semibold" size="18.0"/>
                 </font>
             </Label>
             <Label fx:id="nombreMateria" layoutX="24.0" layoutY="92.0">
                 <font>
-                    <Font name="Segoe UI Semibold" size="18.0"/>
+                    <Font name="Segoe UI" size="18.0"/>
                 </font>
             </Label>
 
             <Label layoutX="24.0" layoutY="126.0" text="NRC">
                 <font>
-                    <Font name="Segoe UI" size="18.0"/>
+                    <Font name="Segoe UI Semibold" size="18.0"/>
                 </font>
             </Label>
             <Label fx:id="nrc" layoutX="24.0" layoutY="160.0">
                 <font>
-                    <Font name="Segoe UI Semibold" size="18.0"/>
+                    <Font name="Segoe UI" size="18.0"/>
                 </font>
             </Label>
 
             <Label layoutX="24.0" layoutY="194.0" text="Grupo">
                 <font>
-                    <Font name="Segoe UI" size="18.0"/>
+                    <Font name="Segoe UI Semibold" size="18.0"/>
                 </font>
             </Label>
             <Label fx:id="nombreGrupo" layoutX="24.0" layoutY="228.0">
                 <font>
-                    <Font name="Segoe UI Semibold" size="18.0"/>
+                    <Font name="Segoe UI" size="18.0"/>
                 </font>
             </Label>
 
             <Label layoutX="24.0" layoutY="262.0" text="Profesor">
                 <font>
-                    <Font name="Segoe UI" size="18.0"/>
+                    <Font name="Segoe UI Semibold" size="18.0"/>
                 </font>
             </Label>
             <Label fx:id="nombreProfesor" layoutX="24.0" layoutY="296.0">
                 <font>
-                    <Font name="Segoe UI Semibold" size="18.0"/>
+                    <Font name="Segoe UI" size="18.0"/>
                 </font>
             </Label>
             <Button onAction="#asignarCalificaciones" layoutX="14.0" layoutY="502.0" mnemonicParsing="false"

@@ -55,7 +55,7 @@ public class Grupo {
 
     @Override
     public String toString() {
-        return grado  + " " + letra;
+        return grado  + "" + letra;
     }
 
     /** Obtiene los atribudos de un objeto {@link Grupo} para transformarlos en un objeto de tipo {@link HashMap} */

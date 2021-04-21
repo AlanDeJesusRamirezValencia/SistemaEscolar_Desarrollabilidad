@@ -25,9 +25,6 @@ public class InformaciónMateria extends Comunicador {
 
     @FXML
     private Label nombreProfesor;
-    //TODO: cómo obtengo el nombre del profesor?
-    // el objeto materia tiene atributo un grupo y el objeto grupo tiene un objeto de tipo profesor
-    // materia.getGrupo().getProfesor();
 
 
     @Override
@@ -37,6 +34,7 @@ public class InformaciónMateria extends Comunicador {
         nrc.setText(materia.getNrc() + "");
         nombreGrupo.setText(materia.getGrupo().getGrado() + materia.getGrupo().getLetra() + "");
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
+        nombreProfesor.setText(materia.getGrupo().getProfesor().toString());
     }
 
     public void asignarCalificaciones(){ navegar(nombreMateria, "Subir_Calificaciones.fxml", materia.toHashMap()); }
@@ -46,7 +44,7 @@ public class InformaciónMateria extends Comunicador {
     }
 
     public void editar(){
-        navegar(btnUsuario,"Editar_Materia.xml", getMensaje());
+        navegar(nombreGrupo,"Editar_Materia.fxml", getMensaje());
     }
 
     public void regresar() {

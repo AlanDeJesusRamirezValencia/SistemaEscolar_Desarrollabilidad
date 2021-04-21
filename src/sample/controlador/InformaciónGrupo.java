@@ -16,9 +16,8 @@ public class InformaciónGrupo extends Comunicador {
 
     @Override
     public void inicializarComponentes(){
-        super.inicializarComponentes();
         grupo = Grupo.obtenerGrupo(getMensaje());
-        nombreGrupo.setText(grupo.getGrado() + "" + grupo.getLetra());
+        nombreGrupo.setText(grupo.toString());
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
     }
 

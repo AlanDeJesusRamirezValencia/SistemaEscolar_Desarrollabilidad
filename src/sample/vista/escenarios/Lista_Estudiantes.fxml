@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="contenedorPrincipal" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controlador.ListaEstudiantes">
-   <Label layoutX="74.0" layoutY="24.0" prefHeight="32.0" text="Lista Estudiantes">
+   <Label layoutX="74.0" layoutY="24.0" prefHeight="32.0" text="Lista de Estudiantes" fx:id="titulo">
       <font>
          <Font name="Segoe UI Semibold" size="24.0" />
       </font>

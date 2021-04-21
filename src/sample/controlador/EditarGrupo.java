@@ -20,16 +20,14 @@ public class EditarGrupo extends Comunicador {
     @FXML
     public Label grupo;
 
-    @FXML
-    public Button usuario;
-
     @Override
     public void inicializarComponentes() {
+        super.inicializarComponentes();
         grupoActual = Grupo.obtenerGrupo(getMensaje());
         grado.setText(grupoActual.getGrado() + "");
         letra.setText(grupoActual.getLetra() + "");
-        grupo.setText(grupoActual.getId() + "");
-        usuario.setText(Usuario.obtenerUsuario(getMensaje()));
+        grupo.setText(grupo.getText() + " " + grupoActual.getId());
+        btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
     }
 
     public void actualizarDatos() {

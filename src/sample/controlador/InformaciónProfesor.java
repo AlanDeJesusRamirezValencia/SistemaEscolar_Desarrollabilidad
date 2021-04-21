@@ -10,6 +10,9 @@ import sample.controlador.arquitectura.Comunicador;
 
 public class InformaciónProfesor extends Comunicador {
 
+    @FXML
+    public Label titulo;
+
     private Profesor profesor;
 
     @FXML
@@ -28,6 +31,7 @@ public class InformaciónProfesor extends Comunicador {
         nombreProfesor.setText(profesor.toString());
         grupo.setText(grupoProfesor.toString());
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
+        titulo.setText(titulo.getText() + " " + grupoProfesor);
     }
 
     public void editar(){

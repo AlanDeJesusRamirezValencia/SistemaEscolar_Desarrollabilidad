@@ -5,9 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.FileChooser;
 import sample.modelo.Estudiante;
 import sample.modelo.GestorDatos;
 import sample.modelo.Grupo;
@@ -19,6 +19,10 @@ import java.util.ArrayList;
 
 
 public class ListaEstudiantes extends Comunicador {
+
+    @FXML
+    public Label titulo;
+
     @FXML
     private VBox vEstudiantes;
 
@@ -68,6 +72,7 @@ public class ListaEstudiantes extends Comunicador {
             }
         }
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
+        titulo.setText(titulo.getText() + " " + grupoEstudiantes);
     }
 
     public void regresar() {
