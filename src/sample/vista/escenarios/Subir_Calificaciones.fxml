@@ -53,7 +53,7 @@
          <Font name="Segoe UI" size="18.0" />
       </font>
       <graphic>
-         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+         <ImageView fitHeight="14.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../iconos/flecha_atras.png" />
             </image>
@@ -64,9 +64,9 @@
       </cursor>
    </Button>
 
-   <Button fx:id="btnUsuario" layoutX="670.0" layoutY="24.0" mnemonicParsing="false" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Usuario" onAction="#mostrarBtnCerrarSesion">
+   <Button fx:id="btnUsuario" layoutX="656.0" layoutY="17.0" mnemonicParsing="false" onAction="#mostrarBtnCerrarSesion" prefHeight="1.0" prefWidth="144.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="admin">
       <font>
-         <Font name="Segoe UI" size="18.0" />
+         <Font name="Segoe UI Semibold" size="24.0" />
       </font>
       <graphic>
          <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
@@ -77,7 +77,7 @@
          <Cursor fx:constant="HAND" />
       </cursor>
    </Button>
-   <Button fx:id="btnCerrarSesion" visible="false" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" layoutX="645.0" layoutY="53.0" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesión" >
+   <Button fx:id="btnCerrarSesion" layoutX="645.0" layoutY="53.0" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" text="Cerrar Sesión" visible="false">
       <font>
          <Font name="Segoe UI Semibold" size="18.0" />
       </font>

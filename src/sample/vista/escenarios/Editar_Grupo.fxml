@@ -13,10 +13,7 @@
 <?import javafx.scene.Cursor?>
 <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controlador.EditarGrupo" fx:id="contenedorPrincipal">
     <children>
-        <Button layoutX="24.0" layoutY="17.0" mnemonicParsing="false" onAction="#regresar" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
-            <font>
-                <Font name="Segoe UI" size="18.0" />
-            </font>
+        <Button layoutX="14.0" layoutY="17.0" onAction="#regresar" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
             <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -25,7 +22,7 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Label layoutX="72.0" layoutY="17.0" prefHeight="32.0" text="Información del Grupo">
+        <Label layoutX="60.0" layoutY="17.0" prefHeight="32.0" text="Información del Grupo">
             <font>
                 <Font name="Segoe UI Semibold" size="24.0" />
             </font>
@@ -57,7 +54,7 @@
                 <Font name="Segoe UI Semibold" size="18.0" />
             </font>
         </Label>
-        <Button layoutX="687.0" layoutY="554.0" mnemonicParsing="false" onAction="#actualizarDatos" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Actualizar">
+        <Button layoutX="671.0" layoutY="544.0" mnemonicParsing="false" onAction="#actualizarDatos" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Actualizar">
             <font>
                 <Font name="Segoe UI Semibold" size="18.0" />
             </font>
@@ -65,9 +62,10 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="btnUsuario" layoutX="670.0" layoutY="24.0" mnemonicParsing="false" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Usuario" onAction="#mostrarBtnCerrarSesion">
+
+        <Button fx:id="btnUsuario" layoutX="656.0" layoutY="17.0" mnemonicParsing="false" onAction="#mostrarBtnCerrarSesion" prefHeight="1.0" prefWidth="144.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="admin">
             <font>
-                <Font name="Segoe UI" size="18.0" />
+                <Font name="Segoe UI Semibold" size="24.0" />
             </font>
             <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
@@ -78,7 +76,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="btnCerrarSesion" visible="false" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" layoutX="645.0" layoutY="53.0" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesión" >
+        <Button fx:id="btnCerrarSesion" layoutX="645.0" layoutY="53.0" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" text="Cerrar Sesión" visible="false">
             <font>
                 <Font name="Segoe UI Semibold" size="18.0" />
             </font>

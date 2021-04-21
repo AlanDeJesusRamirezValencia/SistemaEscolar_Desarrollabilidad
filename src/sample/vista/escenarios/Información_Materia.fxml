@@ -9,120 +9,111 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.Cursor?>
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controlador.InformaciónMateria">
-    <center>
-        <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;"
-                    BorderPane.alignment="CENTER">
-            <Button layoutX="24.0" layoutY="17.0" mnemonicParsing="false" onAction="#regresar"
-                    style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
-                <font>
-                    <Font name="Segoe UI" size="18.0"/>
-                </font>
-                <graphic>
-                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../iconos/flecha_atras.png"/>
-                    </ImageView>
-                </graphic>
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-            </Button>
-            <Label layoutX="72.0" layoutY="17.0" prefHeight="32.0" text="Información de la Materia">
-                <font>
-                    <Font name="Segoe UI Semibold" size="24.0"/>
-                </font>
-            </Label>
-            <Button layoutX="364.0" layoutY="19.0" mnemonicParsing="false" onAction="#editar"
-                    style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
-                <graphic>
-                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../iconos/editar.png"/>
-                    </ImageView>
-                </graphic>
-                <cursor>
-                    <Cursor fx:constant="HAND"/>
-                </cursor>
-            </Button>
-            <Label layoutX="24.0" layoutY="58.0" text="Nombre">
-                <font>
-                    <Font name="Segoe UI Semibold" size="18.0"/>
-                </font>
-            </Label>
-            <Label fx:id="nombreMateria" layoutX="24.0" layoutY="92.0">
-                <font>
-                    <Font name="Segoe UI" size="18.0"/>
-                </font>
-            </Label>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="sample.controlador.InformaciónMateria">
+    <Button layoutX="14.0" layoutY="17.0"  onAction="#regresar" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
+        <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../iconos/flecha_atras.png"/>
+            </ImageView>
+        </graphic>
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+    </Button>
+    <Label layoutX="60.0" layoutY="17.0" prefHeight="32.0" text="Información de la Materia">
+        <font>
+            <Font name="Segoe UI Semibold" size="24.0"/>
+        </font>
+    </Label>
+    <Button layoutX="364.0" layoutY="19.0" mnemonicParsing="false" onAction="#editar"
+            style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
+        <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../iconos/editar.png"/>
+            </ImageView>
+        </graphic>
+        <cursor>
+            <Cursor fx:constant="HAND"/>
+        </cursor>
+    </Button>
+    <Label layoutX="24.0" layoutY="58.0" text="Nombre">
+        <font>
+            <Font name="Segoe UI Semibold" size="18.0"/>
+        </font>
+    </Label>
+    <Label fx:id="nombreMateria" layoutX="24.0" layoutY="92.0">
+        <font>
+            <Font name="Segoe UI" size="18.0"/>
+        </font>
+    </Label>
 
-            <Label layoutX="24.0" layoutY="126.0" text="NRC">
-                <font>
-                    <Font name="Segoe UI Semibold" size="18.0"/>
-                </font>
-            </Label>
-            <Label fx:id="nrc" layoutX="24.0" layoutY="160.0">
-                <font>
-                    <Font name="Segoe UI" size="18.0"/>
-                </font>
-            </Label>
+    <Label layoutX="24.0" layoutY="126.0" text="NRC">
+        <font>
+            <Font name="Segoe UI Semibold" size="18.0"/>
+        </font>
+    </Label>
+    <Label fx:id="nrc" layoutX="24.0" layoutY="160.0">
+        <font>
+            <Font name="Segoe UI" size="18.0"/>
+        </font>
+    </Label>
 
-            <Label layoutX="24.0" layoutY="194.0" text="Grupo">
-                <font>
-                    <Font name="Segoe UI Semibold" size="18.0"/>
-                </font>
-            </Label>
-            <Label fx:id="nombreGrupo" layoutX="24.0" layoutY="228.0">
-                <font>
-                    <Font name="Segoe UI" size="18.0"/>
-                </font>
-            </Label>
+    <Label layoutX="24.0" layoutY="194.0" text="Grupo">
+        <font>
+            <Font name="Segoe UI Semibold" size="18.0"/>
+        </font>
+    </Label>
+    <Label fx:id="nombreGrupo" layoutX="24.0" layoutY="228.0">
+        <font>
+            <Font name="Segoe UI" size="18.0"/>
+        </font>
+    </Label>
 
-            <Label layoutX="24.0" layoutY="262.0" text="Profesor">
-                <font>
-                    <Font name="Segoe UI Semibold" size="18.0"/>
-                </font>
-            </Label>
-            <Label fx:id="nombreProfesor" layoutX="24.0" layoutY="296.0">
-                <font>
-                    <Font name="Segoe UI" size="18.0"/>
-                </font>
-            </Label>
-            <Button onAction="#asignarCalificaciones" layoutX="14.0" layoutY="502.0" mnemonicParsing="false"
-                    style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Asignar Calificaciones">
-                <font>
-                    <Font name="Segoe UI Semibold" size="18.0"/>
-                </font>
-                <cursor>
-                    <Cursor fx:constant="HAND"/>
-                </cursor>
-            </Button>
-            <Button onAction="#exportarCalificaciones" layoutX="14.0" layoutY="544.0" mnemonicParsing="false"
-                    style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Exportar Calificaciones">
-                <font>
-                    <Font name="Segoe UI Semibold" size="18.0"/>
-                </font>
-            </Button>
+    <Label layoutX="24.0" layoutY="262.0" text="Profesor">
+        <font>
+            <Font name="Segoe UI Semibold" size="18.0"/>
+        </font>
+    </Label>
+    <Label fx:id="nombreProfesor" layoutX="24.0" layoutY="296.0">
+        <font>
+            <Font name="Segoe UI" size="18.0"/>
+        </font>
+    </Label>
+    <Button onAction="#asignarCalificaciones" layoutX="14.0" layoutY="502.0" mnemonicParsing="false"
+            style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Asignar Calificaciones">
+        <font>
+            <Font name="Segoe UI Semibold" size="18.0"/>
+        </font>
+        <cursor>
+            <Cursor fx:constant="HAND"/>
+        </cursor>
+    </Button>
+    <Button onAction="#exportarCalificaciones" layoutX="14.0" layoutY="544.0" mnemonicParsing="false"
+            style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Exportar Calificaciones">
+        <font>
+            <Font name="Segoe UI Semibold" size="18.0"/>
+        </font>
+    </Button>
 
-            <Button fx:id="btnUsuario" layoutX="670.0" layoutY="24.0" mnemonicParsing="false" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="Usuario" onAction="#mostrarBtnCerrarSesion">
-                <font>
-                    <Font name="Segoe UI" size="18.0" />
-                </font>
-                <graphic>
-                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../iconos/usuario.png" />
-                    </ImageView>
-                </graphic>
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-            </Button>
-            <Button fx:id="btnCerrarSesion" visible="false" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" layoutX="645.0" layoutY="53.0" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesión" >
-                <font>
-                    <Font name="Segoe UI Semibold" size="18.0" />
-                </font>
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-            </Button>
-        </AnchorPane>
-    </center>
-</BorderPane>
+    <Button fx:id="btnUsuario" layoutX="656.0" layoutY="17.0" mnemonicParsing="false" onAction="#mostrarBtnCerrarSesion" prefHeight="1.0" prefWidth="144.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="admin">
+        <font>
+            <Font name="Segoe UI Semibold" size="24.0" />
+        </font>
+        <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../iconos/usuario.png" />
+            </ImageView>
+        </graphic>
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+    </Button>
+    <Button fx:id="btnCerrarSesion" layoutX="645.0" layoutY="53.0" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" text="Cerrar Sesión" visible="false">
+        <font>
+            <Font name="Segoe UI Semibold" size="18.0" />
+        </font>
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+    </Button>
+</AnchorPane>
