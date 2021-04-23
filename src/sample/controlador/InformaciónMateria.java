@@ -32,7 +32,7 @@ public class InformaciónMateria extends Comunicador {
         materia = Materia.obtenerMateria(getMensaje());
         nombreMateria.setText(materia.getNombre());
         nrc.setText(materia.getNrc() + "");
-        nombreGrupo.setText(materia.getGrupo().getGrado() + materia.getGrupo().getLetra() + "");
+        nombreGrupo.setText(materia.getGrupo().toString());
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
         nombreProfesor.setText(materia.getGrupo().getProfesor().toString());
     }

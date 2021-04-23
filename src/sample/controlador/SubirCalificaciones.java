@@ -129,13 +129,8 @@ public class SubirCalificaciones extends Comunicador {
             califacionesObtenidas.put(listaEstudiantes.get(nodo), Integer.parseInt(calificaciones.get(nodo).tFCalificacion.getText().trim()));
         }
 
-        if(estadoCalificaciones.equals(true)) {
-            GestorDatos.actualizarCalificaciones(califacionesObtenidas, materia);
-            System.out.println(estadoCalificaciones);
-        } else {
-            GestorDatos.subirCalificaciones(califacionesObtenidas, materia, listaCalificaciones.isEmpty());
-            System.out.println(estadoCalificaciones);
-        }
+        GestorDatos.subirCalificaciones(califacionesObtenidas, materia, estadoCalificaciones);
+        System.out.println(estadoCalificaciones);
         navegar(btnUsuario, "Información_Materia.fxml", getMensaje());
     }
 

@@ -70,7 +70,14 @@ public class ListaGrupos extends Comunicador {
                     botonGrupo.setFont(new Font("Segoe UI", 18));
                     botonGrupo.setCursor(Cursor.HAND);
                     int finalI = nodoBotones;
-                    botonGrupo.setOnAction(event -> navegar(vGrupos, "Información_Grupos.fxml", listaDeGruposPorGrado.get(finalI).toHashMap()));
+                    botonGrupo.setOnAction(event -> {
+                        try {
+                            GestorDatos.obtenerProfesor(listaDeGruposPorGrado.get(finalI));
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+                        navegar(vGrupos, "Información_Grupos.fxml", listaDeGruposPorGrado.get(finalI).toHashMap());
+                    });
                     lista.contenedor.getChildren().add(botonGrupo);
                 }
                 vGrupos.getChildren().add(nodes[nodo]);

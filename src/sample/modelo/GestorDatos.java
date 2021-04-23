@@ -53,8 +53,6 @@ public class GestorDatos {
             int grado = resultados.getInt("grado");
             char letra = resultados.getString("letra").charAt(0);
             Grupo grupo = new Grupo(id,grado,letra);
-            Profesor profesor = obtenerProfesor(grupo);
-            grupo.setProfesor(profesor);
             grupos.add(grupo);
         }
         conexion.close();
@@ -80,6 +78,7 @@ public class GestorDatos {
             String apellidoPaterno = resultados.getString("apellido_paterno").toUpperCase();
             String apellidoMaterno = resultados.getString("apellido_materno").toUpperCase();
             profesor = new Profesor(nPersonal, nombre, apellidoPaterno, apellidoMaterno);
+            grupo.setProfesor(profesor);
         }
         conexion.close();
         return profesor;
