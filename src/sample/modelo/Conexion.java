@@ -10,10 +10,10 @@ import java.sql.*;
  */
 class Conexion {
     
-    private static final String DATA_BASE = "rhtyjofc_controlescolar";
-    private static final String USER = "rhtyjofc";
-    private static final String PASSWORD = "VQ9vGqT86n7n";
-    private static final String SERVER = "50.31.177.71";
+    private static final String DATA_BASE = "sistema_escolar";
+    private static final String USER = "prueba";
+    private static final String PASSWORD = "6%j60Ugv";
+    private static final String SERVER = "74.208.242.71";
     private static final String URL = "jdbc:mysql://" + SERVER + ":3306/" + DATA_BASE;
     
     public static Connection getConexion(){
