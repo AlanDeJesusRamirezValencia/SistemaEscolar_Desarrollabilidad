@@ -214,7 +214,7 @@ public class GestorDatos {
         conexion = Conexion.getConexion();
         estudiante.setMatricula(generarMatricula());
         Statement declaracion = conexion.createStatement();
-        String consulta = String.format("INSERT INTO estudiantes VALUES (%s, %s, %s, %s, %d);",
+        String consulta = String.format("INSERT INTO estudiantes VALUES ('%s', '%s', '%s', '%s', %d);",
                 estudiante.getMatricula(),
                 estudiante.getNombre(),
                 estudiante.getApellidoPaterno(),
@@ -247,7 +247,7 @@ public class GestorDatos {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
         String consulta = String.format("INSERT INTO profesores (nombre, apellido_paterno, apellido_materno) " +
-                "VALUES (%s, %s, %s);", profesor.getNombre(), profesor.getApellidoPaterno(), profesor.getApellidoMaterno());
+                "VALUES ('%s', '%s', '%s');", profesor.getNombre(), profesor.getApellidoPaterno(), profesor.getApellidoMaterno());
         declaracion.executeUpdate(consulta);
         conexion.close();
     }
@@ -255,7 +255,7 @@ public class GestorDatos {
     public static void insertarGrupo(Grupo grupo) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = String.format("INSERT INTO grupos (letra, grado)  VALUES (%c, %d);",
+        String consulta = String.format("INSERT INTO grupos (letra, grado)  VALUES ('%c', %d);",
                 grupo.getLetra(), grupo.getGrado());
         declaracion.executeUpdate(consulta);
         conexion.close();
@@ -264,7 +264,7 @@ public class GestorDatos {
     public static void insertarMateria(Materia materia) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = String.format("INSERT INTO materias (nombre, grupo)  VALUES (%s, %d);",
+        String consulta = String.format("INSERT INTO materias (nombre, grupo)  VALUES ('%s', %d);",
                 materia.getNombre(), materia.getGrupo().getId());
         declaracion.executeUpdate(consulta);
         conexion.close();
@@ -306,8 +306,8 @@ public class GestorDatos {
     public static void actualizarEstudiante(Estudiante estudiante) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = String.format("UPDATE estudiantes SET fk_grupo = %d, nombre = '%s', apellido_paterno = '%s', apellido_materno = '%s';",
-                estudiante.getGrupo().getId(), estudiante.getNombre(), estudiante.getApellidoPaterno(), estudiante.getApellidoMaterno());
+        String consulta = String.format("UPDATE estudiantes SET fk_grupo = %d, nombre = '%s', apellido_paterno = '%s', apellido_materno = '%s' WHERE matricula = '%s';",
+                estudiante.getGrupo().getId(), estudiante.getNombre(), estudiante.getApellidoPaterno(), estudiante.getApellidoMaterno(), estudiante.getMatricula());
         declaracion.executeUpdate(consulta);
         conexion.close();
     }
@@ -315,8 +315,8 @@ public class GestorDatos {
     public static void actualizarProfesor(Profesor profesor) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = String.format("UPDATE profesores SET nombre = '%s', apellido_paterno = '%s', apellido_materno = '%s';",
-                profesor.getNombre(), profesor.getApellidoPaterno(), profesor.getApellidoMaterno());
+        String consulta = String.format("UPDATE profesores SET nombre = '%s', apellido_paterno = '%s', apellido_materno = '%s' WHERE numero_personal = %d;",
+                profesor.getNombre(), profesor.getApellidoPaterno(), profesor.getApellidoMaterno(), profesor.getnPersonal());
         declaracion.executeUpdate(consulta);
         conexion.close();
     }
@@ -324,8 +324,8 @@ public class GestorDatos {
     public static void actualizarGrupo(Grupo grupo) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = String.format("UPDATE grupos SET grado = %d, letra = '%c', fk_profesor = %d;",
-                grupo.getGrado(), grupo.getLetra(), grupo.getProfesor().getnPersonal());
+        String consulta = String.format("UPDATE grupos SET grado = %d, letra = '%c', fk_profesor = %d WHERE id_grupo = %d;",
+                grupo.getGrado(), grupo.getLetra(), grupo.getProfesor().getnPersonal(), grupo.getId());
         declaracion.executeUpdate(consulta);
         conexion.close();
     }
@@ -333,7 +333,7 @@ public class GestorDatos {
     public static void actualizarMateria(Materia materia) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = String.format("UPDATE materias SET nombre = '%s', fk_grupo = %d;");
+        String consulta = String.format("UPDATE materias SET nombre = '%s', fk_grupo = %d WHERE nrc = %d;", materia.getNombre(), materia.getNrc());
         declaracion.executeUpdate(consulta);
         conexion.close();
     }
