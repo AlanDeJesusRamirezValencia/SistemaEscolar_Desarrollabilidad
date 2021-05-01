@@ -1,5 +1,6 @@
 package sample.controlador;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -17,13 +18,28 @@ import java.util.ArrayList;
 public class ListaGrupos extends Comunicador {
 
     @FXML
+    public Button btnNuevoGrupo;
+
+    @FXML
+    public Button btnNuevaMateria;
+
+    @FXML
+    public Button btnNuevoProfesor;
+
+    @FXML
+    public Button btnNuevoEstudiante;
+
+    @FXML
     private VBox vGrupos;
 
     @FXML
     private Button btnUsuario;
 
     public void nuevo(){
-
+        btnNuevoGrupo.setVisible(!btnNuevoGrupo.isVisible());
+        btnNuevaMateria.setVisible(!btnNuevaMateria.isVisible());
+        btnNuevoEstudiante.setVisible(!btnNuevoEstudiante.isVisible());
+        btnNuevoProfesor.setVisible(!btnNuevoProfesor.isVisible());
     }
 
     @Override
@@ -59,18 +75,18 @@ public class ListaGrupos extends Comunicador {
                     }
                 }
                 for (int nodoBotones = 0; nodoBotones < listaDeGruposPorGrado.size() ; nodoBotones++) {
-                    Button botonGrupo = new Button();
-                    botonGrupo.setLayoutX((nodoBotones*40) + (10*nodoBotones));
-                    botonGrupo.setLayoutY(32);
-                    botonGrupo.setPrefWidth(40);
-                    botonGrupo.setPrefHeight(40);
-                    botonGrupo.setStyle("-fx-background-color: #FFFFFF; -fx-border-width: 1; -fx-border-color: #000000;");
+                    Button btnGrupo = new Button();
+                    btnGrupo.setLayoutX((nodoBotones*40) + (10*nodoBotones));
+                    btnGrupo.setLayoutY(32);
+                    btnGrupo.setPrefWidth(40);
+                    btnGrupo.setPrefHeight(40);
+                    btnGrupo.setStyle("-fx-background-color: #FFFFFF; -fx-border-width: 1; -fx-border-color: #000000;");
                     String letra = String.valueOf(listaDeGruposPorGrado.get(nodoBotones).getLetra());
-                    botonGrupo.setText(letra);
-                    botonGrupo.setFont(new Font("Segoe UI", 18));
-                    botonGrupo.setCursor(Cursor.HAND);
+                    btnGrupo.setText(letra);
+                    btnGrupo.setFont(new Font("Segoe UI", 18));
+                    btnGrupo.setCursor(Cursor.HAND);
                     int finalI = nodoBotones;
-                    botonGrupo.setOnAction(event -> {
+                    btnGrupo.setOnAction(event -> {
                         try {
                             GestorDatos.obtenerProfesor(listaDeGruposPorGrado.get(finalI));
                         } catch (SQLException throwables) {
@@ -78,7 +94,7 @@ public class ListaGrupos extends Comunicador {
                         }
                         navegar(vGrupos, "Información_Grupos.fxml", listaDeGruposPorGrado.get(finalI).toHashMap());
                     });
-                    lista.contenedor.getChildren().add(botonGrupo);
+                    lista.contenedor.getChildren().add(btnGrupo);
                 }
                 vGrupos.getChildren().add(nodes[nodo]);
             } catch(Exception e){
@@ -90,5 +106,21 @@ public class ListaGrupos extends Comunicador {
 
     public void regresar() {
         navegar(btnUsuario, "Información_Grupos.fxml", getMensaje());
+    }
+
+    public void irANuevoGrupo() {
+        navegar(btnUsuario, "Nuevo_Grupo.fxml");
+    }
+
+    public void irANuevaMateria() {
+        navegar(btnUsuario, "Nuevo_Grupo.fxml");
+    }
+
+    public void irANuevoProfesor() {
+        navegar(btnUsuario, "Nuevo_Grupo.fxml");
+    }
+
+    public void irANuevoEstudiante() {
+        navegar(btnUsuario, "Nuevo_Grupo.fxml");
     }
 }

@@ -60,7 +60,7 @@ public abstract class Comunicador implements Navegador {
 
     @FXML
     private void mostrarBtnCerrarSesion(){
-        btnCerrarSesion.setVisible(true);
+        btnCerrarSesion.setVisible(!btnCerrarSesion.isVisible());
     }
 
     @FXML
