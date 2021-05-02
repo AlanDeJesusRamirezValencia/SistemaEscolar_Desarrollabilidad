@@ -1,7 +1,6 @@
 package sample.controlador;
 
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -34,8 +33,6 @@ public class EditarEstudiante extends Comunicador {
     @FXML
     public Label matricula;
 
-    @FXML
-    public Label grupo;
 
     @FXML
     public ComboBox<Grupo> grupos;
@@ -49,7 +46,6 @@ public class EditarEstudiante extends Comunicador {
         apellidoMaterno.setText(estudiante.getApellidoMaterno());
         grupoEstudiante = estudiante.getGrupo();
         matricula.setText(matricula.getText() + estudiante.getMatricula());
-        grupo.setText(grupo.getText() + grupoEstudiante.toString());
 
         try {
             grupos = new ComboBox<>(FXCollections.observableArrayList(GestorDatos.obtenerGrupos()));

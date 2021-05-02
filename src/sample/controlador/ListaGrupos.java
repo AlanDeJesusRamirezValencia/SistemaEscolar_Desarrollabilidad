@@ -121,6 +121,6 @@ public class ListaGrupos extends Comunicador {
     }
 
     public void irANuevoEstudiante() {
-        navegar(btnUsuario, "Nuevo_Grupo.fxml");
+        navegar(btnUsuario, "Nuevo_Estudiante.fxml");
     }
 }
