@@ -203,8 +203,8 @@ public class GestorDatos {
         for (Map.Entry<Estudiante,Integer> entry: calificaciones.entrySet()){
             Estudiante estudiante = entry.getKey();
             int nota = entry.getValue();
-            String consulta = String.format("UPDATE calificaciones SET nota = %d " +
-                    "WHERE fk_estudiante = '%s' AND fk_materia = %d;", nota, estudiante.getMatricula(), materia.getNrc());
+            String consulta = String.format("UPDATE calificaciones SET nota = %d WHERE fk_estudiante = '%s' AND fk_materia = %d;",
+                    nota, estudiante.getMatricula(), materia.getNrc());
             declaracion.executeUpdate(consulta);
         }
         conexion.close();
@@ -290,7 +290,7 @@ public class GestorDatos {
     public static void eliminarGrupo(Grupo grupo) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = String.format("DELETE FROM grupos WHERE id_grupo = %d;", grupo.getId(), grupo.getId());
+        String consulta = String.format("DELETE FROM grupos WHERE id_grupo = %d;", grupo.getId());
         declaracion.executeUpdate(consulta);
         conexion.close();
 
@@ -334,7 +334,8 @@ public class GestorDatos {
     public static void actualizarMateria(Materia materia) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = String.format("UPDATE materias SET nombre = '%s', fk_grupo = %d WHERE nrc = %d;", materia.getNombre(), materia.getNrc());
+        String consulta = String.format("UPDATE materias SET nombre = '%s', fk_grupo = %d WHERE nrc = %d;",
+                materia.getNombre(), materia.getGrupo().getId(), materia.getNrc());
         declaracion.executeUpdate(consulta);
         conexion.close();
     }
