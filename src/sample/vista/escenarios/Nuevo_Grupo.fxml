@@ -20,6 +20,8 @@
             <Font name="Segoe UI Semibold" size="24.0" />
         </font>
     </Label>
+
+    <!--TODO: Cambiar Label's por ComboBox's Grado 1-6; Grupo A-F-->
     <Label layoutX="24.0" layoutY="68.0" text="Grado">
         <font>
             <Font name="Segoe UI Semibold" size="18.0" />
