@@ -252,11 +252,12 @@ public class GestorDatos {
         conexion.close();
     }
 
-    public static void insertarGrupo(Grupo grupo) throws SQLException {
+    public static void insertarGrupo(Grupo grupo, boolean profesorAsignado) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = String.format("INSERT INTO grupos (letra, grado)  VALUES ('%c', %d);",
-                grupo.getLetra(), grupo.getGrado());
+        String consulta = (profesorAsignado)?
+                String.format("INSERT INTO grupos (letra, grado, fk_profesor)  VALUES ('%c', %d, %d);", grupo.getLetra(), grupo.getGrado(), grupo.getProfesor().getnPersonal()):
+                String.format("INSERT INTO grupos (letra, grado)  VALUES ('%c', %d);", grupo.getLetra(), grupo.getGrado());
         declaracion.executeUpdate(consulta);
         conexion.close();
     }
@@ -264,7 +265,7 @@ public class GestorDatos {
     public static void insertarMateria(Materia materia) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = String.format("INSERT INTO materias (nombre, grupo)  VALUES ('%s', %d);",
+        String consulta = String.format("INSERT INTO materias (nombre, fk_grupo)  VALUES ('%s', %d);",
                 materia.getNombre(), materia.getGrupo().getId());
         declaracion.executeUpdate(consulta);
         conexion.close();
@@ -289,7 +290,7 @@ public class GestorDatos {
     public static void eliminarGrupo(Grupo grupo) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = String.format("DELETE FROM grupos WHERE id_grupo = %d;", grupo.getId());
+        String consulta = String.format("DELETE FROM grupos WHERE id_grupo = %d;", grupo.getId(), grupo.getId());
         declaracion.executeUpdate(consulta);
         conexion.close();
 
