@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * Interfaz para la navegación entre escenarios
@@ -72,7 +73,7 @@ public interface Navegador  {
     /** Navegación exclusiva para el método main() */
     default void navegarMain(Stage stageActual, String archivoFXML){
         try {
-            Parent nuevaEscena = FXMLLoader.load(getClass().getResource("vista/escenarios/" + archivoFXML));
+            Parent nuevaEscena = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("vista/escenarios/" + archivoFXML)));
             stageActual.setTitle(NOMBRE_SISTEMA);
             stageActual.setScene(new Scene(nuevaEscena, ANCHO_PREDEF, ALTO_PREDEF));
             stageActual.setResizable(false);

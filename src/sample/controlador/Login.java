@@ -18,26 +18,26 @@ public class Login extends Comunicador {
     private TextField usuario;
 
     @FXML
-    private PasswordField contraseña;
+    private PasswordField contrasena;
 
     @FXML
     private Label datosIncorrectos;
 
     public void iniciarSesion() {
-        if (validarContraseña(usuario.getText(),contraseña.getText())) {
+        if (validarContrasena(usuario.getText(),contrasena.getText())) {
             navegar(usuario, "Lista_Grupos.fxml");
         }
         else
             datosIncorrectos.setText("*Usuario y/o Contraseña incorrectos");
     }
 
-    private boolean validarContraseña(String usuario, String contraseña){
+    private boolean validarContrasena(String usuario, String contrasena){
         if (usuario.trim().equals("")) return false;
         usuario = usuario.toLowerCase();
         try {
             Usuario usuarioObtenido = GestorDatos.obtenerUsuario(usuario);
             UsuarioSingleton.getInstance().setNombreUsuario(usuarioObtenido.getUsuario());
-            return usuario.equals(usuarioObtenido.getUsuario())&&contraseña.equals(usuarioObtenido.getContraseña());
+            return usuario.equals(usuarioObtenido.getUsuario())&&contrasena.equals(usuarioObtenido.getContraseña());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

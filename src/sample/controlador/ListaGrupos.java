@@ -1,6 +1,5 @@
 package sample.controlador;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -113,11 +112,11 @@ public class ListaGrupos extends Comunicador {
     }
 
     public void irANuevaMateria() {
-        navegar(btnUsuario, "Nuevo_Grupo.fxml");
+        navegar(btnUsuario, "Nueva_Materia.fxml");
     }
 
     public void irANuevoProfesor() {
-        navegar(btnUsuario, "Nuevo_Grupo.fxml");
+        navegar(btnUsuario, "Nuevo_Profesor.fxml");
     }
 
     public void irANuevoEstudiante() {

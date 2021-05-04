@@ -36,26 +36,29 @@ public class NuevoEstudiante extends Comunicador {
     @Override
     public void inicializarComponentes() {
         try {
-            grupos = new ComboBox<>(FXCollections.observableArrayList(GestorDatos.obtenerGrupos()));
-        } catch (SQLException throwables) {
+            grupos.setItems(FXCollections.observableArrayList(GestorDatos.obtenerGrupos()));
+        }catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
 
     public void crear(){
-        try {
-            GestorDatos.insertarEstudiante(
-                    new Estudiante(
-                            "",
-                            nombre.getText(),
-                            apellidoPaterno.getText(),
-                            apellidoMaterno.getText(),
-                            grupos.getValue()
-                    )
-            );
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        if (!nombre.getText().equals("") && !apellidoMaterno.getText().equals("") && !apellidoPaterno.getText().equals("") && grupos.getValue() != null)
+            try {
+                GestorDatos.insertarEstudiante(
+                        new Estudiante(
+                                "",
+                                nombre.getText(),
+                                apellidoPaterno.getText(),
+                                apellidoMaterno.getText(),
+                                grupos.getValue()
+                        )
+                );
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        else
+            System.out.println("Faltan datos");
         navegar(nombre, "Lista_Grupos.fxml", getMensaje());
     }
 

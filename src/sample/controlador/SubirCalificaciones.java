@@ -63,7 +63,7 @@ public class SubirCalificaciones extends Comunicador {
                         + listaEstudiantes.get(nodo).getApellidoMaterno() + " "
                         + listaEstudiantes.get(nodo).getNombre());
                 //TODO: Me marcan errores 2/5/2021. Corregir
-                if(estadoCalificaciones == true) {
+                if(estadoCalificaciones) {
                     System.out.println("Calificacion Estudiante No. " + nodo + "\t" + listaCalificaciones.get(nodo).getEstudiante().getMatricula() + "\t\t" + listaCalificaciones.get(nodo).getEstudiante().getApellidoPaterno() + " "
                             + listaCalificaciones.get(nodo).getEstudiante().getApellidoMaterno() + " "
                             + listaCalificaciones.get(nodo).getEstudiante().getNombre() + "\n");
@@ -117,7 +117,7 @@ public class SubirCalificaciones extends Comunicador {
 
 
     //Guardará los datos pero solo sí la validación de campos está correcta.
-    public void guardarCalificaciones() throws SQLException {
+    public void guardarCalificaciones() {
         System.out.println("Guardar Datos");
         validar();
         if (errores.size() > 0){
