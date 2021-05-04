@@ -67,11 +67,12 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Label fx:id="grupo" layoutX="24.0" layoutY="273.0" text="Grupo: ">
+        <Label layoutX="24.0" layoutY="273.0" text="Grupo:">
             <font>
                 <Font name="Segoe UI Semibold" size="18.0" />
             </font>
         </Label>
+        <ComboBox fx:id="grupos" layoutX="80.0" layoutY="274.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" />
         <Label fx:id="matricula" layoutX="24.0" layoutY="310.0" text="Matricula: ">
             <font>
                 <Font name="Segoe UI Semibold" size="18.0" />
@@ -91,7 +92,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="btnCerrarSesion" layoutX="645.0" layoutY="53.0" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" text="Cerrar Sesión" visible="false">
+        <Button fx:id="btnCerrarSesion" layoutX="656.0" layoutY="53.0" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" text="Cerrar Sesión" visible="false">
             <font>
                 <Font name="Segoe UI Semibold" size="18.0" />
             </font>
@@ -99,6 +100,5 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <ComboBox fx:id="grupos" layoutX="102.0" layoutY="274.0" />
     </children>
 </AnchorPane>

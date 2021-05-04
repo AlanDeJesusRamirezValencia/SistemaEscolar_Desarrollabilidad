@@ -62,6 +62,7 @@ public class SubirCalificaciones extends Comunicador {
                 System.out.println("Estudiante No. " + nodo + "\t" + listaEstudiantes.get(nodo).getMatricula() + "\t\t" + listaEstudiantes.get(nodo).getApellidoPaterno() + " "
                         + listaEstudiantes.get(nodo).getApellidoMaterno() + " "
                         + listaEstudiantes.get(nodo).getNombre());
+                //TODO: Me marcan errores 2/5/2021. Corregir
                 if(estadoCalificaciones == true) {
                     System.out.println("Calificacion Estudiante No. " + nodo + "\t" + listaCalificaciones.get(nodo).getEstudiante().getMatricula() + "\t\t" + listaCalificaciones.get(nodo).getEstudiante().getApellidoPaterno() + " "
                             + listaCalificaciones.get(nodo).getEstudiante().getApellidoMaterno() + " "

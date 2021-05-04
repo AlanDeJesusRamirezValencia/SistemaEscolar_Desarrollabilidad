@@ -50,7 +50,7 @@
          <Cursor fx:constant="HAND" />
       </cursor>
    </Button>
-   <Button fx:id="btnCerrarSesion" layoutX="645.0" layoutY="53.0" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" text="Cerrar Sesión" visible="false">
+   <Button fx:id="btnCerrarSesion" layoutX="656.0" layoutY="53.0" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" text="Cerrar Sesión" visible="false">
       <font>
          <Font name="Segoe UI Semibold" size="18.0" />
       </font>

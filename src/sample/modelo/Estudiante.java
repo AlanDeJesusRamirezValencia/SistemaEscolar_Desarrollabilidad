@@ -28,7 +28,6 @@ public class Estudiante extends Persona {
         this.grupo = grupo;
     }
 
-    // TODO corregir tambien porque estudiante tampoco tiene un atributo grupo ahora
     /** Obtiene los atribudos de un objeto {@link Estudiante} para transformarlos en un objeto de tipo {@link HashMap} */
     public HashMap<String,String> toHashMap(){
         HashMap<String,String> hashMap = new HashMap<String, String>();

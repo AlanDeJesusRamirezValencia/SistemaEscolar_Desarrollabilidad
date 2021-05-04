@@ -25,6 +25,7 @@ public class NuevoGrupo extends Comunicador {
     }
 
     public void crear() {
+        //TODO: Hacer pruebas de este método
         try {
             GestorDatos.insertarGrupo(
                     new Grupo(
