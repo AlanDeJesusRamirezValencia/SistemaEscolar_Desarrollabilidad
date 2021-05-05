@@ -88,7 +88,7 @@ public class GestorDatos {
         Statement declaracion = conexion.createStatement();
         String consulta = "SELECT * FROM profesores;";
         ResultSet resultados = declaracion.executeQuery(consulta);
-        ArrayList<Profesor> profesores = null;
+        ArrayList<Profesor> profesores = new ArrayList<>();
         while(resultados.next()){
             int nPersonal = resultados.getInt("numero_personal");
             String nombre = resultados.getString("nombre").toUpperCase();
