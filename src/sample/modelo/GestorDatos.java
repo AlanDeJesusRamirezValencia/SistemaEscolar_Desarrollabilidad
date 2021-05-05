@@ -83,6 +83,24 @@ public class GestorDatos {
         return profesor;
     }
 
+    public static ArrayList<Profesor> obtenerProfesores() throws SQLException {
+        conexion = Conexion.getConexion();
+        Statement declaracion = conexion.createStatement();
+        String consulta = "SELECT * FROM profesores;";
+        ResultSet resultados = declaracion.executeQuery(consulta);
+        ArrayList<Profesor> profesores = null;
+        while(resultados.next()){
+            int nPersonal = resultados.getInt("numero_personal");
+            String nombre = resultados.getString("nombre").toUpperCase();
+            String apellidoPaterno = resultados.getString("apellido_paterno").toUpperCase();
+            String apellidoMaterno = resultados.getString("apellido_materno").toUpperCase();
+            Profesor profesor = new Profesor(nPersonal, nombre, apellidoPaterno, apellidoMaterno);
+            profesores.add(profesor);
+        }
+        conexion.close();
+        return profesores;
+    }
+
     public static ArrayList<Materia> obtenerMaterias(Grupo grupo) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
