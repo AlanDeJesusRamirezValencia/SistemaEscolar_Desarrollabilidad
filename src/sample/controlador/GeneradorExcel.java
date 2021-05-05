@@ -2,7 +2,6 @@ package sample.controlador;
 
 import javafx.scene.Node;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import sample.modelo.*;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 
 public class GeneradorExcel {
 
-    private Node componenteUI;
+    private final Node componenteUI;
 
     public GeneradorExcel(Node componenteUI) {
         this.componenteUI = componenteUI;
@@ -33,14 +32,16 @@ public class GeneradorExcel {
             e.printStackTrace();
         }
 
-        for (int i=0; i<calificaciones.size(); i++){
-            Row filaInformacion = hoja.createRow(i+1);
-            Cell celdaMaticula = filaInformacion.createCell(0);
-            celdaMaticula.setCellValue(calificaciones.get(i).getEstudiante().getMatricula());
-            Cell celdaEstudiante = filaInformacion.createCell(1);
-            celdaEstudiante.setCellValue(calificaciones.get(i).getEstudiante().toString());
-            Cell celdaCalificacion = filaInformacion.createCell(2);
-            celdaCalificacion.setCellValue(calificaciones.get(i).getNota());
+        if (calificaciones != null) {
+            for (int i=0; i<calificaciones.size(); i++){
+                Row filaInformacion = hoja.createRow(i+1);
+                Cell celdaMaticula = filaInformacion.createCell(0);
+                celdaMaticula.setCellValue(calificaciones.get(i).getEstudiante().getMatricula());
+                Cell celdaEstudiante = filaInformacion.createCell(1);
+                celdaEstudiante.setCellValue(calificaciones.get(i).getEstudiante().toString());
+                Cell celdaCalificacion = filaInformacion.createCell(2);
+                celdaCalificacion.setCellValue(calificaciones.get(i).getNota());
+            }
         }
         return guardarArchivo(libro);
     }
@@ -53,20 +54,22 @@ public class GeneradorExcel {
             e.printStackTrace();
         }
         Workbook libro = new XSSFWorkbook();
-        Sheet hoja = libro.createSheet(estudiante.toString() + " " +  estudiante.getMatricula());
+        Sheet hoja = libro.createSheet(estudiante + " " +  estudiante.getMatricula());
         Row filaCampo = hoja.createRow(0);
         filaCampo.createCell(0).setCellValue("NRC");
         filaCampo.createCell(1).setCellValue("Materia");
         filaCampo.createCell(2).setCellValue("Calificacion");
 
-        for (int i=0; i<calificaciones.size(); i++){
-            Row filaInformacion = hoja.createRow(i+1);
-            Cell celdaNrc = filaInformacion.createCell(0);
-            celdaNrc.setCellValue(calificaciones.get(i).getMateria().getNrc());
-            Cell celdaMateria = filaInformacion.createCell(1);
-            celdaMateria.setCellValue(calificaciones.get(i).getMateria().getNombre());
-            Cell celdaCalificacion = filaInformacion.createCell(2);
-            celdaCalificacion.setCellValue(calificaciones.get(i).getNota());
+        if (calificaciones != null) {
+            for (int i=0; i<calificaciones.size(); i++){
+                Row filaInformacion = hoja.createRow(i+1);
+                Cell celdaNrc = filaInformacion.createCell(0);
+                celdaNrc.setCellValue(calificaciones.get(i).getMateria().getNrc());
+                Cell celdaMateria = filaInformacion.createCell(1);
+                celdaMateria.setCellValue(calificaciones.get(i).getMateria().getNombre());
+                Cell celdaCalificacion = filaInformacion.createCell(2);
+                celdaCalificacion.setCellValue(calificaciones.get(i).getNota());
+            }
         }
         return guardarArchivo(libro);
     }
@@ -76,7 +79,7 @@ public class GeneradorExcel {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Exportar Calificaciones");
         fileChooser.setInitialFileName("Calificaciones.xlsx");
-        File archivo = fileChooser.showSaveDialog((Stage) componenteUI.getScene().getWindow());
+        File archivo = fileChooser.showSaveDialog(componenteUI.getScene().getWindow());
         if (archivo != null) {
             try {
                 FileOutputStream fileOutputStream = new FileOutputStream(archivo);

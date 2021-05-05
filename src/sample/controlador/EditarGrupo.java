@@ -1,7 +1,6 @@
 package sample.controlador;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import sample.modelo.Grupo;
@@ -9,7 +8,6 @@ import sample.modelo.Usuario;
 import sample.controlador.arquitectura.Comunicador;
 
 public class EditarGrupo extends Comunicador {
-    private Grupo grupoActual;
 
     @FXML
     public TextField grado;
@@ -23,7 +21,7 @@ public class EditarGrupo extends Comunicador {
     @Override
     public void inicializarComponentes() {
         super.inicializarComponentes();
-        grupoActual = Grupo.obtenerGrupo(getMensaje());
+        Grupo grupoActual = Grupo.obtenerGrupo(getMensaje());
         grado.setText(grupoActual.getGrado() + "");
         letra.setText(grupoActual.getLetra() + "");
         grupo.setText(grupo.getText() + " " + grupoActual.getId());

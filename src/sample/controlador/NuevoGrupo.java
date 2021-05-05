@@ -1,7 +1,8 @@
 package sample.controlador;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import sample.controlador.arquitectura.Comunicador;
 import sample.modelo.GestorDatos;
@@ -19,9 +20,18 @@ public class NuevoGrupo extends Comunicador {
     @FXML
     public TextField letra;
 
+    @FXML
+    public ComboBox<Profesor> profesores;
+
     @Override
     public void inicializarComponentes() {
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
+        //TODO: obtener todos los profesores en un sólo método
+        /*try {
+            profesores.setItems(FXCollections.observableArrayList(GestorDatos.obtenerProfesores()));
+        }catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }*/
     }
 
     public void crear() {
@@ -30,10 +40,11 @@ public class NuevoGrupo extends Comunicador {
             GestorDatos.insertarGrupo(
                     new Grupo(
                             0,
-                            Integer.parseInt(letra.getText()),
+                            Integer.parseInt(grado.getText()),
                             letra.getText().charAt(0),
-                            new Profesor(1, "","","")
-                    )
+                            profesores.getValue()
+                    ),
+                    true
             );
         } catch (SQLException throwables) {
             throwables.printStackTrace();

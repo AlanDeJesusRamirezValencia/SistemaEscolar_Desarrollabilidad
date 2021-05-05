@@ -46,10 +46,10 @@ public class EditarEstudiante extends Comunicador {
         apellidoMaterno.setText(estudiante.getApellidoMaterno());
         grupoEstudiante = estudiante.getGrupo();
         matricula.setText(matricula.getText() + estudiante.getMatricula());
-
+        grupos.setValue(Grupo.obtenerGrupo(getMensaje()));
         try {
-            grupos = new ComboBox<>(FXCollections.observableArrayList(GestorDatos.obtenerGrupos()));
-        } catch (SQLException throwables) {
+            grupos.setItems(FXCollections.observableArrayList(GestorDatos.obtenerGrupos()));
+        }catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
