@@ -2,16 +2,14 @@ package sample.controlador;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import sample.modelo.Estudiante;
 import sample.modelo.GestorDatos;
 import sample.modelo.Grupo;
 import sample.controlador.arquitectura.Comunicador;
 
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class EditarEstudiante extends Comunicador {
     @FXML
@@ -71,5 +69,21 @@ public class EditarEstudiante extends Comunicador {
 
     public void regresar() {
         navegar(nombre, "Lista_Estudiantes.fxml", getMensaje());
+    }
+
+    public void eliminar() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(NOMBRE_SISTEMA);
+        alert.setHeaderText("Eliminar Estudiante");
+        alert.setContentText("Está seguro de que quiere eliminar estudiante?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            try {
+                GestorDatos.eliminarEstudiante(estudiante);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            navegar(nombre, "Lista_Estudiantes.fxml", getMensaje());
+        }
     }
 }

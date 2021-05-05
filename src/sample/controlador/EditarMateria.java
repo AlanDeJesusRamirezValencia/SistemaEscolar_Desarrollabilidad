@@ -2,9 +2,7 @@ package sample.controlador;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import sample.controlador.arquitectura.Comunicador;
 import sample.modelo.GestorDatos;
 import sample.modelo.Grupo;
@@ -12,6 +10,7 @@ import sample.modelo.Materia;
 import sample.modelo.Usuario;
 
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class EditarMateria extends Comunicador {
 
@@ -56,5 +55,21 @@ public class EditarMateria extends Comunicador {
             throwables.printStackTrace();
         }
 
+    }
+
+    public void eliminar() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(NOMBRE_SISTEMA);
+        alert.setHeaderText("Eliminar Materia");
+        alert.setContentText("Está seguro de que quiere eliminar materia?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            try {
+                GestorDatos.eliminarMateria(materia);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            navegar(btnUsuario, "Lista_Materias.fxml", getMensaje());
+        }
     }
 }
