@@ -254,7 +254,6 @@ public class GestorDatos {
                 int numeroEstudiantes = resultados.getInt("numero_estudiantes");
                 matricula = "EP00" + (1002 + numeroEstudiantes);
             }
-            conexion.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
