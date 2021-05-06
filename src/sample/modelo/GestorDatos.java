@@ -252,7 +252,7 @@ public class GestorDatos {
             ResultSet resultados = declaracion.executeQuery(consulta);
             while (resultados.next()){
                 int numeroEstudiantes = resultados.getInt("numero_estudiantes");
-                matricula = "EP00" + (1001 + numeroEstudiantes);
+                matricula = "EP00" + (1002 + numeroEstudiantes);
             }
             conexion.close();
         } catch (SQLException throwables) {
