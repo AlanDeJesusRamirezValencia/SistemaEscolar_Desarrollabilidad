@@ -43,10 +43,10 @@ public class NuevaMateria extends Comunicador {
 
     public void crear() {
         try {
-            GestorDatos.actualizarMateria( new Materia(0, nombre.getText(), grupos.getValue()) );
+            GestorDatos.insertarMateria( new Materia(0, nombre.getText(), grupos.getValue()) );
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        navegar(btnUsuario,"ListaGrupos.fxml");
+        navegar(btnUsuario,"Lista_Grupos.fxml");
     }
 }

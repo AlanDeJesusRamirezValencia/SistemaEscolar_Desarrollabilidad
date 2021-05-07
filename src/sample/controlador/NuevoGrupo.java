@@ -1,5 +1,6 @@
 package sample.controlador;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.ComboBox;
@@ -26,12 +27,11 @@ public class NuevoGrupo extends Comunicador {
     @Override
     public void inicializarComponentes() {
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
-        //TODO: obtener todos los profesores en un sólo método
-        /*try {
+        try {
             profesores.setItems(FXCollections.observableArrayList(GestorDatos.obtenerProfesores()));
         }catch (SQLException throwables) {
             throwables.printStackTrace();
-        }*/
+        }
     }
 
     public void crear() {

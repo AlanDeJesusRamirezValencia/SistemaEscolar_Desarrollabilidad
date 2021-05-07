@@ -48,11 +48,6 @@
             <Font name="Segoe UI Semibold" size="18.0" />
         </font>
     </Label>
-    <Label fx:id="nrc" layoutX="24.0" layoutY="179.0" text="NRC:">
-        <font>
-            <Font name="Segoe UI Semibold" size="18.0" />
-        </font>
-    </Label>
 
     <Button fx:id="btnUsuario" layoutX="656.0" layoutY="17.0" mnemonicParsing="false" onAction="#mostrarBtnCerrarSesion" prefHeight="1.0" prefWidth="144.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="admin">
         <font>
