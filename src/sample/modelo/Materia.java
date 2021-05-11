@@ -51,16 +51,26 @@ public class Materia {
         hashMap.put("letra", grupo.getLetra() + "");
 
         //Componentes del profesor del Grupo
-        hashMap.put("nPersonalProfesor", grupo.getProfesor().getnPersonal() + "");
-        hashMap.put("nombreProfesor", grupo.getProfesor().getNombre());
-        hashMap.put("apellidoPaternoProfesor", grupo.getProfesor().getApellidoPaterno());
-        hashMap.put("apellidoMaternoProfesor", grupo.getProfesor().getApellidoMaterno());
+        if (grupo.getProfesor() != null){
+            hashMap.put("nPersonalProfesor", grupo.getProfesor().getnPersonal() + "");
+            hashMap.put("nombreProfesor", grupo.getProfesor().getNombre());
+            hashMap.put("apellidoPaternoProfesor", grupo.getProfesor().getApellidoPaterno());
+            hashMap.put("apellidoMaternoProfesor", grupo.getProfesor().getApellidoMaterno());
+        }
+        else{
+            hashMap.put("nPersonalProfesor", "");
+            hashMap.put("nombreProfesor", "");
+            hashMap.put("apellidoPaternoProfesor", "");
+            hashMap.put("apellidoMaternoProfesor", "");
+        }
         return hashMap;
     }
 
     /** A partir de un objeto {@link HashMap} crea un objeto de tipo {@link Estudiante}*/
     public static Materia obtenerMateria(HashMap<String, String> hashMap){
-        return new Materia(
+
+        if (!hashMap.get("nPersonalProfesor").equals(""))
+            return new Materia(
                 Integer.parseInt(hashMap.get("nrc")),
                 hashMap.get("nombre"),
                 new Grupo(
@@ -75,5 +85,16 @@ public class Materia {
                         )
                 )
         );
+        else
+            return new Materia(
+                    Integer.parseInt(hashMap.get("nrc")),
+                    hashMap.get("nombre"),
+                    new Grupo(
+                            Integer.parseInt(hashMap.get("id")),
+                            Integer.parseInt(hashMap.get("grado")),
+                            hashMap.get("letra").charAt(0),
+                            null
+                    )
+            );
     }
 }

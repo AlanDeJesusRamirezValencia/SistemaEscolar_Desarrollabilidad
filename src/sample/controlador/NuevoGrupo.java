@@ -39,7 +39,6 @@ public class NuevoGrupo extends Comunicador {
     }
 
     public void crear() {
-        //TODO:Falta considerar no un profesor asignado
         if (letra.getText().trim().equals("") || grado.getText().trim().equals("") || profesores.getValue().equals(null)) {
             mensajeDeError.setVisible(true);
         } else {
@@ -48,10 +47,9 @@ public class NuevoGrupo extends Comunicador {
                         new Grupo(
                                 0,
                                 Integer.parseInt(grado.getText()),
-                                letra.getText().toUpperCase().charAt(0),
-                                profesores.getValue()
+                                letra.getText().toUpperCase().charAt(0)
                         ),
-                        true
+                        profesores.getValue()
                 );
                 navegar(grado, "Lista_Grupos.fxml");
             } catch (SQLException throwables) {

@@ -48,12 +48,13 @@ public class EditarGrupo extends Comunicador {
     }
 
     public void actualizarDatos() {
-        if (grado.getText().trim().equals("") || letra.getText().trim().equals("")) {
+        if (!grado.getText().isBlank() && !letra.getText().isBlank()) {
             grupoActual.setGrado(Integer.parseInt(grado.getText()));
             grupoActual.setLetra(letra.getText().charAt(0));
             grupoActual.setProfesor(profesores.getValue());
             try {
                 GestorDatos.actualizarGrupo(grupoActual);
+                navegar(grupo, "Información_Grupos.fxml", grupoActual.toHashMap());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

@@ -65,10 +65,18 @@ public class Grupo {
         hashMap.put("id", id + "");
         hashMap.put("grado", grado + "");
         hashMap.put("letra", letra + "");
-        hashMap.put("nPersonalProfesor", profesor.getnPersonal() + "");
-        hashMap.put("nombreProfesor", profesor.getNombre());
-        hashMap.put("apellidoPaternoProfesor", profesor.getApellidoPaterno());
-        hashMap.put("apellidoMaternoProfesor", profesor.getApellidoMaterno());
+        if (profesor != null){
+            hashMap.put("nPersonalProfesor", profesor.getnPersonal() + "");
+            hashMap.put("nombreProfesor", profesor.getNombre());
+            hashMap.put("apellidoPaternoProfesor", profesor.getApellidoPaterno());
+            hashMap.put("apellidoMaternoProfesor", profesor.getApellidoMaterno());
+        }
+        else{
+            hashMap.put("nPersonalProfesor", "");
+            hashMap.put("nombreProfesor", "");
+            hashMap.put("apellidoPaternoProfesor", "");
+            hashMap.put("apellidoMaternoProfesor", "");
+        }
         return hashMap;
     }
 
@@ -86,16 +94,25 @@ public class Grupo {
 
     /** A partir de un objeto {@link HashMap} crea un objeto de tipo {@link Grupo}*/
     public static Grupo obtenerGrupo(HashMap<String, String> hashMap){
-        return new Grupo(
-                Integer.parseInt(hashMap.get("id")),
-                Integer.parseInt(hashMap.get("grado")),
-                hashMap.get("letra").charAt(0),
-                new Profesor(
-                        Integer.parseInt(hashMap.get("nPersonalProfesor")),
-                        hashMap.get("nombreProfesor"),
-                        hashMap.get("apellidoPaternoProfesor"),
-                        hashMap.get("apellidoMaternoProfesor")
-                )
-        );
+        if (!hashMap.get("nPersonalProfesor").equals(""))
+            return new Grupo(
+                    Integer.parseInt(hashMap.get("id")),
+                    Integer.parseInt(hashMap.get("grado")),
+                    hashMap.get("letra").charAt(0),
+                    new Profesor(
+                            Integer.parseInt(hashMap.get("nPersonalProfesor")),
+                            hashMap.get("nombreProfesor"),
+                            hashMap.get("apellidoPaternoProfesor"),
+                            hashMap.get("apellidoMaternoProfesor")
+                    )
+            );
+        else {
+            return new Grupo(
+                    Integer.parseInt(hashMap.get("id")),
+                    Integer.parseInt(hashMap.get("grado")),
+                    hashMap.get("letra").charAt(0),
+                    null
+            );
+        }
     }
 }

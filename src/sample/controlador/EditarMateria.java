@@ -23,7 +23,7 @@ public class EditarMateria extends Comunicador {
     @FXML
     public Label nrc;
 
-    private Materia materia;
+    private Materia materiaActual;
 
     @FXML
     private ComboBox<Grupo> grupos;
@@ -33,13 +33,14 @@ public class EditarMateria extends Comunicador {
 
     @Override
     public void inicializarComponentes() {
-        materia = Materia.obtenerMateria(getMensaje());
-        nombre.setText(materia.getNombre());
-        nrc.setText(nrc.getText() + " " + materia.getNrc());
+        materiaActual = Materia.obtenerMateria(getMensaje());
+        nombre.setText(materiaActual.getNombre());
+        nrc.setText(nrc.getText() + " " + materiaActual.getNrc());
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
         grupos.setValue(Grupo.obtenerGrupo(getMensaje()));
         try {
             grupos.setItems(FXCollections.observableArrayList(GestorDatos.obtenerGrupos()));
+            grupos.setValue(materiaActual.getGrupo());
         }catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -50,18 +51,18 @@ public class EditarMateria extends Comunicador {
     }
 
     public void actualizarDatos() {
-        if (grupos.getValue() == null || nombre.getText().trim().equals("")){
-            materia.setGrupo(grupos.getValue());
-            materia.setNombre(nombre.getText());
+        if (!nombre.getText().isBlank()){
+            Grupo nav = materiaActual.getGrupo();
+            materiaActual.setGrupo(grupos.getValue());
+            materiaActual.setNombre(nombre.getText());
             try {
-                GestorDatos.actualizarMateria(materia);
+                GestorDatos.actualizarMateria(materiaActual);
+                navegar(btnUsuario, "Lista_Materias.fxml", nav.toHashMap());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         } else
             mensajeDeError.setVisible(true);
-
-
     }
 
     public void eliminar() {
@@ -72,7 +73,7 @@ public class EditarMateria extends Comunicador {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             try {
-                GestorDatos.eliminarMateria(materia);
+                GestorDatos.eliminarMateria(materiaActual);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

@@ -56,19 +56,18 @@ public class EditarEstudiante extends Comunicador {
     }
 
     public void actualizarDatos(){
-        if (!nombre.getText().equals("") && nombre.getText().equals("") && !apellidoMaterno.getText().equals("")){
+        if (!nombre.getText().isBlank() && !apellidoPaterno.getText().isBlank() && !apellidoMaterno.getText().isBlank()) {
             estudiante.setNombre(nombre.getText());
             estudiante.setApellidoPaterno(apellidoPaterno.getText());
             estudiante.setApellidoMaterno(apellidoMaterno.getText());
-            estudiante.setGrupo(grupoEstudiante);
+            estudiante.setGrupo(grupos.getValue());
             try {
                 GestorDatos.actualizarEstudiante(estudiante);
                 navegar(nombre, "Lista_Estudiantes.fxml", getMensaje());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        }
-        else
+        } else
             mensajeDeError.setVisible(true);
     }
 

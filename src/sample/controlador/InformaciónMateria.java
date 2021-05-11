@@ -3,9 +3,12 @@ package sample.controlador;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import sample.modelo.GestorDatos;
 import sample.modelo.Materia;
 import sample.modelo.Usuario;
 import sample.controlador.arquitectura.Comunicador;
+
+import java.sql.SQLException;
 
 public class InformaciónMateria extends Comunicador {
 
@@ -34,7 +37,11 @@ public class InformaciónMateria extends Comunicador {
         nrc.setText(materia.getNrc() + "");
         nombreGrupo.setText(materia.getGrupo().toString());
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
-        nombreProfesor.setText(materia.getGrupo().getProfesor().toString());
+        try {
+            nombreProfesor.setText(GestorDatos.obtenerProfesor(materia.getGrupo()).toString());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void asignarCalificaciones(){ navegar(nombreMateria, "Subir_Calificaciones.fxml", materia.toHashMap()); }
