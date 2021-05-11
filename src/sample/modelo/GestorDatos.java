@@ -16,12 +16,6 @@ public class GestorDatos {
 
     private static Connection conexion;
 
-    /**
-     * Este metodo realiza una consulta a la base de datos para obtener el usuario que se busca
-     * @param nombre es el nombre del usuario a buscar
-     * @return un usuario encontrado
-     * @throws SQLException
-     */
     public static Usuario obtenerUsuario(String nombre) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
@@ -36,11 +30,6 @@ public class GestorDatos {
         return new Usuario("", "");
     }
 
-    /**
-     * Este metodo realiza una consulta a la base de datos para obtener una lista de todos los grupos
-     * @return una lista con todos los grupos
-     * @throws SQLException
-     */
     public static ArrayList<Grupo> obtenerGrupos() throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
@@ -58,12 +47,6 @@ public class GestorDatos {
         return grupos;
     }
 
-    /**
-     * Este metodo realiza una consulta a la base de datos para obtener el profesor de un grupo
-     * @param grupo
-     * @return un profesor buscado
-     * @throws SQLException
-     */
     public static Profesor obtenerProfesor(Grupo grupo) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
@@ -77,9 +60,12 @@ public class GestorDatos {
             String apellidoPaterno = resultados.getString("apellido_paterno").toUpperCase();
             String apellidoMaterno = resultados.getString("apellido_materno").toUpperCase();
             profesor = new Profesor(nPersonal, nombre, apellidoPaterno, apellidoMaterno);
-            grupo.setProfesor(profesor);
         }
         conexion.close();
+        if (profesor == null){
+            profesor = new Profesor(0,"Ninguno","","");
+        }
+        grupo.setProfesor(profesor);
         return profesor;
     }
 
@@ -269,11 +255,11 @@ public class GestorDatos {
         conexion.close();
     }
 
-    public static void insertarGrupo(Grupo grupo, boolean profesorAsignado) throws SQLException {
+    public static void insertarGrupo(Grupo grupo, Profesor profesor) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = (profesorAsignado)?
-                String.format("INSERT INTO grupos (letra, grado, fk_profesor)  VALUES ('%c', %d, %d);", grupo.getLetra(), grupo.getGrado(), grupo.getProfesor().getnPersonal()):
+        String consulta = (profesor != null)?
+                String.format("INSERT INTO grupos (letra, grado, fk_profesor)  VALUES ('%c', %d, %d);", grupo.getLetra(), grupo.getGrado(), profesor.getnPersonal()):
                 String.format("INSERT INTO grupos (letra, grado)  VALUES ('%c', %d);", grupo.getLetra(), grupo.getGrado());
         declaracion.executeUpdate(consulta);
         conexion.close();
