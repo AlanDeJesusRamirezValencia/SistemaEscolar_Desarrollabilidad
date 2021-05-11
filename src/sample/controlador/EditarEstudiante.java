@@ -31,6 +31,9 @@ public class EditarEstudiante extends Comunicador {
     @FXML
     public Label matricula;
 
+    @FXML
+    public Label mensajeDeError;
+
 
     @FXML
     public ComboBox<Grupo> grupos;
@@ -53,18 +56,20 @@ public class EditarEstudiante extends Comunicador {
     }
 
     public void actualizarDatos(){
-        estudiante.setNombre(nombre.getText());
-        estudiante.setApellidoPaterno(apellidoPaterno.getText());
-        estudiante.setApellidoMaterno(apellidoMaterno.getText());
-        estudiante.setGrupo(grupoEstudiante);
-
-        try {
-            GestorDatos.actualizarEstudiante(estudiante);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        if (!nombre.getText().equals("") && nombre.getText().equals("") && !apellidoMaterno.getText().equals("")){
+            estudiante.setNombre(nombre.getText());
+            estudiante.setApellidoPaterno(apellidoPaterno.getText());
+            estudiante.setApellidoMaterno(apellidoMaterno.getText());
+            estudiante.setGrupo(grupoEstudiante);
+            try {
+                GestorDatos.actualizarEstudiante(estudiante);
+                navegar(nombre, "Lista_Estudiantes.fxml", getMensaje());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
-
-        navegar(nombre, "Lista_Estudiantes.fxml", getMensaje());
+        else
+            mensajeDeError.setVisible(true);
     }
 
     public void regresar() {

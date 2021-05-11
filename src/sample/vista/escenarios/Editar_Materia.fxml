@@ -80,9 +80,14 @@
         </cursor>
     </Button>
     <ComboBox fx:id="grupos" layoutX="89.0" layoutY="144.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" />
-    <Button layoutX="14.0" layoutY="544.0" mnemonicParsing="false" text="Eliminar Materia" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" onAction="#eliminar">
+    <Button layoutX="14.0" layoutY="544.0" mnemonicParsing="false" onAction="#eliminar" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" text="Eliminar Materia">
         <font>
             <Font name="Segoe UI Semibold" size="18.0" />
         </font>
     </Button>
+    <Label fx:id="mensajeDeError" layoutX="26.0" layoutY="214.0" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" text="* Rellene todos los campos" textFill="RED" visible="true">
+        <font>
+            <Font name="Segoe UI Semibold" size="18.0" />
+        </font>
+    </Label>
 </AnchorPane>

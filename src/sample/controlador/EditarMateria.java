@@ -28,6 +28,9 @@ public class EditarMateria extends Comunicador {
     @FXML
     private ComboBox<Grupo> grupos;
 
+    @FXML
+    public Label mensajeDeError;
+
     @Override
     public void inicializarComponentes() {
         materia = Materia.obtenerMateria(getMensaje());
@@ -47,13 +50,17 @@ public class EditarMateria extends Comunicador {
     }
 
     public void actualizarDatos() {
-        materia.setGrupo(grupos.getValue());
-        materia.setNombre(nombre.getText());
-        try {
-            GestorDatos.actualizarMateria(materia);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        if (grupos.getValue() == null || nombre.getText().trim().equals("")){
+            materia.setGrupo(grupos.getValue());
+            materia.setNombre(nombre.getText());
+            try {
+                GestorDatos.actualizarMateria(materia);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        } else
+            mensajeDeError.setVisible(true);
+
 
     }
 

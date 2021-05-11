@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import sample.controlador.arquitectura.Comunicador;
 import sample.modelo.GestorDatos;
@@ -24,6 +25,9 @@ public class NuevoGrupo extends Comunicador {
     @FXML
     public ComboBox<Profesor> profesores;
 
+    @FXML
+    public Label mensajeDeError;
+
     @Override
     public void inicializarComponentes() {
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
@@ -35,21 +39,25 @@ public class NuevoGrupo extends Comunicador {
     }
 
     public void crear() {
-        //TODO: Hacer pruebas de este método
-        try {
-            GestorDatos.insertarGrupo(
-                    new Grupo(
-                            0,
-                            Integer.parseInt(grado.getText()),
-                            letra.getText().charAt(0),
-                            profesores.getValue()
-                    ),
-                    true
-            );
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        //TODO:Falta considerar no un profesor asignado
+        if (letra.getText().trim().equals("") || grado.getText().trim().equals("") || profesores.getValue().equals(null)) {
+            mensajeDeError.setVisible(true);
+        } else {
+            try {
+                GestorDatos.insertarGrupo(
+                        new Grupo(
+                                0,
+                                Integer.parseInt(grado.getText()),
+                                letra.getText().toUpperCase().charAt(0),
+                                profesores.getValue()
+                        ),
+                        true
+                );
+                navegar(grado, "Lista_Grupos.fxml");
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
-        navegar(grado, "Lista_Grupos.fxml");
     }
 
     public void regresar() {

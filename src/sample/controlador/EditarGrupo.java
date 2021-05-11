@@ -1,12 +1,11 @@
 package sample.controlador;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import sample.modelo.GestorDatos;
 import sample.modelo.Grupo;
+import sample.modelo.Profesor;
 import sample.modelo.Usuario;
 import sample.controlador.arquitectura.Comunicador;
 
@@ -26,6 +25,12 @@ public class EditarGrupo extends Comunicador {
     @FXML
     public Label grupo;
 
+    @FXML
+    public Label mensajeDeError;
+
+    @FXML
+    public ComboBox<Profesor> profesores;
+
     @Override
     public void inicializarComponentes() {
         super.inicializarComponentes();
@@ -34,18 +39,27 @@ public class EditarGrupo extends Comunicador {
         letra.setText(grupoActual.getLetra() + "");
         grupo.setText(grupo.getText() + " " + grupoActual.getId());
         btnUsuario.setText(Usuario.obtenerUsuario(getMensaje()));
+        try {
+            profesores.setItems(FXCollections.observableArrayList(GestorDatos.obtenerProfesores()));
+            profesores.setValue(grupoActual.getProfesor());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void actualizarDatos() {
-        //TODO: actualizar datos
-        /*GestorDatos.actualizarGrupo(
-                return new Grupo(
-                        grupoActual.getId(),
-                        Integer.parseInt(letra.getText()),
-                        letra.getText().charAt(0),
-                        grupoActual.getProfesor()
-                )
-        );*/
+        if (grado.getText().trim().equals("") || letra.getText().trim().equals("")) {
+            grupoActual.setGrado(Integer.parseInt(grado.getText()));
+            grupoActual.setLetra(letra.getText().charAt(0));
+            grupoActual.setProfesor(profesores.getValue());
+            try {
+                GestorDatos.actualizarGrupo(grupoActual);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        else
+            mensajeDeError.setVisible(true);
     }
 
     public void regresar() {
