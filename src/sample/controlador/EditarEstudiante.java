@@ -9,6 +9,7 @@ import sample.modelo.Grupo;
 import sample.controlador.arquitectura.Comunicador;
 
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.Optional;
 
 public class EditarEstudiante extends Comunicador {
@@ -57,9 +58,9 @@ public class EditarEstudiante extends Comunicador {
 
     public void actualizarDatos(){
         if (!nombre.getText().isBlank() && !apellidoPaterno.getText().isBlank() && !apellidoMaterno.getText().isBlank()) {
-            estudiante.setNombre(nombre.getText());
-            estudiante.setApellidoPaterno(apellidoPaterno.getText());
-            estudiante.setApellidoMaterno(apellidoMaterno.getText());
+            estudiante.setNombre(nombre.getText().trim().toUpperCase());
+            estudiante.setApellidoPaterno(apellidoPaterno.getText().trim().toUpperCase());
+            estudiante.setApellidoMaterno(apellidoMaterno.getText().trim().toUpperCase());
             estudiante.setGrupo(grupos.getValue());
             try {
                 GestorDatos.actualizarEstudiante(estudiante);
@@ -67,8 +68,7 @@ public class EditarEstudiante extends Comunicador {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        } else
-            mensajeDeError.setVisible(true);
+        } else mensajeDeError.setVisible(true);
     }
 
     public void regresar() {

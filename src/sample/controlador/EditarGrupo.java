@@ -49,8 +49,8 @@ public class EditarGrupo extends Comunicador {
 
     public void actualizarDatos() {
         if (!grado.getText().isBlank() && !letra.getText().isBlank()) {
-            grupoActual.setGrado(Integer.parseInt(grado.getText()));
-            grupoActual.setLetra(letra.getText().charAt(0));
+            grupoActual.setGrado(Integer.parseInt(grado.getText().trim().toUpperCase()));
+            grupoActual.setLetra(letra.getText().trim().toUpperCase().charAt(0));
             grupoActual.setProfesor(profesores.getValue());
             try {
                 GestorDatos.actualizarGrupo(grupoActual);
@@ -59,8 +59,7 @@ public class EditarGrupo extends Comunicador {
                 throwables.printStackTrace();
             }
         }
-        else
-            mensajeDeError.setVisible(true);
+        else mensajeDeError.setVisible(true);
     }
 
     public void regresar() {

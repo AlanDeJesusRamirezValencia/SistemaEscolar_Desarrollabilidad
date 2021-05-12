@@ -39,15 +39,13 @@ public class NuevoGrupo extends Comunicador {
     }
 
     public void crear() {
-        if (letra.getText().trim().equals("") || grado.getText().trim().equals("") || profesores.getValue().equals(null)) {
-            mensajeDeError.setVisible(true);
-        } else {
+        if (!letra.getText().trim().equals("") && !grado.getText().trim().equals("") && profesores.getValue() != null) {
             try {
                 GestorDatos.insertarGrupo(
                         new Grupo(
                                 0,
-                                Integer.parseInt(grado.getText()),
-                                letra.getText().toUpperCase().charAt(0)
+                                Integer.parseInt(grado.getText().trim()),
+                                letra.getText().trim().toUpperCase().charAt(0)
                         ),
                         profesores.getValue()
                 );
@@ -55,7 +53,7 @@ public class NuevoGrupo extends Comunicador {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        }
+        } else mensajeDeError.setVisible(true);
     }
 
     public void regresar() {

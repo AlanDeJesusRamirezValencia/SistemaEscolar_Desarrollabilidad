@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
-<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" fx:controller="sample.controlador.NuevoEstudiante" prefHeight="400.0" prefWidth="600.0">
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controlador.NuevoEstudiante">
     <Button layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#regresar" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;">
         <graphic>
             <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../iconos/flecha_atras.png"/>
+                <Image url="@../iconos/flecha_atras.png" />
             </ImageView>
         </graphic>
         <cursor>
@@ -70,7 +73,7 @@
             <Font name="Segoe UI Semibold" size="18.0" />
         </font>
     </Label>
-    <ComboBox fx:id="grupos" layoutX="80.0" layoutY="274.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;"/>
+    <ComboBox fx:id="grupos" layoutX="80.0" layoutY="274.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" />
 
     <Button fx:id="btnUsuario" layoutX="656.0" layoutY="17.0" mnemonicParsing="false" onAction="#mostrarBtnCerrarSesion" prefHeight="1.0" prefWidth="144.0" style="-fx-border-width: 0; -fx-background-color: #FFFFFF;" text="admin">
         <font>
@@ -93,4 +96,9 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
+    <Label fx:id="mensajeDeError" layoutX="25.0" layoutY="313.0" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" text="* Rellene todos los campos" textFill="RED" visible="false">
+        <font>
+            <Font name="Segoe UI Semibold" size="18.0" />
+        </font>
+    </Label>
 </AnchorPane>

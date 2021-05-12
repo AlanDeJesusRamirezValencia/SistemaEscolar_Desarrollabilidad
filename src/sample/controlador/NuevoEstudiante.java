@@ -33,6 +33,9 @@ public class NuevoEstudiante extends Comunicador {
     @FXML
     public ComboBox<Grupo> grupos;
 
+    @FXML
+    public Label mensajeDeError;
+
     @Override
     public void inicializarComponentes() {
         try {
@@ -48,18 +51,16 @@ public class NuevoEstudiante extends Comunicador {
                 GestorDatos.insertarEstudiante(
                         new Estudiante(
                                 "",
-                                nombre.getText(),
-                                apellidoPaterno.getText(),
-                                apellidoMaterno.getText(),
+                                nombre.getText().trim().toUpperCase(),
+                                apellidoPaterno.getText().trim().toUpperCase(),
+                                apellidoMaterno.getText().trim().toUpperCase(),
                                 grupos.getValue()
                         )
                 );
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        else
-            System.out.println("Faltan datos");
-        navegar(nombre, "Lista_Grupos.fxml", getMensaje());
+        else navegar(nombre, "Lista_Grupos.fxml", getMensaje());
     }
 
     public void regresar() {

@@ -54,15 +54,14 @@ public class EditarMateria extends Comunicador {
         if (!nombre.getText().isBlank()){
             Grupo nav = materiaActual.getGrupo();
             materiaActual.setGrupo(grupos.getValue());
-            materiaActual.setNombre(nombre.getText());
+            materiaActual.setNombre(nombre.getText().trim().toUpperCase());
             try {
                 GestorDatos.actualizarMateria(materiaActual);
                 navegar(btnUsuario, "Lista_Materias.fxml", nav.toHashMap());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        } else
-            mensajeDeError.setVisible(true);
+        } else mensajeDeError.setVisible(true);
     }
 
     public void eliminar() {

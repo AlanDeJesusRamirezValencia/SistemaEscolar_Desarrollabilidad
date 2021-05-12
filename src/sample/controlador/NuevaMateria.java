@@ -22,7 +22,7 @@ public class NuevaMateria extends Comunicador {
     public Label grupo;
 
     @FXML
-    public Label nrc;
+    public Label mensajeDeError;
 
     @FXML
     private ComboBox<Grupo> grupos;
@@ -43,10 +43,18 @@ public class NuevaMateria extends Comunicador {
 
     public void crear() {
         try {
-            GestorDatos.insertarMateria( new Materia(0, nombre.getText(), grupos.getValue()) );
+            if (!nombre.getText().isBlank() && grupos.getValue() != null) {
+                GestorDatos.insertarMateria(
+                        new Materia(
+                                0,
+                                nombre.getText().trim().toUpperCase(),
+                                grupos.getValue())
+                );
+                navegar(btnUsuario, "Lista_Grupos.fxml");
+            }
+            else mensajeDeError.setVisible(true);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        navegar(btnUsuario,"Lista_Grupos.fxml");
     }
 }
