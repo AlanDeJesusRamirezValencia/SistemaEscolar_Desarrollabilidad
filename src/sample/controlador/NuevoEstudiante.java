@@ -46,7 +46,7 @@ public class NuevoEstudiante extends Comunicador {
     }
 
     public void crear(){
-        if (!nombre.getText().equals("") && !apellidoMaterno.getText().equals("") && !apellidoPaterno.getText().equals("") && grupos.getValue() != null)
+        if (!nombre.getText().isBlank() && !apellidoMaterno.getText().isBlank() && !apellidoPaterno.getText().isBlank() && grupos.getValue() != null)
             try {
                 GestorDatos.insertarEstudiante(
                         new Estudiante(
@@ -57,10 +57,11 @@ public class NuevoEstudiante extends Comunicador {
                                 grupos.getValue()
                         )
                 );
+                navegar(nombre, "Lista_Grupos.fxml", getMensaje());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        else navegar(nombre, "Lista_Grupos.fxml", getMensaje());
+        else mensajeDeError.setVisible(true);
     }
 
     public void regresar() {
