@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -73,6 +74,7 @@ public interface Navegador  {
     /** Navegación exclusiva para el método main() */
     default void navegarMain(Stage stageActual, String archivoFXML){
         try {
+            stageActual.getIcons().add(new Image("https://img-premium.flaticon.com/png/512/429/429356.png?token=exp=1621966108~hmac=c20d7042556fc9711f32bedef11d77bc"));
             Parent nuevaEscena = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("vista/escenarios/" + archivoFXML)));
             stageActual.setTitle(NOMBRE_SISTEMA);
             stageActual.setScene(new Scene(nuevaEscena, ANCHO_PREDEF, ALTO_PREDEF));
