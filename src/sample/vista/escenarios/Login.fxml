@@ -13,7 +13,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="sample.controlador.Login" prefHeight="600.0" prefWidth="800.0"
-            style="-fx-background-color: #ff8282;" BorderPane.alignment="CENTER">
+            style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
    <TextField fx:id="usuario" layoutX="204.0" layoutY="243.0" onAction="#iniciarSesion" prefWidth="391.0"
               promptText="Usuario" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;">
       <font>

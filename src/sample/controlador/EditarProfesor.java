@@ -40,7 +40,7 @@ public class EditarProfesor extends Comunicador {
     }
 
     public void actualizarDatos() {
-        if(nombre.getText().isBlank() || apellidoMaterno.getText().isBlank() || apellidoPaterno.getText().isBlank()){
+        if(!nombre.getText().isBlank() && !apellidoMaterno.getText().isBlank() && !apellidoPaterno.getText().isBlank()){
             profesorActual.setNombre(nombre.getText().toUpperCase().trim());
             profesorActual.setApellidoPaterno(apellidoPaterno.getText().toUpperCase().trim());
             profesorActual.setApellidoMaterno(apellidoMaterno.getText().toUpperCase().trim());

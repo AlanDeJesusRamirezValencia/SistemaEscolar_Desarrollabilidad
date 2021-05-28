@@ -39,7 +39,7 @@ public class NuevoGrupo extends Comunicador {
     }
 
     public void crear() {
-        if (!letra.getText().trim().equals("") && !grado.getText().trim().equals("") && profesores.getValue() != null) {
+        if (!letra.getText().isBlank() && !grado.getText().isBlank() && profesores.getValue() != null) {
             try {
                 GestorDatos.insertarGrupo(
                         new Grupo(
