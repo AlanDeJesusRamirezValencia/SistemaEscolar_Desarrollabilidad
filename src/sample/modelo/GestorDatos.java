@@ -285,7 +285,7 @@ public class GestorDatos {
     public static void eliminarProfesor(Profesor profesor) throws SQLException {
         conexion = Conexion.getConexion();
         Statement declaracion = conexion.createStatement();
-        String consulta = String.format("DELETE FROM profesor WHERE numero_personal = %d;", profesor.getnPersonal());
+        String consulta = String.format("DELETE FROM profesores WHERE numero_personal = %d;", profesor.getnPersonal());
         declaracion.executeUpdate(consulta);
         conexion.close();
     }
