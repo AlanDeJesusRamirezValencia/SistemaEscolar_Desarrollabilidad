@@ -6,12 +6,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import sample.controlador.arquitectura.Comunicador;
-import sample.modelo.GestorDatos;
-import sample.modelo.Grupo;
-import sample.modelo.Materia;
-import sample.modelo.Usuario;
+import sample.modelo.*;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 
 public class NuevaMateria extends Comunicador {
 
@@ -43,13 +41,18 @@ public class NuevaMateria extends Comunicador {
 
     public void crear() {
         try {
+            Materia nuevaMateria = new Materia(
+                    0,
+                    nombre.getText().trim().toUpperCase(),
+                    grupos.getValue());
             if (!nombre.getText().isBlank() && grupos.getValue() != null) {
-                GestorDatos.insertarMateria(
-                        new Materia(
-                                0,
-                                nombre.getText().trim().toUpperCase(),
-                                grupos.getValue())
-                );
+                GestorDatos.insertarMateria(nuevaMateria);
+                HashMap<Estudiante,Integer> calificaciones = new HashMap<>();
+                for (Estudiante estudiante: GestorDatos.obtenerEstudiantes(grupos.getValue())){
+                    calificaciones.put(estudiante, 0);
+                }
+                GestorDatos.insertarCalificaciones(calificaciones, nuevaMateria);
+
                 navegar(btnUsuario, "Lista_Grupos.fxml");
             }
             else mensajeDeError.setVisible(true);

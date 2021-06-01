@@ -6,12 +6,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.apache.commons.collections4.Get;
 import sample.controlador.arquitectura.Comunicador;
 import sample.modelo.Estudiante;
 import sample.modelo.GestorDatos;
 import sample.modelo.Grupo;
+import sample.modelo.Materia;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 
 public class NuevoEstudiante extends Comunicador {
 
@@ -48,15 +51,20 @@ public class NuevoEstudiante extends Comunicador {
     public void crear(){
         if (!nombre.getText().isBlank() && !apellidoMaterno.getText().isBlank() && !apellidoPaterno.getText().isBlank() && grupos.getValue() != null)
             try {
-                GestorDatos.insertarEstudiante(
-                        new Estudiante(
-                                "",
-                                nombre.getText().trim().toUpperCase(),
-                                apellidoPaterno.getText().trim().toUpperCase(),
-                                apellidoMaterno.getText().trim().toUpperCase(),
-                                grupos.getValue()
-                        )
+                Estudiante nuevoEstudiante = new Estudiante(
+                        "",
+                        nombre.getText().trim().toUpperCase(),
+                        apellidoPaterno.getText().trim().toUpperCase(),
+                        apellidoMaterno.getText().trim().toUpperCase(),
+                        grupos.getValue()
                 );
+                GestorDatos.insertarEstudiante(nuevoEstudiante);
+                HashMap<Estudiante,Integer> calificaciones = new HashMap<>();
+                calificaciones.put(nuevoEstudiante, 0);
+                for (Materia materia: GestorDatos.obtenerMaterias(grupos.getValue())){
+                    GestorDatos.insertarCalificaciones(calificaciones, materia);
+                }
+
                 navegar(nombre, "Lista_Grupos.fxml", getMensaje());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
